@@ -1,3 +1,3 @@
 # DotNetTeamOnePortfolioManager
-DotNet team No.1 project: Portfolio Manager
+DotNet team No.1 project: Portfolio Manager Project
 
