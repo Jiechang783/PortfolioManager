@@ -78,5 +78,23 @@ namespace EntityFramwork.EntityDao
             }
         }
 
+        public static List<PriceHistory> getPriceHistorysByisin(int isin)
+        {
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                List<PriceHistory> uers = new List<PriceHistory>();
+                foreach (PriceHistory temp in db.PriceHistorys)
+                {
+                    if (temp.Isin == isin)
+                    {
+                        uers.Add(temp);
+                    }
+                }
+                return uers;
+            }
+        }
+
     }
 }

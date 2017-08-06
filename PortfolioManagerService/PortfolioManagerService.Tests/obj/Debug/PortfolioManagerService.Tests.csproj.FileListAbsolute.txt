@@ -1,0 +1,12 @@
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\PortfolioManagerService.Tests.dll.config
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\PortfolioManagerService.Tests.dll
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\PortfolioManagerService.Tests.pdb
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\EntityFramework.dll
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\EntityFramework.SqlServer.dll
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\EntityFramework.xml
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\EntityFramework.SqlServer.xml
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\zh-Hans\Microsoft.VisualStudio.QualityTools.UnitTestFramework.resources.dll
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\obj\Debug\PortfolioManagerService.Tests.csprojResolveAssemblyReference.cache
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\obj\Debug\PortfolioManagerService.Tests.dll
+E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\obj\Debug\PortfolioManagerService.Tests.pdb
