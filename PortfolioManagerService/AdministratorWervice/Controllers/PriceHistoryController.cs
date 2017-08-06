@@ -54,5 +54,16 @@ namespace AdministratorWervice.Controllers
             int changeLine = PriceHistoryDao.deletePriceHistorys(c);
             return Ok(changeLine);
         }
+
+        [HttpGet]
+        [Route("api/Getpricehis/{isin}")]
+        public IHttpActionResult Getresult(int isin)
+        {
+            var query = from p in PriceHistoryDao.getPriceHistorysByisin(isin)
+                        select new { p.Date,p.Price};
+
+            return Ok(query);
+        }
+
     }
 }

@@ -22,3 +22,15 @@ D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityF
 D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.csprojResolveAssemblyReference.cache
 D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.Migrations.InitialDatabase.resources
 D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.csproj.GenerateResource.Cache
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramwork.dll.config
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramwork.dll
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramwork.pdb
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.dll
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.SqlServer.dll
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.xml
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.SqlServer.xml
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.csprojResolveAssemblyReference.cache
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.dll
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.pdb
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.Migrations.Initadatabase.resources
+E:\PortfolioManager\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.csproj.GenerateResource.Cache

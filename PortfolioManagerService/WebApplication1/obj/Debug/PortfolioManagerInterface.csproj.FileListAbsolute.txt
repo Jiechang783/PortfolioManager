@@ -31,3 +31,36 @@ c:\users\ztt_admin\documents\visual studio 2015\Projects\PortfolioManagerService
 c:\users\ztt_admin\documents\visual studio 2015\Projects\PortfolioManagerService\WebApplication1\obj\Debug\WebApplication1.dll
 c:\users\ztt_admin\documents\visual studio 2015\Projects\PortfolioManagerService\WebApplication1\obj\Debug\WebApplication1.pdb
 c:\users\ztt_admin\documents\visual studio 2015\Projects\PortfolioManagerService\WebApplication1\obj\Debug\PortfolioManagerInterface.csprojResolveAssemblyReference.cache
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\ApplicationInsights.config
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\csc.exe
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\Microsoft.CodeAnalysis.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\Microsoft.CSharp.Core.targets
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\Microsoft.VisualBasic.Core.targets
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\System.Collections.Immutable.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\System.Reflection.Metadata.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\vbc.exe
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\VBCSCompiler.exe
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\roslyn\VBCSCompiler.exe.config
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\WebApplication1.dll.config
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\WebApplication1.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\WebApplication1.pdb
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.AI.Agent.Intercept.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.AI.DependencyCollector.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.AI.PerfCounterCollector.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.AI.ServerTelemetryChannel.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.AI.Web.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.AI.WindowsServer.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.ApplicationInsights.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.AI.DependencyCollector.xml
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.AI.ServerTelemetryChannel.xml
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.AI.Web.xml
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.AI.WindowsServer.xml
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.ApplicationInsights.xml
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\obj\Debug\PortfolioManagerInterface.csprojResolveAssemblyReference.cache
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\obj\Debug\WebApplication1.dll
+E:\PortfolioManager\PortfolioManagerService\WebApplication1\obj\Debug\WebApplication1.pdb
