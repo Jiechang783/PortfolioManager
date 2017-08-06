@@ -3,91 +3,89 @@ using EntityFramwork.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace EntityFramwork.EntityDao
 {
-   public class BondsDao
+    public class BondsDao
     {
         public BondsDao()
         {
-
         }
 
-        public static int setBonds(Bonds a)
+        public static int addBond(Bond bond)
         {
-
             //  Bonds b = new Bonds() { BondsId = 1, FirstName = "zhang", LastName = "Tingting", Email = "zhangtingting.code@gmail", telephone = "1111111111", Role = "admin" };
             using (DatabaseContext db = new DatabaseContext())
             {
-                db.Bondses.Add(a);
+                db.Bonds.Add(bond);
                 int result = db.SaveChanges();
                 return result;
             }
         }
 
-        public static int deleteBondss(Bonds b)
+        public static int deleteBond(Bond bond)
         {
             // Bonds b = new Bonds() { BondsId = 2, FirstName = "a", LastName = "Tingting", Email = "zhangtingting.code@gmail", telephone = "1111111111", Role = "admin" };
-            using (DatabaseContext context = new DatabaseContext())
+            using (DatabaseContext db = new DatabaseContext())
             {
-                var Bonds = context.Bondses.FirstOrDefault(row => row.Isin == b.Isin);
-                if (Bonds != null)
+                var removeBond = db.Bonds.FirstOrDefault(row => row.Isin == bond.Isin);
+
+                if (removeBond != null)
                 {
-                    context.Bondses.Remove(Bonds);
+                    db.Bonds.Remove(removeBond);
                 }
 
-                //db.Bondss.Remove(b);
-                int result = context.SaveChanges();
+                int result = db.SaveChanges();
                 return result;
             }
         }
 
-
-
-
-        public static List<Bonds> getBondss()
+        public static List<Bond> getBonds()
         {
-
             using (DatabaseContext db = new DatabaseContext())
             {
                 db.Configuration.ProxyCreationEnabled = false;
-                List<Bonds> uers = new List<Bonds>();
-                foreach (Bonds temp in db.Bondses)
+                List<Bond> bonds = new List<Bond>();
+
+                foreach (Bond bond in db.Bonds)
                 {
-                    uers.Add(temp);
+                    bonds.Add(bond);
                 }
-                return uers;
+
+                return bonds;
             }
         }
 
-        public static Bonds getBondssById(int id)
+        public static Bond getBondById(int id)
         {
-
             using (DatabaseContext db = new DatabaseContext())
             {
                 db.Configuration.ProxyCreationEnabled = false;
-                List<Bonds> uers = new List<Bonds>();
-                foreach (Bonds temp in db.Bondses)
+                List<Bond> uers = new List<Bond>();
+
+                foreach (Bond bond in db.Bonds)
                 {
-                    if (temp.Isin == id)
+                    if (bond.Isin == id)
                     {
-                        return temp;
+                        return bond;
                     }
                 }
+
                 return null;
             }
         }
 
-        public static int updateBondss(Bonds w)
+        public static int updateBond(Bond bond)
         {
-
             DatabaseContext db = new DatabaseContext();
-            Bonds us = db.Bondses.Single(x => x.Isin == w.Isin);
-            if (us == null)
-                throw new ArgumentOutOfRangeException("ws");
-            db.Entry(us).CurrentValues.SetValues(w);  //更新实体
+            Bond updateBond = db.Bonds.Single(x => x.Isin == bond.Isin);
+
+            if (updateBond == null)
+            {
+                throw new ArgumentOutOfRangeException("Web Service");
+            }
+
+            db.Entry(updateBond).CurrentValues.SetValues(bond);  //更新实体
             int result = db.SaveChanges();
             return result;
         }
