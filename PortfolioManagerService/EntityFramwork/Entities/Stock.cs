@@ -15,13 +15,13 @@ namespace EntityFramwork.Entities
         [Required]
         public string Symbol { get; set; }
 
-        [Required]
+
         public decimal LastSale { get; set; }
 
-        [Required]
-        public decimal MarketCap { get; set; }
+   
+        public string MarketCap { get; set; }
 
-        [Required]
+    
         public DateTime IPOyear { get; set; }
 
         [Required]
@@ -30,7 +30,7 @@ namespace EntityFramwork.Entities
         [Required]
         public string industry { get; set; }
 
-        [Required]
+    
         public string SummaryQuote { get; set; }
 
         //NASDAQ,NYSE,ARCA

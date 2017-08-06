@@ -14,7 +14,7 @@ namespace AdministratorWervice.Controllers
         [HttpGet]
         [Route("api/Bonds")]
         public IHttpActionResult Get()
-        {
+        { 
             return Ok(BondsDao.getBonds());
         }
 

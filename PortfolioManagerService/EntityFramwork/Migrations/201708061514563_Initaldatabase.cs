@@ -76,11 +76,11 @@ namespace EntityFramwork.Migrations
                         Name = c.String(nullable: false),
                         Symbol = c.String(nullable: false),
                         LastSale = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        MarketCap = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        MarketCap = c.String(),
                         IPOyear = c.DateTime(nullable: false),
                         Sector = c.String(nullable: false),
                         industry = c.String(nullable: false),
-                        SummaryQuote = c.String(nullable: false),
+                        SummaryQuote = c.String(),
                         Address = c.String(nullable: false),
                     })
                 .PrimaryKey(t => t.Isin);
