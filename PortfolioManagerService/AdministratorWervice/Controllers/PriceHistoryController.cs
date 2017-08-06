@@ -36,6 +36,23 @@ namespace AdministratorWervice.Controllers
 
         }
 
+        [HttpGet]
+        // GET api/values/5
+        [Route("api/PriceHistorysPID/{id}")]
+        public IHttpActionResult GetPId(int id)
+        {
+            PriceHistory p = PriceHistoryDao.getPriceHistorysById(id);
+            if (p != null)
+            {
+                return Ok(p);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
 
         [HttpPost]
         [Route("api/addPriceHistorys")]

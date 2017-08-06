@@ -10,3 +10,14 @@ E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\bin\De
 E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\obj\Debug\PortfolioManagerService.Tests.csprojResolveAssemblyReference.cache
 E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\obj\Debug\PortfolioManagerService.Tests.dll
 E:\PortfolioManager\PortfolioManagerService\PortfolioManagerService.Tests\obj\Debug\PortfolioManagerService.Tests.pdb
+D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\PortfolioManagerService.Tests.dll.config
+D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\PortfolioManagerService.Tests.dll
+D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\PortfolioManagerService.Tests.pdb
+D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\EntityFramework.dll
+D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\EntityFramework.SqlServer.dll
+D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\EntityFramework.xml
+D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\EntityFramework.SqlServer.xml
+D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\PortfolioManagerService.Tests\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\PortfolioManagerService.Tests\obj\Debug\PortfolioManagerService.Tests.dll
+D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\PortfolioManagerService.Tests\obj\Debug\PortfolioManagerService.Tests.pdb

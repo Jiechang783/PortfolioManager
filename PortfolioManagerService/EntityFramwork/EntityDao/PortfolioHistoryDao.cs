@@ -73,5 +73,23 @@ namespace EntityFramwork.EntityDao
                 return null;
             }
         }
+
+        public static List<PortfolioHistory> getPortfolioHistorysByPId(int portfolioId)
+        {
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                List<PortfolioHistory> users = new List<PortfolioHistory>();
+                foreach (PortfolioHistory temp in db.PortfolioHistories)
+                {
+                    if (temp.PortfolioId == portfolioId)
+                    {
+                        users.Add(temp);
+                    }
+                }
+                return users;
+            }
+        }
     }
 }

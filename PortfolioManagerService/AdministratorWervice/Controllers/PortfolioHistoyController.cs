@@ -35,6 +35,23 @@ namespace AdministratorWervice.Controllers
 
         }
 
+        [HttpGet]
+        // GET api/values/5
+        [Route("api/PortfolioHistorysPId/{id}")]
+        public IHttpActionResult GetByPid(int id)
+        {
+            List<PortfolioHistory> p = PortfolioHistoryDao.getPortfolioHistorysByPId(id);
+            if (p != null)
+            {
+                return Ok(p);
+            }
+            else
+            {
+                return NotFound();
+            }
+
+        }
+
 
         [HttpPost]
         [Route("api/addPortfolioHistorys")]

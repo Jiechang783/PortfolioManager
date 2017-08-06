@@ -50,7 +50,7 @@ namespace AdministratorWervice.Controllers
         public IHttpActionResult addBondss(Bond c)
         {
 
-            int changeLine = BondsDao.setBonds(c);
+            int changeLine = BondsDao.addBond(c);
             return Ok(changeLine);
         }
 
@@ -58,7 +58,7 @@ namespace AdministratorWervice.Controllers
         [Route("api/deleteBondss")]
         public IHttpActionResult deleteBondss(Bond c)
         {
-            Bond c1 = new Bond { Isin=1, Issuer="ztt", Coupon=3.3, MaturityMonth="0", MaturityYear= Convert.ToDateTime("1975-06-04") };
+            //Bond c1 = new Bond { Isin=1, Issuer="ztt", Coupon=3.3, MaturityMonth="0", MaturityYear= Convert.ToDateTime("1975-06-04") };
             int changeLine = BondsDao.deleteBond(c);
             return Ok(changeLine);
         }
