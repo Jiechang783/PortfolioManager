@@ -34,15 +34,3 @@ E:\PortfolioManager\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramw
 E:\PortfolioManager\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.pdb
 E:\PortfolioManager\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.Migrations.Initadatabase.resources
 E:\PortfolioManager\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.csproj.GenerateResource.Cache
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramwork.dll.config
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramwork.dll
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramwork.pdb
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.dll
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.SqlServer.dll
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.xml
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.SqlServer.xml
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.csprojResolveAssemblyReference.cache
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.dll
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.pdb
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.Migrations.Initaldatabase.resources
-D:\citi\citi\project\PortfolioProjects\PMProjectNew\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.csproj.GenerateResource.Cache
