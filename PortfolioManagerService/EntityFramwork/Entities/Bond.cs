@@ -4,21 +4,21 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EntityFramwork.Entities
 {
-    public class Position
+    public class Bond
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PositionId { get; set; }
-
-        [Required]
-        public int Quantity { get; set; }
-
-        [Required]
-        public decimal Price { get; set; }
-
-        [Required]
         public int Isin { get; set; }
 
         [Required]
-        public string Type { get; set; }
+        public string Issuer { get; set; }
+
+        [Required]
+        public double Coupon { get; set; }
+
+        [Required]
+        public string MaturityMonth { get; set; }
+
+        [Required]
+        public int MaturityYear { get; set; }
     }
 }
