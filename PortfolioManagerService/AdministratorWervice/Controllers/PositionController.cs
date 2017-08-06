@@ -54,7 +54,7 @@ namespace AdministratorWervice.Controllers
             return Ok(changeLine);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/deletePositions")]
         public IHttpActionResult deletePositions(Position c)
         {
