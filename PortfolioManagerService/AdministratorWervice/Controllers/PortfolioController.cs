@@ -50,7 +50,7 @@ namespace AdministratorWervice.Controllers
         public IHttpActionResult addPortfolios(Portfolio c)
         {
 
-            int changeLine = PortfolioDao.setPortfolio(c);
+            int changeLine = PortfolioDao.addPortfolio(c);
             return Ok(changeLine);
         }
 

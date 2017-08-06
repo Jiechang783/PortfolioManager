@@ -15,7 +15,7 @@ namespace AdministratorWervice.Controllers
         [Route("api/Bonds")]
         public IHttpActionResult Get()
         {
-            return Ok(BondsDao.getBondss());
+            return Ok(BondsDao.getBonds());
         }
 
         [HttpGet]
@@ -23,7 +23,7 @@ namespace AdministratorWervice.Controllers
         [Route("api/Bondss/{id}")]
         public IHttpActionResult Get(int id)
         {
-            Bonds p = BondsDao.getBondssById(id);
+            Bond p = BondsDao.getBondById(id);
             if (p != null)
             {
                 return Ok(p);
@@ -38,16 +38,16 @@ namespace AdministratorWervice.Controllers
 
         [HttpPost]
         [Route("api/UpdateBondss")]
-        public IHttpActionResult updateBondsById(Bonds c)
+        public IHttpActionResult updateBondsById(Bond c)
         {
 
-            int changeLine = BondsDao.updateBondss(c);
+            int changeLine = BondsDao.updateBond(c);
             return Ok(changeLine);
         }
 
         [HttpPost]
         [Route("api/addBondss")]
-        public IHttpActionResult addBondss(Bonds c)
+        public IHttpActionResult addBondss(Bond c)
         {
 
             int changeLine = BondsDao.setBonds(c);
@@ -56,10 +56,10 @@ namespace AdministratorWervice.Controllers
 
         [HttpPost]
         [Route("api/deleteBondss")]
-        public IHttpActionResult deleteBondss(Bonds c)
+        public IHttpActionResult deleteBondss(Bond c)
         {
-            Bonds c1 = new Bonds { Isin=1, Issuer="ztt", Coupon=3.3, MaturityMonth="0", MaturityYear= Convert.ToDateTime("1975-06-04") };
-            int changeLine = BondsDao.deleteBondss(c);
+            Bond c1 = new Bond { Isin=1, Issuer="ztt", Coupon=3.3, MaturityMonth="0", MaturityYear= Convert.ToDateTime("1975-06-04") };
+            int changeLine = BondsDao.deleteBond(c);
             return Ok(changeLine);
         }
 

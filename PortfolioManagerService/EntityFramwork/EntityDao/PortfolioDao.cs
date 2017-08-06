@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 
 namespace EntityFramwork.EntityDao
 {
-   public class PortfolioDao
+    public class PortfolioDao
     {
-        public PortfolioDao() { }
-
-
-        public static int setPortfolio(Portfolio a)
+        public PortfolioDao()
         {
+        }
 
-          //  Portfolio b = new Portfolio() { PortfolioId = 1, FirstName = "zhang", LastName = "Tingting", Email = "zhangtingting.code@gmail", telephone = "1111111111", Role = "admin" };
+
+        public static int addPortfolio(Portfolio portfolio)
+        {
+            //  Portfolio b = new Portfolio() { PortfolioId = 1, FirstName = "zhang", LastName = "Tingting", Email = "zhangtingting.code@gmail", telephone = "1111111111", Role = "admin" };
             using (DatabaseContext db = new DatabaseContext())
             {
-                db.Portfolios.Add(a);
+                db.Portfolios.Add(portfolio);
                 int result = db.SaveChanges();
                 return result;
             }
