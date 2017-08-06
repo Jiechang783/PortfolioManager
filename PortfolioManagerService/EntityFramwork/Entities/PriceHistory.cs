@@ -14,7 +14,7 @@ namespace EntityFramwork.Entities
         public Int32? Id { get; set; }
 
         [Required]
-        public string Isin {
+        public int Isin {
             get;
             set;
         }

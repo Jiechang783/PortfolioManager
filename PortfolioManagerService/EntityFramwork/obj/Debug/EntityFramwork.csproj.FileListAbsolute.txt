@@ -10,3 +10,15 @@ c:\users\ztt_admin\documents\visual studio 2015\Projects\PortfolioManagerService
 c:\users\ztt_admin\documents\visual studio 2015\Projects\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.csprojResolveAssemblyReference.cache
 c:\users\ztt_admin\documents\visual studio 2015\Projects\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.Migrations.InitalDatabase.resources
 c:\users\ztt_admin\documents\visual studio 2015\Projects\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.csproj.GenerateResource.Cache
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramwork.dll.config
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramwork.dll
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramwork.pdb
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.dll
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.SqlServer.dll
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.xml
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\bin\Debug\EntityFramework.SqlServer.xml
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.dll
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.pdb
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.csprojResolveAssemblyReference.cache
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.Migrations.InitialDatabase.resources
+D:\citi\citi\project\PortfolioProjects\PMProject\PortfolioManagerService\EntityFramwork\obj\Debug\EntityFramwork.csproj.GenerateResource.Cache

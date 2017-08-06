@@ -26,11 +26,13 @@ namespace EntityFramwork.Entities
         }
 
         [Required]
-        public string Isin { get; set; }
+        public int Isin {
+            get;
+            set;
+        }
 
-        [ForeignKey("Isin")]
-        public virtual Security security
-        {
+        [Required]
+        public string Type {
             get;
             set;
         }

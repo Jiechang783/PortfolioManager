@@ -49,12 +49,12 @@ namespace AdministratorWervice.Controllers
         [Route("api/addUsers")]
         public IHttpActionResult addUsers(User c)
         {
-            
+            User c1 = new User { UserId=1, FirstName="ztt", LastName="ztt", Email=" 0", telephone="0", Role="admin" };
             int changeLine = UserDao.setUser(c);
             return Ok(changeLine);
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("api/deleteUsers")]
         public IHttpActionResult deleteUsers(User c)
         {

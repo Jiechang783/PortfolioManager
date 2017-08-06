@@ -51,33 +51,36 @@
   <ItemGroup>
     <Compile Include="Class1.cs" />
     <Compile Include="Context\DatabaseContext.cs" />
+    <Compile Include="Entities\Bonds.cs" />
     <Compile Include="Entities\Portfolio.cs" />
     <Compile Include="Entities\PortfolioHistory.cs" />
     <Compile Include="Entities\Position.cs" />
     <Compile Include="Entities\PriceHistory.cs" />
-    <Compile Include="Entities\Security.cs" />
+    <Compile Include="Entities\Stock.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="EntityDao\BondsDao.cs" />
     <Compile Include="EntityDao\PortfolioDao.cs" />
     <Compile Include="EntityDao\PortfolioHistoryDao.cs" />
     <Compile Include="EntityDao\PositionDao.cs" />
     <Compile Include="EntityDao\PriceHistoryDao.cs" />
-    <Compile Include="EntityDao\SecurityDaocs.cs" />
+    <Compile Include="EntityDao\StockDao.cs" />
     <Compile Include="EntityDao\UserDao.cs" />
-    <Compile Include="Migrations\201708050635537_InitalDatabase.cs" />
-    <Compile Include="Migrations\201708050635537_InitalDatabase.Designer.cs">
-      <DependentUpon>201708050635537_InitalDatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201708060912005_InitialDatabase.cs" />
+    <Compile Include="Migrations\201708060912005_InitialDatabase.Designer.cs">
+      <DependentUpon>201708060912005_InitialDatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708050635537_InitalDatabase.resx">
-      <DependentUpon>201708050635537_InitalDatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708060912005_InitialDatabase.resx">
+      <DependentUpon>201708060912005_InitialDatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
