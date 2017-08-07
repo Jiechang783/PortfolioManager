@@ -47,7 +47,7 @@ namespace AdministratorWervice.Controllers
 
         [HttpPost]
         [Route("api/addSector")]
-        public IHttpActionResult addSector(Sector c)
+        public IHttpActionResult addSector(dynamic c)
         {
 
             int changeLine = SectorDao.addSector(c);

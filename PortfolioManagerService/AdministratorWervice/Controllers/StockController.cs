@@ -47,9 +47,10 @@ namespace AdministratorWervice.Controllers
 
         [HttpPost]
         [Route("api/addStocks")]
-        public IHttpActionResult addStocks(Stock c)
+        public IHttpActionResult addStocks(dynamic c)
         {
-           // Stock c1 = new Stock { Isin = 1, Name = "ztt", Symbol = "ztt", LastSale = 0, MarketCap = 0, IPOyear = Convert.ToDateTime("1975-06-04 00:00:00.000"), Sector = "sad", industry = "djh", SummaryQuote = "dasd", Address = "sad" };
+            // Stock c1 = new Stock { Isin = 1, Name = "ztt", Symbol = "ztt", LastSale = 0, MarketCap = 0, IPOyear = Convert.ToDateTime("1975-06-04 00:00:00.000"), Sector = "sad", industry = "djh", SummaryQuote = "dasd", Address = "sad" };
+
             int changeLine = StockDao.setStock(c);
             return Ok(changeLine);
         }

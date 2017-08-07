@@ -71,9 +71,9 @@
     <Compile Include="EntityDao\StockDao.cs" />
     <Compile Include="EntityDao\UserDao.cs" />
     <Compile Include="Future.cs" />
-    <Compile Include="Migrations\201708070628587_initadatabase.cs" />
-    <Compile Include="Migrations\201708070628587_initadatabase.Designer.cs">
-      <DependentUpon>201708070628587_initadatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201708071626370_Initaldatabase.cs" />
+    <Compile Include="Migrations\201708071626370_Initaldatabase.Designer.cs">
+      <DependentUpon>201708071626370_Initaldatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,8 +85,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708070628587_initadatabase.resx">
-      <DependentUpon>201708070628587_initadatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708071626370_Initaldatabase.resx">
+      <DependentUpon>201708071626370_Initaldatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
