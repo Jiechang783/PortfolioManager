@@ -60,6 +60,23 @@ namespace EntityFramwork.EntityDao
             }
         }
 
+        public static List<Position> getPositionsByPortfolioId(int portfolioId)
+        {
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                List<Position> positions = new List<Position>();
+                foreach (Position temp in db.Positions)
+                {
+                    if (temp.PortfolioId == portfolioId) {
+                        positions.Add(temp);
+                    }   
+                }
+                return positions;
+            }
+        }
+
         public static Position getPositionsById(int id)
         {
 

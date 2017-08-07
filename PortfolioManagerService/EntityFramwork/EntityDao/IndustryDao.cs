@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EntityFramwork.EntityDao
 {
-    class IndustryDao
+   public class IndustryDao
     {
         public static int addIndustry(Industry industry)
         {
