@@ -25,10 +25,10 @@ namespace EntityFramwork.Entities
         public DateTime IPOyear { get; set; }
 
         [Required]
-        public string Sector { get; set; }
+        public int SectorId { get; set; }
 
         [Required]
-        public string industry { get; set; }
+        public int IndustryId { get; set; }
 
     
         public string SummaryQuote { get; set; }

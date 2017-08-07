@@ -20,5 +20,8 @@ namespace EntityFramwork.Entities
 
         [Required]
         public string Type { get; set; }
+
+        [Required]
+        public int PortfolioId { get; set; }
     }
 }

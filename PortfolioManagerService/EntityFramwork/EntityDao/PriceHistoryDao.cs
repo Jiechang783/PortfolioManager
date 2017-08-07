@@ -96,5 +96,50 @@ namespace EntityFramwork.EntityDao
             }
         }
 
+        public static PriceHistory getLastPriceHistorysByisin(int isin)
+        {
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                List<PriceHistory> uers = new List<PriceHistory>();
+                foreach (PriceHistory temp in db.PriceHistorys)
+                {
+                    if (temp.Isin == isin)
+                    {
+                        uers.Add(temp);
+                    }
+                }
+                if (uers.Count != 0)
+                {
+                    return uers[uers.Count - 1];
+                }
+                else
+                {
+                    return null;
+                }
+
+            }
+        }
+
+        public static PriceHistory getLastPriceHistorys(PriceHistory p)
+        {
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                foreach (PriceHistory temp in db.PriceHistorys)
+                {
+                    //int c = DateTime.Compare(temp.Date, p.Date);
+                    //bool b = (temp.Date == p.Date);
+                    if ((temp.Isin == p.Isin) && (DateTime.Compare(temp.Date, p.Date) == 0))
+                    {
+                        return temp;
+                    }
+                }
+                return null;
+            }
+        }
+
     }
 }
