@@ -63,5 +63,22 @@ namespace AdministratorWervice.Controllers
             return Ok(changeLine);
         }
 
+        [HttpGet]
+        [Route("api/GetStockBySector")]
+        public IHttpActionResult GetStockBySector(Sector c)
+        {
+
+            Sector c1 = new Sector {SectorId=0,Name="sdf" };
+            return Ok(StockDao.getStockListBySector(c1));
+        }
+
+        [HttpGet]
+        [Route("api/GetStockByIndustry")]
+        public IHttpActionResult GetStockByIndustry(Industry c)
+        {
+
+            Industry c1 = new Industry { IndustryId = 0, Name = "ztt" };
+            return Ok(StockDao.getStockListByIndustry(c1));
+        }
     }
 }

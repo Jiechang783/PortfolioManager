@@ -50,6 +50,44 @@ namespace PortfolioManagerService.Controllers
             return Ok(list);
         }
 
+        [HttpGet]
+        [Route("api/bestPortfolios/{userid}")]
+        public IHttpActionResult Getbestportfolio(int userid)
+        {
+            List<Portfolio> portlist = PortfolioDao.getPortfoliosByUserId(userid);
+            List<Portfilioandpnl> list = new List<Portfilioandpnl>();
+            foreach (Portfolio p in portlist)
+            {
+                list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+            }
+            var query = from p in list
+                        orderby p.PNL descending
+                        select new { p.portfolioname, p.PNL };
+            
+
+            return Ok(query.Take(1));
+        }
+
+        [HttpGet]
+        [Route("api/worstPortfolios/{userid}")]
+        public IHttpActionResult Getworstportfolio(int userid)
+        {
+            List<Portfolio> portlist = PortfolioDao.getPortfoliosByUserId(userid);
+            List<Portfilioandpnl> list = new List<Portfilioandpnl>();
+            foreach (Portfolio p in portlist)
+            {
+                list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+            }
+            var query = from p in list
+                        orderby p.PNL
+                        select new { p.portfolioname, p.PNL };
+
+
+            return Ok(query.Take(1));
+            return Ok(list);
+        }
+
+
 
         [HttpPost]
         [Route("api/UpdatePortfolios")]

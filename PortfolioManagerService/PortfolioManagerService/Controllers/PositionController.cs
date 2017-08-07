@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using EntityFramwork.Entities;
 using EntityFramwork.EntityDao;
+using PortfolioManagerService.Models;
 
 namespace PortfolioManagerService.Controllers
 {
@@ -33,6 +34,24 @@ namespace PortfolioManagerService.Controllers
                 return NotFound();
             }
 
+        }
+
+        [HttpGet]
+        [Route("api/PositionbypoID/{portfolioid}")]
+        public IHttpActionResult GetPositionsbyPortID(int portfolioid)
+        {
+            List<Position> positionlist = PositionDao.getPositionsByPortfolioId(portfolioid);
+            List<Positionlist> returnlist = new List<Positionlist>();
+            foreach(Position p in positionlist)
+            {
+                double porfit = 0;
+                porfit = Convert.ToDouble((PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).Price - p.Price) / p.Price);
+                returnlist.Add(new Positionlist(p.PositionId, StockDao.getStocksById(p.Isin).Name, p.Quantity, porfit));
+          
+            }
+            
+
+            return Ok(returnlist);
         }
 
 
