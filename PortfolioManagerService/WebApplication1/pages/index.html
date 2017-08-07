@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -25,6 +25,9 @@
 
     <!-- Custom Fonts -->
     <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <script src="../scripts/jquery-3.1.1.min.js"></script>
+    <script src="../scripts/angular.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -248,12 +251,15 @@
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
                         </li>
-                        <li><a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        <li>
+                            <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
                         </li>
                         <li class="divider"></li>
-                        <li><a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        <li>
+                            <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                         </li>
                     </ul>
                     <!-- /.dropdown-user -->
@@ -269,10 +275,10 @@
                             <div class="input-group custom-search-form">
                                 <input type="text" class="form-control" placeholder="Search...">
                                 <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
+                                    <button class="btn btn-default" type="button">
+                                        <i class="fa fa-search"></i>
+                                    </button>
+                                </span>
                             </div>
                             <!-- /input-group -->
                         </li>
@@ -378,96 +384,90 @@
                 <!-- /.col-lg-12 -->
             </div>
             <!-- /.row -->
-            <div class="row">
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-primary">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-comments fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">26</div>
-                                    <div>New Comments!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-tasks fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">12</div>
-                                    <div>New Tasks!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-yellow">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-shopping-cart fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">124</div>
-                                    <div>New Orders!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <div class="row">
-                                <div class="col-xs-3">
-                                    <i class="fa fa-support fa-5x"></i>
-                                </div>
-                                <div class="col-xs-9 text-right">
-                                    <div class="huge">13</div>
-                                    <div>Support Tickets!</div>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#">
-                            <div class="panel-footer">
-                                <span class="pull-left">View Details</span>
-                                <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                                <div class="clearfix"></div>
-                            </div>
-                        </a>
-                    </div>
-                </div>
+            <div id="divMain" ng-app="myApp" ng-controller="myCtrl">
+                <table class="table table-bordered">
+                    <tr>
+                        <th ng-repeat="(x,y) in items[0]">{{ x }}</th>
+                    </tr>
+                    <tr ng-repeat="x in items">
+                        <td ng-bind="x.portfolioid"></td>
+                        <td ng-bind="x.portfolioname"></td>
+                        <td ng-bind="x.PNL"></td>
+                    </tr>
+                </table>
+                <nav>
+                    <ul class="pagination">
+                        <li>
+                            <a ng-click="Previous()">
+                                <span>上一页</span>
+                            </a>
+                        </li>
+                        <li ng-repeat="page in pageList" ng-class="{active: isActivePage(page)}">
+                            <a ng-click="selectPage(page)">{{ page }}</a>
+                        </li>
+                        <li>
+                            <a ng-click="Next()">
+                                <span>下一页</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
+            <script src="http://apps.bdimg.com/libs/angular.js/1.5.0-beta.0/angular.js"></script>
+            <script type="text/javascript">
+                var app = angular.module("myApp", []);
+                app.controller("myCtrl", function ($scope, $http) {
+                    $http.get("PortfolioTestData.js").then(function (response) {
+                        //数据源
+                        $scope.data = response.data;
+                        //分页总数
+                        $scope.pageSize = 5;
+                        $scope.pages = Math.ceil($scope.data.length / $scope.pageSize); //分页数
+                        $scope.newPages = $scope.pages > 5 ? 5 : $scope.pages;
+                        $scope.pageList = [];
+                        $scope.selPage = 1;
+                        //设置表格数据源(分页)
+                        $scope.setData = function () {
+                            $scope.items = $scope.data.slice(($scope.pageSize * ($scope.selPage - 1)), ($scope.selPage * $scope.pageSize));//通过当前页数筛选出表格当前显示数据
+                        }
+                        $scope.items = $scope.data.slice(0, $scope.pageSize);
+                        //分页要repeat的数组
+                        for (var i = 0; i < $scope.newPages; i++) {
+                            $scope.pageList.push(i + 1);
+                        }
+                        //打印当前选中页索引
+                        $scope.selectPage = function (page) {
+                            //不能小于1大于最大
+                            if (page < 1 || page > $scope.pages) return;
+                            //最多显示分页数5
+                            if (page > 2) {
+                                //因为只显示5个页数，大于2页开始分页转换
+                                var newpageList = [];
+                                for (var i = (page - 3) ; i < ((page + 2) > $scope.pages ? $scope.pages : (page + 2)) ; i++) {
+                                    newpageList.push(i + 1);
+                                }
+                                $scope.pageList = newpageList;
+                            }
+                            $scope.selPage = page;
+                            $scope.setData();
+                            $scope.isActivePage(page);
+                            console.log("选择的页：" + page);
+                        };
+                        //设置当前选中页样式
+                        $scope.isActivePage = function (page) {
+                            return $scope.selPage == page;
+                        };
+                        //上一页
+                        $scope.Previous = function () {
+                            $scope.selectPage($scope.selPage - 1);
+                        }
+                        //下一页
+                        $scope.Next = function () {
+                            $scope.selectPage($scope.selPage + 1);
+                        };
+                    });
+                })
+            </script>
             <!-- /.row -->
             <div class="row">
                 <div class="col-lg-8">
@@ -481,14 +481,18 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
+                                        <li>
+                                            <a href="#">Action</a>
                                         </li>
-                                        <li><a href="#">Another action</a>
+                                        <li>
+                                            <a href="#">Another action</a>
                                         </li>
-                                        <li><a href="#">Something else here</a>
+                                        <li>
+                                            <a href="#">Something else here</a>
                                         </li>
                                         <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
+                                        <li>
+                                            <a href="#">Separated link</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -511,14 +515,18 @@
                                         <span class="caret"></span>
                                     </button>
                                     <ul class="dropdown-menu pull-right" role="menu">
-                                        <li><a href="#">Action</a>
+                                        <li>
+                                            <a href="#">Action</a>
                                         </li>
-                                        <li><a href="#">Another action</a>
+                                        <li>
+                                            <a href="#">Another action</a>
                                         </li>
-                                        <li><a href="#">Something else here</a>
+                                        <li>
+                                            <a href="#">Something else here</a>
                                         </li>
                                         <li class="divider"></li>
-                                        <li><a href="#">Separated link</a>
+                                        <li>
+                                            <a href="#">Separated link</a>
                                         </li>
                                     </ul>
                                 </div>
@@ -611,12 +619,14 @@
                         <div class="panel-body">
                             <ul class="timeline">
                                 <li>
-                                    <div class="timeline-badge"><i class="fa fa-check"></i>
+                                    <div class="timeline-badge">
+                                        <i class="fa fa-check"></i>
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
                                             <h4 class="timeline-title">Lorem ipsum dolor</h4>
-                                            <p><small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
+                                            <p>
+                                                <small class="text-muted"><i class="fa fa-clock-o"></i> 11 hours ago via Twitter</small>
                                             </p>
                                         </div>
                                         <div class="timeline-body">
@@ -625,7 +635,8 @@
                                     </div>
                                 </li>
                                 <li class="timeline-inverted">
-                                    <div class="timeline-badge warning"><i class="fa fa-credit-card"></i>
+                                    <div class="timeline-badge warning">
+                                        <i class="fa fa-credit-card"></i>
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
@@ -638,7 +649,8 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="timeline-badge danger"><i class="fa fa-bomb"></i>
+                                    <div class="timeline-badge danger">
+                                        <i class="fa fa-bomb"></i>
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
@@ -660,7 +672,8 @@
                                     </div>
                                 </li>
                                 <li>
-                                    <div class="timeline-badge info"><i class="fa fa-save"></i>
+                                    <div class="timeline-badge info">
+                                        <i class="fa fa-save"></i>
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
@@ -674,14 +687,18 @@
                                                     <i class="fa fa-gear"></i> <span class="caret"></span>
                                                 </button>
                                                 <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="#">Action</a>
+                                                    <li>
+                                                        <a href="#">Action</a>
                                                     </li>
-                                                    <li><a href="#">Another action</a>
+                                                    <li>
+                                                        <a href="#">Another action</a>
                                                     </li>
-                                                    <li><a href="#">Something else here</a>
+                                                    <li>
+                                                        <a href="#">Something else here</a>
                                                     </li>
                                                     <li class="divider"></li>
-                                                    <li><a href="#">Separated link</a>
+                                                    <li>
+                                                        <a href="#">Separated link</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -699,7 +716,8 @@
                                     </div>
                                 </li>
                                 <li class="timeline-inverted">
-                                    <div class="timeline-badge success"><i class="fa fa-graduation-cap"></i>
+                                    <div class="timeline-badge success">
+                                        <i class="fa fa-graduation-cap"></i>
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
@@ -727,47 +745,56 @@
                             <div class="list-group">
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-comment fa-fw"></i> New Comment
-                                    <span class="pull-right text-muted small"><em>4 minutes ago</em>
+                                    <span class="pull-right text-muted small">
+                                        <em>4 minutes ago</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-twitter fa-fw"></i> 3 New Followers
-                                    <span class="pull-right text-muted small"><em>12 minutes ago</em>
+                                    <span class="pull-right text-muted small">
+                                        <em>12 minutes ago</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-envelope fa-fw"></i> Message Sent
-                                    <span class="pull-right text-muted small"><em>27 minutes ago</em>
+                                    <span class="pull-right text-muted small">
+                                        <em>27 minutes ago</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-tasks fa-fw"></i> New Task
-                                    <span class="pull-right text-muted small"><em>43 minutes ago</em>
+                                    <span class="pull-right text-muted small">
+                                        <em>43 minutes ago</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-upload fa-fw"></i> Server Rebooted
-                                    <span class="pull-right text-muted small"><em>11:32 AM</em>
+                                    <span class="pull-right text-muted small">
+                                        <em>11:32 AM</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-bolt fa-fw"></i> Server Crashed!
-                                    <span class="pull-right text-muted small"><em>11:13 AM</em>
+                                    <span class="pull-right text-muted small">
+                                        <em>11:13 AM</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-warning fa-fw"></i> Server Not Responding
-                                    <span class="pull-right text-muted small"><em>10:57 AM</em>
+                                    <span class="pull-right text-muted small">
+                                        <em>10:57 AM</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-shopping-cart fa-fw"></i> New Order Placed
-                                    <span class="pull-right text-muted small"><em>9:49 AM</em>
+                                    <span class="pull-right text-muted small">
+                                        <em>9:49 AM</em>
                                     </span>
                                 </a>
                                 <a href="#" class="list-group-item">
                                     <i class="fa fa-money fa-fw"></i> Payment Received
-                                    <span class="pull-right text-muted small"><em>Yesterday</em>
+                                    <span class="pull-right text-muted small">
+                                        <em>Yesterday</em>
                                     </span>
                                 </a>
                             </div>
@@ -851,7 +878,8 @@
                                     <div class="chat-body clearfix">
                                         <div class="header">
                                             <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 13 mins ago</small>
+                                                <i class="fa fa-clock-o fa-fw"></i> 13 mins ago
+                                            </small>
                                             <strong class="pull-right primary-font">Bhaumik Patel</strong>
                                         </div>
                                         <p>
@@ -867,7 +895,8 @@
                                         <div class="header">
                                             <strong class="primary-font">Jack Sparrow</strong>
                                             <small class="pull-right text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 14 mins ago</small>
+                                                <i class="fa fa-clock-o fa-fw"></i> 14 mins ago
+                                            </small>
                                         </div>
                                         <p>
                                             Lorem ipsum dolor sit amet, consectetur adipiscing elit. Curabitur bibendum ornare dolor, quis ullamcorper ligula sodales.
@@ -881,7 +910,8 @@
                                     <div class="chat-body clearfix">
                                         <div class="header">
                                             <small class=" text-muted">
-                                                <i class="fa fa-clock-o fa-fw"></i> 15 mins ago</small>
+                                                <i class="fa fa-clock-o fa-fw"></i> 15 mins ago
+                                            </small>
                                             <strong class="pull-right primary-font">Bhaumik Patel</strong>
                                         </div>
                                         <p>
@@ -914,7 +944,6 @@
 
     </div>
     <!-- /#wrapper -->
-
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
 
