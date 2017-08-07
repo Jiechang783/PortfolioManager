@@ -21,6 +21,11 @@ namespace EntityFramwork.Context
 
         public virtual IDbSet<Bond> Bonds { get; set; }
 
+        public virtual IDbSet<Future> Futures { get; set; }
+
+        public virtual IDbSet<Sector> Sectors { get; set; }
+
+        public virtual IDbSet<Industry> Industrys { get; set; }
         public virtual IDbSet<Position> Positions { get; set; }
     }
 }

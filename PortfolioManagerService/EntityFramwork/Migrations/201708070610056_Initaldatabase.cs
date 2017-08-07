@@ -20,6 +20,51 @@ namespace EntityFramwork.Migrations
                 .PrimaryKey(t => t.Isin);
             
             CreateTable(
+                "dbo.Futures",
+                c => new
+                    {
+                        ClrAlias = c.String(nullable: false, maxLength: 128),
+                        Exch = c.String(),
+                        Sym = c.String(),
+                        Desc = c.String(),
+                        SecTyp = c.String(),
+                        MatDt = c.DateTime(nullable: false),
+                        UOMQty = c.Long(nullable: false),
+                        ID = c.String(),
+                    })
+                .PrimaryKey(t => t.ClrAlias);
+            
+            CreateTable(
+                "dbo.Industries",
+                c => new
+                    {
+                        IndustryId = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.IndustryId);
+            
+            CreateTable(
+                "dbo.Stocks",
+                c => new
+                    {
+                        Isin = c.Int(nullable: false, identity: true),
+                        Name = c.String(nullable: false),
+                        Symbol = c.String(nullable: false),
+                        LastSale = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        MarketCap = c.String(),
+                        IPOyear = c.DateTime(nullable: false),
+                        SectorId = c.Int(nullable: false),
+                        IndustryId = c.Int(nullable: false),
+                        SummaryQuote = c.String(),
+                        Address = c.String(nullable: false),
+                    })
+                .PrimaryKey(t => t.Isin)
+                .ForeignKey("dbo.Industries", t => t.IndustryId, cascadeDelete: true)
+                .ForeignKey("dbo.Sectors", t => t.SectorId, cascadeDelete: true)
+                .Index(t => t.SectorId)
+                .Index(t => t.IndustryId);
+            
+            CreateTable(
                 "dbo.PortfolioHistories",
                 c => new
                     {
@@ -36,11 +81,11 @@ namespace EntityFramwork.Migrations
                     {
                         PortfolioId = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        User_UserId = c.Int(),
+                        UserId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.PortfolioId)
-                .ForeignKey("dbo.Users", t => t.User_UserId)
-                .Index(t => t.User_UserId);
+                .ForeignKey("dbo.Users", t => t.UserId, cascadeDelete: true)
+                .Index(t => t.UserId);
             
             CreateTable(
                 "dbo.Positions",
@@ -51,11 +96,11 @@ namespace EntityFramwork.Migrations
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
                         Isin = c.Int(nullable: false),
                         Type = c.String(nullable: false),
-                        Portfolio_PortfolioId = c.Int(),
+                        PortfolioId = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.PositionId)
-                .ForeignKey("dbo.Portfolios", t => t.Portfolio_PortfolioId)
-                .Index(t => t.Portfolio_PortfolioId);
+                .ForeignKey("dbo.Portfolios", t => t.PortfolioId, cascadeDelete: true)
+                .Index(t => t.PortfolioId);
             
             CreateTable(
                 "dbo.PriceHistories",
@@ -69,21 +114,13 @@ namespace EntityFramwork.Migrations
                 .PrimaryKey(t => t.Id);
             
             CreateTable(
-                "dbo.Stocks",
+                "dbo.Sectors",
                 c => new
                     {
-                        Isin = c.Int(nullable: false, identity: true),
+                        SectorId = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        Symbol = c.String(nullable: false),
-                        LastSale = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        MarketCap = c.String(),
-                        IPOyear = c.DateTime(nullable: false),
-                        Sector = c.String(nullable: false),
-                        industry = c.String(nullable: false),
-                        SummaryQuote = c.String(),
-                        Address = c.String(nullable: false),
                     })
-                .PrimaryKey(t => t.Isin);
+                .PrimaryKey(t => t.SectorId);
             
             CreateTable(
                 "dbo.Users",
@@ -102,16 +139,23 @@ namespace EntityFramwork.Migrations
         
         public override void Down()
         {
-            DropForeignKey("dbo.Portfolios", "User_UserId", "dbo.Users");
-            DropForeignKey("dbo.Positions", "Portfolio_PortfolioId", "dbo.Portfolios");
-            DropIndex("dbo.Positions", new[] { "Portfolio_PortfolioId" });
-            DropIndex("dbo.Portfolios", new[] { "User_UserId" });
+            DropForeignKey("dbo.Portfolios", "UserId", "dbo.Users");
+            DropForeignKey("dbo.Stocks", "SectorId", "dbo.Sectors");
+            DropForeignKey("dbo.Positions", "PortfolioId", "dbo.Portfolios");
+            DropForeignKey("dbo.Stocks", "IndustryId", "dbo.Industries");
+            DropIndex("dbo.Positions", new[] { "PortfolioId" });
+            DropIndex("dbo.Portfolios", new[] { "UserId" });
+            DropIndex("dbo.Stocks", new[] { "IndustryId" });
+            DropIndex("dbo.Stocks", new[] { "SectorId" });
             DropTable("dbo.Users");
-            DropTable("dbo.Stocks");
+            DropTable("dbo.Sectors");
             DropTable("dbo.PriceHistories");
             DropTable("dbo.Positions");
             DropTable("dbo.Portfolios");
             DropTable("dbo.PortfolioHistories");
+            DropTable("dbo.Stocks");
+            DropTable("dbo.Industries");
+            DropTable("dbo.Futures");
             DropTable("dbo.Bonds");
         }
     }

@@ -2,19 +2,21 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace EntityFramwork.Entities
 {
-    public class Portfolio
+   public class Industry
     {
+
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PortfolioId { get; set; }
+        public int IndustryId { get; set; }
 
         [Required]
         public string Name { get; set; }
 
-        public int UserId { get; set; }
-
-        public virtual ICollection<Position> positions { get; set; }
+        public virtual ICollection<Stock> positions { get; set; }
     }
 }
