@@ -98,6 +98,7 @@
     <Content Include="css\4-col-portfolio.css" />
     <Content Include="data\flot-data.js" />
     <Content Include="data\morris-data.js" />
+    <Content Include="pages\PortfolioTestData.js" />
     <Content Include="dist\css\sb-admin-2.css" />
     <Content Include="dist\css\sb-admin-2.min.css" />
     <Content Include="dist\js\sb-admin-2.js" />
@@ -122,6 +123,7 @@
     <Content Include="pages\tables.html" />
     <Content Include="pages\typography.html" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="PortfolioTestData.js" />
     <Content Include="scripts\jquery-3.1.1.js" />
     <Content Include="scripts\jquery-3.1.1.min.js" />
     <Content Include="scripts\jquery-3.1.1.slim.js" />
