@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EntityFramwork.EntityDao
 {
-    class FutureDao
+   public class FutureDao
     {
         public void FuturesDao()
         {
