@@ -32,7 +32,7 @@ namespace PortfolioManagerService.Models
                 {
                     int isin = p.Isin;
                     amountafter += p.Quantity * p.Price;
-                    amountbefore += p.Quantity * PriceHistoryDao.getLastPriceHistorysByisin(isin).Price;
+                    amountbefore += p.Quantity * PriceHistoryDao.getLastPriceHistorysByisin(isin).OfferPrice;
                     
 
                    

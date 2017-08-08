@@ -47,7 +47,7 @@ namespace PortfolioManagerService.Controllers
 
             foreach(PriceHistory history in p)
             {
-                price.Add(history.Price);
+                price.Add(history.OfferPrice);
                 time.Add(history.Date);
             }
             
@@ -74,7 +74,7 @@ namespace PortfolioManagerService.Controllers
                 List<PriceHistory> result = PriceHistoryDao.getPriceHistorysByisin(isin);
                 foreach(PriceHistory history in result)
                 {
-                    price.Add(history.Price);
+                    price.Add(history.OfferPrice);
                     time.Add(history.Date);
                 }
                 Allresult.Add(new OneStockresult(time, price));
@@ -101,7 +101,7 @@ namespace PortfolioManagerService.Controllers
         [Route("api/deletePriceHistorys")]
         public IHttpActionResult deletePriceHistorys(PriceHistory c)
         {
-            PriceHistory c1 = new PriceHistory { Id = 1, Isin = 3, Date = Convert.ToDateTime("1992-03-20"), Price = 2 };
+           // PriceHistory c1 = new PriceHistory { Id = 1, Isin = 3, Date = Convert.ToDateTime("1992-03-20"), Price = 2 };
             int changeLine = PriceHistoryDao.deletePriceHistorys(c);
             return Ok(changeLine);
         }
@@ -111,7 +111,7 @@ namespace PortfolioManagerService.Controllers
         public IHttpActionResult Getresult(int isin)
         {
             var query = from p in PriceHistoryDao.getPriceHistorysByisin(isin)
-                        select new { p.Date, p.Price };
+                        select new { p.Date, p.OfferPrice };
 
             return Ok(query);
         }

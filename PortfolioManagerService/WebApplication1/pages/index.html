@@ -929,7 +929,25 @@
         //    };
         //}
         //]);
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope, $http) {
+            //$http.get("http://localhost:38877/api/Sector").then(function (response) {
+            //    $scope.data = response.data;
+            //});
 
+            var req = {
+                method: 'POST',
+                url: 'http://localhost:38877/api/addSector',
+                header: {
+                    'Content-Type': 'application/json'
+                },
+                data: { "SectorId": 7, "Name": "备注" }
+            }
+
+            $http(req).then(function (response) {
+
+            })
+        })
 
     </script>
 

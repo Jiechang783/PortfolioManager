@@ -45,7 +45,7 @@ namespace PortfolioManagerService.Controllers
             foreach(Position p in positionlist)
             {
                 double porfit = 0;
-                porfit = Convert.ToDouble((PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).Price - p.Price) / p.Price);
+                porfit = Convert.ToDouble((PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).OfferPrice - p.Price) / p.Price);
                 returnlist.Add(new Positionlist(p.PositionId, StockDao.getStocksById(p.Isin).Name, p.Quantity, porfit));
           
             }
