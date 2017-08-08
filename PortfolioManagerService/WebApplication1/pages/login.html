@@ -1,15 +1,14 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Protfolio Login</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -42,22 +41,17 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form">
+                        <form role="form" ng-app="myApp" ng-controller="LoginController">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input ng-model="Email" class="form-control" placeholder="Email" name="username" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input  ng-model="Password" class="form-control" placeholder="Password" name="password" type="password">
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
-                                    </label>
-                                </div>
-                                <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
                             </fieldset>
+
+                            <button ng-click="login()" class="btn btn-lg btn-success btn-block">Login</button>
                         </form>
                     </div>
                 </div>
@@ -76,6 +70,44 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <!--angular-->
+    <script src="../scripts/angular.min.js"></script>
+    <script src="../scripts/angular.js"></script>
+
+    <!--for ngRoute-->
+    <script src="../scripts/angular-route.min.js"></script>
+
+    <!--login-->
+    <script type="text/javascript">
+        var app = angular.module("myApp", ['ngRoute']);
+
+        app.controller("LoginController", function ($scope, $http) {
+            $scope.User = {};
+
+            $scope.login = function () {
+
+                var req = {
+                    method: 'POST',
+                    url: 'http://localhost:38814/api/Login',
+                    header: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: { "Email": $scope.Email, "Password": $scope.Password }
+                }
+
+                $http(req).then(function (response) {
+                    $scope.User = response;
+                })
+            }
+        })
+
+        app.factory("LocalDataProvider", function () {
+            return {
+                User: $scope.User
+            };
+        })
+    </script>
 
 </body>
 
