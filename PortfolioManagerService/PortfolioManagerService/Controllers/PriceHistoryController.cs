@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using EntityFramwork.Entities;
 using EntityFramwork.EntityDao;
+using PortfolioManagerService.Models;
 
 namespace PortfolioManagerService.Controllers
 {
@@ -34,6 +35,57 @@ namespace PortfolioManagerService.Controllers
             }
 
         }
+
+        [HttpGet]
+        // GET api/values/5
+        [Route("api/OneStockHistorys/{isin}")]
+        public IHttpActionResult GetoneStockPrice(int isin)
+        {
+            List<PriceHistory> p = PriceHistoryDao.getPriceHistorysByisin(isin);
+            List<Decimal> price = new List<decimal>();
+            List<DateTime> time = new List<DateTime>();
+
+            foreach(PriceHistory history in p)
+            {
+                price.Add(history.Price);
+                time.Add(history.Date);
+            }
+            
+            return Ok(new OneStockresult(time,price));
+
+        }
+
+
+        [HttpGet]
+        // GET api/values/5
+        [Route("api/AllStockHistorys")]
+        public IHttpActionResult GetallStockPrice()
+        {
+
+            List<OneStockresult> Allresult = new List<OneStockresult>();
+            List<PriceHistory> Pricehistory = PriceHistoryDao.getPriceHistorys();
+            var query = (from p in Pricehistory
+                         select p.Isin).Distinct();
+
+            foreach(int isin in query)
+            {
+                List<Decimal> price = new List<decimal>();
+                List<DateTime> time = new List<DateTime>();
+                List<PriceHistory> result = PriceHistoryDao.getPriceHistorysByisin(isin);
+                foreach(PriceHistory history in result)
+                {
+                    price.Add(history.Price);
+                    time.Add(history.Date);
+                }
+                Allresult.Add(new OneStockresult(time, price));
+
+            }
+
+            return Ok(Allresult);
+
+        }
+
+
 
 
         [HttpPost]

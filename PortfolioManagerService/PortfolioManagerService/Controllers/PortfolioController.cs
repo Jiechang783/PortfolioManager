@@ -84,7 +84,6 @@ namespace PortfolioManagerService.Controllers
 
 
             return Ok(query.Take(1));
-            return Ok(list);
         }
 
 
