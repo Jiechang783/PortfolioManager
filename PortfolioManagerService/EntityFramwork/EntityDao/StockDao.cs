@@ -80,7 +80,23 @@ namespace EntityFramwork.EntityDao
             }
         }
 
+        public static Stock getStocksByIsin(string Isin)
+        {
 
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                List<Stock> s = new List<Stock>();
+                foreach (Stock temp in db.Stocks)
+                {
+                    if (temp.Isin == Isin)
+                    {
+                        return temp;
+                    }
+                }
+                return null;
+            }
+        }
 
         public static List<Stock> getStockListBySector(Sector sector)
         {

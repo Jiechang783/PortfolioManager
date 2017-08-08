@@ -76,6 +76,23 @@ namespace EntityFramwork.EntityDao
             }
         }
 
+        public static Future getStocksByIsin(string Isin)
+        {
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                List<Future> f = new List<Future>();
+                foreach (Future temp in db.Futures)
+                {
+                    if (temp.Isin == Isin)
+                    {
+                        return temp;
+                    }
+                }
+                return null;
+            }
+        }
         public static int updateFuture(Future Future)
         {
             DatabaseContext db = new DatabaseContext();

@@ -75,6 +75,23 @@ namespace EntityFramwork.EntityDao
             }
         }
 
+        public static Bond getBondsByIsin(string Isin)
+        {
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                List<Bond> s = new List<Bond>();
+                foreach (Bond temp in db.Bonds)
+                {
+                    if (temp.Isin == Isin)
+                    {
+                        return temp;
+                    }
+                }
+                return null;
+            }
+        }
         public static int updateBond(Bond bond)
         {
             DatabaseContext db = new DatabaseContext();
@@ -89,5 +106,7 @@ namespace EntityFramwork.EntityDao
             int result = db.SaveChanges();
             return result;
         }
+
+        
     }
 }
