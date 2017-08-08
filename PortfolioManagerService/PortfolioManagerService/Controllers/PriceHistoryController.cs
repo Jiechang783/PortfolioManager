@@ -55,6 +55,33 @@ namespace PortfolioManagerService.Controllers
 
         }
 
+        //[HttpPost]
+        //// GET api/values/5
+        //[Route("api/SomeStockHistorys/{isin}")]
+        //public IHttpActionResult GetStockPriceByPId(Portfolio portfolio)
+        //{
+        //    List<Position> positionlist = PositionDao.getPositionsByPortfolioId(portfolio.PortfolioId);
+        //    List<OneStockresult> Allresult = new List<OneStockresult>();
+        //    foreach (Position po in positionlist)
+        //    {
+        //        List<PriceHistory> p = PriceHistoryDao.getPriceHistorysByisin(po.Isin);
+        //        List<Decimal> price = new List<decimal>();
+        //        List<DateTime> time = new List<DateTime>();
+
+        //        foreach (PriceHistory history in p)
+        //        {
+        //            price.Add(history.OfferPrice);
+        //            time.Add(history.Date);
+        //        }
+
+        //        return Ok(new OneStockresult(time, price));
+
+
+        //    }
+
+
+
+        //}
 
         [HttpGet]
         // GET api/values/5
@@ -77,6 +104,8 @@ namespace PortfolioManagerService.Controllers
                     price.Add(history.OfferPrice);
                     time.Add(history.Date);
                 }
+
+
                 Allresult.Add(new OneStockresult(time, price));
 
             }
