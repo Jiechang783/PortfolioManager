@@ -47,9 +47,10 @@ namespace AdministratorWervice.Controllers
 
         [HttpPost]
         [Route("api/addStocks")]
-        public IHttpActionResult addStocks(Stock c)
+        public IHttpActionResult addStocks(dynamic c)
         {
-           // Stock c1 = new Stock { Isin = 1, Name = "ztt", Symbol = "ztt", LastSale = 0, MarketCap = 0, IPOyear = Convert.ToDateTime("1975-06-04 00:00:00.000"), Sector = "sad", industry = "djh", SummaryQuote = "dasd", Address = "sad" };
+            // Stock c1 = new Stock { Isin = 1, Name = "ztt", Symbol = "ztt", LastSale = 0, MarketCap = 0, IPOyear = Convert.ToDateTime("1975-06-04 00:00:00.000"), Sector = "sad", industry = "djh", SummaryQuote = "dasd", Address = "sad" };
+
             int changeLine = StockDao.setStock(c);
             return Ok(changeLine);
         }
@@ -63,5 +64,22 @@ namespace AdministratorWervice.Controllers
             return Ok(changeLine);
         }
 
+        [HttpGet]
+        [Route("api/GetStockBySector")]
+        public IHttpActionResult GetStockBySector(Sector c)
+        {
+
+            Sector c1 = new Sector {SectorId=0,Name="sdf" };
+            return Ok(StockDao.getStockListBySector(c1));
+        }
+
+        [HttpGet]
+        [Route("api/GetStockByIndustry")]
+        public IHttpActionResult GetStockByIndustry(Industry c)
+        {
+
+            Industry c1 = new Industry { IndustryId = 0, Name = "ztt" };
+            return Ok(StockDao.getStockListByIndustry(c1));
+        }
     }
 }

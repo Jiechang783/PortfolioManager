@@ -125,15 +125,21 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BondController.cs" />
+    <Compile Include="Controllers\IndustryController.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\PortfolioHistoryController.cs" />
     <Compile Include="Controllers\PositionController.cs" />
     <Compile Include="Controllers\PriceHistoryController.cs" />
+    <Compile Include="Controllers\SectorController.cs" />
     <Compile Include="Controllers\StockController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\OnePortfolioResult.cs" />
+    <Compile Include="Models\OneStockresult.cs" />
     <Compile Include="Models\Portfilioandpnl.cs" />
+    <Compile Include="Models\Positionlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

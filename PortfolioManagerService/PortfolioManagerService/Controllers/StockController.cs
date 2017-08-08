@@ -20,10 +20,10 @@ namespace PortfolioManagerService.Controllers
 
         [HttpGet]
         // GET api/values/5
-        [Route("api/PM/Stocks/{id}")]
-        public IHttpActionResult Get(int id)
+        [Route("api/PM/Stocks/{isin}")]
+        public IHttpActionResult Get(int isin)
         {
-            Stock p = StockDao.getStocksById(id);
+            Stock p = StockDao.getStocksById(isin);
             if (p != null)
             {
                 return Ok(p);

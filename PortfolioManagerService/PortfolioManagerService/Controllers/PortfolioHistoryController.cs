@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using EntityFramwork.Entities;
 using EntityFramwork.EntityDao;
+using PortfolioManagerService.Models;
 
 namespace PortfolioManagerService.Controllers
 {
@@ -33,6 +34,24 @@ namespace PortfolioManagerService.Controllers
             {
                 return NotFound();
             }
+
+        }
+
+        [HttpGet]
+        // GET api/values/5
+        [Route("api/OnePortfolioHistorys/{portid}")]
+        public IHttpActionResult GetOnePortfolioHis(int portid)
+        {
+            List<PortfolioHistory> p = PortfolioHistoryDao.getPortfolioHistorysByPId(portid);
+            List<double> pnl = new List<double>();
+            List<DateTime> time = new List<DateTime>();
+            foreach(PortfolioHistory record in p)
+            {
+                pnl.Add(record.PNL);
+                time.Add(record.Date);
+            }
+
+            return Ok(new OnePortfolioResult(time,pnl));
 
         }
 
