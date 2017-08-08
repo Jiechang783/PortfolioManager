@@ -52,6 +52,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Context\DatabaseContext.cs" />
     <Compile Include="Entities\Bond.cs" />
+    <Compile Include="Entities\Future.cs" />
     <Compile Include="Entities\Industry.cs" />
     <Compile Include="Entities\Portfolio.cs" />
     <Compile Include="Entities\PortfolioHistory.cs" />
@@ -70,10 +71,9 @@
     <Compile Include="EntityDao\SectorDao.cs" />
     <Compile Include="EntityDao\StockDao.cs" />
     <Compile Include="EntityDao\UserDao.cs" />
-    <Compile Include="Future.cs" />
-    <Compile Include="Migrations\201708080112046_Initaldatabase.cs" />
-    <Compile Include="Migrations\201708080112046_Initaldatabase.Designer.cs">
-      <DependentUpon>201708080112046_Initaldatabase.cs</DependentUpon>
+    <Compile Include="Migrations\201708080933053_initaldatabase.cs" />
+    <Compile Include="Migrations\201708080933053_initaldatabase.Designer.cs">
+      <DependentUpon>201708080933053_initaldatabase.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -85,8 +85,8 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201708080112046_Initaldatabase.resx">
-      <DependentUpon>201708080112046_Initaldatabase.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201708080933053_initaldatabase.resx">
+      <DependentUpon>201708080933053_initaldatabase.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

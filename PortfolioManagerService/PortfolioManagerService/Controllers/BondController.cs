@@ -58,7 +58,7 @@ namespace PortfolioManagerService.Controllers
         [Route("api/deleteBondss")]
         public IHttpActionResult deleteBondss(Bond c)
         {
-            Bond c1 = new Bond { Isin = 1, Issuer = "ztt", Coupon = 3.3, MaturityMonth = "0", MaturityYear = 1997 };
+            
             int changeLine = BondsDao.deleteBond(c);
             return Ok(changeLine);
         }

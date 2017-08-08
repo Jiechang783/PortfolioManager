@@ -8,15 +8,15 @@ namespace PortfolioManagerService.Models
     public class Positionlist
     {
         public int PositionId;
-        public string securityname;
-        public int amount;
-        public double pnl;
+        public string SecurityName;
+        public int Quantity;
+        public double PNL;
         public Positionlist(int id,string name,int amount,double pnl)
         {
             this.PositionId = id;
-            this.securityname = name;
-            this.pnl = pnl;
-            this.amount = amount;
+            this.SecurityName = name;
+            this.PNL = pnl;
+            this.Quantity = amount;
         }
 
 

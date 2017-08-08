@@ -36,6 +36,8 @@ namespace PortfolioManagerService.Controllers
 
         }
 
+
+
         [HttpGet]
         [Route("api/PositionbypoID/{portfolioid}")]
         public IHttpActionResult GetPositionsbyPortID(int portfolioid)
@@ -45,8 +47,8 @@ namespace PortfolioManagerService.Controllers
             foreach(Position p in positionlist)
             {
                 double porfit = 0;
-                porfit = Convert.ToDouble((PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).Price - p.Price) / p.Price);
-                returnlist.Add(new Positionlist(p.PositionId, StockDao.getStocksById(p.Isin).Name, p.Quantity, porfit));
+                porfit = Convert.ToDouble((PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).OfferPrice - p.Price) / p.Price);
+                returnlist.Add(new Positionlist(p.PositionId, StockDao.getStocksByIsin(p.Isin).Name, p.Quantity, porfit));
           
             }
             
@@ -55,12 +57,12 @@ namespace PortfolioManagerService.Controllers
         }
 
 
+
         [HttpPost]
         [Route("api/UpdatePositions")]
         public IHttpActionResult updatePositionById(Position c)
         {
-            Position c1 = new Position { PositionId = 1, Quantity = 12, Price = 21, Isin = 1, Type = "not" };
-            int changeLine = PositionDao.updatePositions(c1);
+            int changeLine = PositionDao.updatePositions(c);
             return Ok(changeLine);
         }
 

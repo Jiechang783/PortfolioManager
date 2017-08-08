@@ -18,7 +18,14 @@ namespace PortfolioManagerService.Controllers
             return Ok(UserDao.getUsers());
         }
 
- 
+        [HttpGet]
+        [Route("api/test")]
+        public IHttpActionResult Getresult()
+        {
+            return Ok("aaa"=="aaa");
+        }
+
+
 
 
         [HttpGet]
@@ -36,6 +43,24 @@ namespace PortfolioManagerService.Controllers
                 return NotFound();
             }
 
+        }
+
+        [HttpPost]
+        [Route("api/Login")]
+        public IHttpActionResult Login(User c)
+        {
+
+            User u=UserDao.getUserByEmail(c);
+            //User c1 = new User { UserId = 1, FirstName = "ztt", LastName = "ztt", Email = " 0", telephone = "0", Role = "admin" };
+            List<User> users = new List<User>();
+            if(u==null)
+            {
+                return NotFound();
+            }
+            users.Add(u);
+            var query = from user in users
+                        select new { user.UserId, user.Role };
+            return Ok(query);
         }
 
 
@@ -66,11 +91,6 @@ namespace PortfolioManagerService.Controllers
             return Ok(changeLine);
         }
 
-        [HttpPost]
-        [Route("api/login")]
-        public IHttpActionResult Login(String username,String password)
-        {
-            return Ok(UserDao.getUsers());
-        }
+
     }
 }

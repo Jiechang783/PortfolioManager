@@ -125,6 +125,7 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BondController.cs" />
+    <Compile Include="Controllers\FutureController.cs" />
     <Compile Include="Controllers\IndustryController.cs" />
     <Compile Include="Controllers\PortfolioController.cs" />
     <Compile Include="Controllers\PortfolioHistoryController.cs" />
@@ -140,6 +141,8 @@
     <Compile Include="Models\OneStockresult.cs" />
     <Compile Include="Models\Portfilioandpnl.cs" />
     <Compile Include="Models\Positionlist.cs" />
+    <Compile Include="Models\PositionPercentage.cs" />
+    <Compile Include="Models\Stockinfo.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

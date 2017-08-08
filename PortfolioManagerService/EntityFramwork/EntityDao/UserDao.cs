@@ -59,6 +59,22 @@ namespace EntityFramwork.EntityDao
             }
         }
 
+        public static User getUserByEmail(User u) {
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+            
+                foreach (User temp in db.Users)
+                {
+                    if (temp.Email.Equals(u.Email))
+                    {
+                        return temp;
+                    }
+                }
+                return null;
+            }
+
+        }
         public static User getUsersById(int id)
         {
 
