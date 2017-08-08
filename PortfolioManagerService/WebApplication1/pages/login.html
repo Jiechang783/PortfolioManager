@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>SB Admin 2 - Bootstrap Admin Theme</title>
+    <title>Protfolio Login</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -34,7 +34,7 @@
 
 <body>
 
-    <div class="container">
+    <div class="container" ng-app="myApp" ng-controller="LoginController">
         <div class="row">
             <div class="col-md-4 col-md-offset-4">
                 <div class="login-panel panel panel-default">
@@ -45,18 +45,18 @@
                         <form role="form">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="E-mail" name="email" type="email" autofocus>
+                                    <input class="form-control" placeholder="Email" name="username" type="email"autofocus ng-model="Email">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="" ng-model="Password">
                                 </div>
-                                <div class="checkbox">
-                                    <label>
-                                        <input name="remember" type="checkbox" value="Remember Me">Remember Me
+                                <!--<div class="checkbox">
+                                    <label class="radio-">
+                                        <input name="admin" type="radio" value="admin">Admin
                                     </label>
-                                </div>
+                                </div>-->
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                                <a ng-click="login()" class="btn btn-lg btn-success btn-block">Login</a>
                             </fieldset>
                         </form>
                     </div>
@@ -76,6 +76,42 @@
 
     <!-- Custom Theme JavaScript -->
     <script src="../dist/js/sb-admin-2.js"></script>
+
+    <!--angular-->
+    <script src="../scripts/angular.min.js"></script>
+    <script src="../scripts/angular.js"></script>
+
+    <!--for ngRoute-->
+    <script src="../scripts/angular-route.min.js"></script>
+
+    <!--login-->
+    <script>
+        var app = angular.module("myApp", ['ngRoute']);
+
+        app.controller("LoginController", function ($scope, $http) {
+            $scope.userId = "";
+            var req = {
+                method: 'POST',
+                url: 'api/Login',
+                header: {
+                    'Content-Type': 'application/json'
+                },
+                data: { "Email": $scope.Email, "Password": $scope.Password }
+            }
+
+            $scope.login = function () {
+                $http(req).then(function (response) {
+                    $scope.User = response;
+                })
+            }
+        })
+
+        app.factory("LocalDataProvider", function () {
+            return {
+                User: $scope.User
+            };
+        })
+    </script>
 
 </body>
 
