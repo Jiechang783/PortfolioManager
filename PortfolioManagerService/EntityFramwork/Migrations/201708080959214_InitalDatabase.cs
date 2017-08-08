@@ -3,7 +3,7 @@ namespace EntityFramwork.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initadatabase : DbMigration
+    public partial class InitalDatabase : DbMigration
     {
         public override void Up()
         {
@@ -11,19 +11,20 @@ namespace EntityFramwork.Migrations
                 "dbo.Bonds",
                 c => new
                     {
-                        Isin = c.Int(nullable: false, identity: true),
-                        Issuer = c.String(nullable: false),
+                        BondId = c.Int(nullable: false, identity: true),
+                        Isin = c.String(nullable: false),
                         Coupon = c.Double(nullable: false),
                         MaturityMonth = c.String(nullable: false),
                         MaturityYear = c.Int(nullable: false),
                     })
-                .PrimaryKey(t => t.Isin);
+                .PrimaryKey(t => t.BondId);
             
             CreateTable(
                 "dbo.Futures",
                 c => new
                     {
-                        ClrAlias = c.String(nullable: false, maxLength: 128),
+                        FutureId = c.Int(nullable: false, identity: true),
+                        Isin = c.String(nullable: false),
                         Exch = c.String(),
                         Sym = c.String(),
                         Desc = c.String(),
@@ -32,7 +33,7 @@ namespace EntityFramwork.Migrations
                         UOMQty = c.Long(nullable: false),
                         ID = c.String(),
                     })
-                .PrimaryKey(t => t.ClrAlias);
+                .PrimaryKey(t => t.FutureId);
             
             CreateTable(
                 "dbo.Industries",
@@ -47,9 +48,9 @@ namespace EntityFramwork.Migrations
                 "dbo.Stocks",
                 c => new
                     {
-                        Isin = c.Int(nullable: false, identity: true),
+                        StockId = c.Int(nullable: false, identity: true),
                         Name = c.String(nullable: false),
-                        Symbol = c.String(nullable: false),
+                        Isin = c.String(nullable: false),
                         LastSale = c.Decimal(nullable: false, precision: 18, scale: 2),
                         MarketCap = c.String(),
                         IPOyear = c.DateTime(nullable: false),
@@ -58,7 +59,7 @@ namespace EntityFramwork.Migrations
                         SummaryQuote = c.String(),
                         Address = c.String(nullable: false),
                     })
-                .PrimaryKey(t => t.Isin)
+                .PrimaryKey(t => t.StockId)
                 .ForeignKey("dbo.Industries", t => t.IndustryId, cascadeDelete: true)
                 .ForeignKey("dbo.Sectors", t => t.SectorId, cascadeDelete: true)
                 .Index(t => t.SectorId)
@@ -94,7 +95,7 @@ namespace EntityFramwork.Migrations
                         PositionId = c.Int(nullable: false, identity: true),
                         Quantity = c.Int(nullable: false),
                         Price = c.Decimal(nullable: false, precision: 18, scale: 2),
-                        Isin = c.Int(nullable: false),
+                        Isin = c.String(nullable: false),
                         Type = c.String(nullable: false),
                         PortfolioId = c.Int(nullable: false),
                     })
@@ -107,9 +108,11 @@ namespace EntityFramwork.Migrations
                 c => new
                     {
                         Id = c.Int(nullable: false, identity: true),
-                        Isin = c.Int(nullable: false),
+                        Isin = c.String(nullable: false),
                         Date = c.DateTime(nullable: false),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        OfferPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        BidPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Type = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             
@@ -130,6 +133,7 @@ namespace EntityFramwork.Migrations
                         FirstName = c.String(nullable: false),
                         LastName = c.String(nullable: false),
                         Email = c.String(),
+                        Password = c.String(),
                         telephone = c.String(),
                         Role = c.String(nullable: false),
                     })

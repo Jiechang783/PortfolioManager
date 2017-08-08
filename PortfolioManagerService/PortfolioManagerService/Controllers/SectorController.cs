@@ -1,13 +1,13 @@
-﻿using EntityFramwork.Entities;
-using EntityFramwork.EntityDao;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using EntityFramwork.Entities;
+using EntityFramwork.EntityDao;
 
-namespace AdministratorWervice.Controllers
+namespace PortfolioManagerService.Controllers
 {
     public class SectorController : ApiController
     {
@@ -50,7 +50,7 @@ namespace AdministratorWervice.Controllers
         public IHttpActionResult addSector(Sector c)
         {
 
-            int changeLine = 1;
+            int changeLine = SectorDao.addSector(c);
             return Ok(changeLine);
         }
 

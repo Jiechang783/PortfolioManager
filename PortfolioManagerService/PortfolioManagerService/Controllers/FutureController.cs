@@ -1,30 +1,30 @@
-﻿using EntityFramwork;
-using EntityFramwork.Entities;
-using EntityFramwork.EntityDao;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using EntityFramwork.Entities;
+using EntityFramwork.EntityDao;
 
-namespace AdministratorWervice.Controllers
+namespace PortfolioManagerService.Controllers
 {
     public class FutureController : ApiController
     {
         [HttpGet]
-        [Route("api/Future")]
+        [Route("api/Futures")]
         public IHttpActionResult Get()
         {
             return Ok(FutureDao.getFutures());
+
         }
 
         [HttpGet]
         // GET api/values/5
-        [Route("api/Future/{id}")]
-        public IHttpActionResult Get(string id)
+        [Route("api/Futures/{isin}")]
+        public IHttpActionResult Get(string isin)
         {
-            Future p = FutureDao.getFutureByIsin(id);
+            Future p = FutureDao.getFutureByIsin(isin);
             if (p != null)
             {
                 return Ok(p);
@@ -38,7 +38,7 @@ namespace AdministratorWervice.Controllers
 
 
         [HttpPost]
-        [Route("api/UpdateFuture")]
+        [Route("api/UpdateFutures")]
         public IHttpActionResult updateBondsById(Future c)
         {
 
@@ -47,8 +47,8 @@ namespace AdministratorWervice.Controllers
         }
 
         [HttpPost]
-        [Route("api/addFuture")]
-        public IHttpActionResult addFuture(Future c)
+        [Route("api/addFutures")]
+        public IHttpActionResult addBondss(Future c)
         {
 
             int changeLine = FutureDao.addFuture(c);
@@ -57,12 +57,10 @@ namespace AdministratorWervice.Controllers
 
         [HttpPost]
         [Route("api/deleteFuture")]
-        public IHttpActionResult deleteFuture(Future c)
+        public IHttpActionResult deleteBondss(Future c)
         {
-            //Bond c1 = new Bond { Isin=1, Issuer="ztt", Coupon=3.3, MaturityMonth="0", MaturityYear= Convert.ToDateTime("1975-06-04") };
             int changeLine = FutureDao.deleteFuture(c);
             return Ok(changeLine);
         }
-
     }
 }

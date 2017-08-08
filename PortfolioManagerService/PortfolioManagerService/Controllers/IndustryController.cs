@@ -9,21 +9,21 @@ using EntityFramwork.EntityDao;
 
 namespace PortfolioManagerService.Controllers
 {
-    public class BondController : ApiController
+    public class IndustryController : ApiController
     {
         [HttpGet]
-        [Route("api/Bonds")]
+        [Route("api/Industry")]
         public IHttpActionResult Get()
         {
-            return Ok(BondsDao.getBonds());
+            return Ok(IndustryDao.getIndustrys());
         }
 
         [HttpGet]
         // GET api/values/5
-        [Route("api/Bondss/{id}")]
+        [Route("api/Industry/{id}")]
         public IHttpActionResult Get(int id)
         {
-            Bond p = BondsDao.getBondById(id);
+            Industry p = IndustryDao.getIndustryByIndustryId(id);
             if (p != null)
             {
                 return Ok(p);
@@ -37,29 +37,29 @@ namespace PortfolioManagerService.Controllers
 
 
         [HttpPost]
-        [Route("api/UpdateBondss")]
-        public IHttpActionResult updateBondsById(Bond c)
+        [Route("api/UpdateIndustry")]
+        public IHttpActionResult updateBondsById(Industry c)
         {
 
-            int changeLine = BondsDao.updateBond(c);
+            int changeLine = IndustryDao.updateIndustry(c);
             return Ok(changeLine);
         }
 
         [HttpPost]
-        [Route("api/addBondss")]
-        public IHttpActionResult addBondss(Bond c)
+        [Route("api/addIndustry")]
+        public IHttpActionResult addIndustry(Industry c)
         {
-
-            int changeLine = BondsDao.addBond(c);
+            // Industry c1 = new Industry { IndustryId=1, Name="ztt" };
+            int changeLine = IndustryDao.addIndustry(c);
             return Ok(changeLine);
         }
 
         [HttpPost]
-        [Route("api/deleteBondss")]
-        public IHttpActionResult deleteBondss(Bond c)
+        [Route("api/deleteIndustry")]
+        public IHttpActionResult deleteIndustry(Industry c)
         {
-            
-            int changeLine = BondsDao.deleteBond(c);
+
+            int changeLine = IndustryDao.deleteIndustry(c);
             return Ok(changeLine);
         }
     }

@@ -725,6 +725,19 @@
     <!-- pagging -->
     <script type="text/javascript">
 
+        //angular.element(document).ready(function () {
+        //    $('#dataTables-example').DataTable({
+        //        responsive: true
+        //    })
+        //})
+
+        //angular.element(function () {
+        //    $('#dataTables-example').DataTable({
+        //        responsive: true
+        //    })
+        //})
+        jQuery.support.cors = true;
+
         var app = angular.module("myApp", []);
         app.controller("indexController", function ($scope, $http) {
             $http.get("PortfolioTestData.js").then(function (response) {
@@ -736,6 +749,40 @@
                     });
                 });
             });
+        })
+
+
+        //app.directive('dataTables', ['$document',function ($document) {
+
+        //    return {
+        //        link: function (scope,element,attr) {
+        //            $(document).ready(function () {
+        //                $('#dataTables-example').DataTable({
+        //                    responsive: true
+        //                });
+        //            });
+        //        }
+        //    };
+        //}
+        //]);
+        var app = angular.module("myApp", []);
+        app.controller("myCtrl", function ($scope, $http) {
+            //$http.get("http://localhost:38877/api/Sector").then(function (response) {
+            //    $scope.data = response.data;
+            //});
+
+            var req = {
+                method: 'POST',
+                url: 'http://localhost:38877/api/addSector',
+                header: {
+                    'Content-Type': 'application/json'
+                },
+                data: { "SectorId": 7, "Name": "备注" }
+            }
+
+            $http(req).then(function (response) {
+
+            })
         })
 
     </script>

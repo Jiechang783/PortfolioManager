@@ -74,6 +74,8 @@ namespace EntityFramwork.EntityDao
             }
         }
 
+
+
         public static int updateSector(Sector sector)
         {
             DatabaseContext db = new DatabaseContext();

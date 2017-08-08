@@ -28,7 +28,7 @@ namespace EntityFramwork.EntityDao
             // Bonds b = new Bonds() { BondsId = 2, FirstName = "a", LastName = "Tingting", Email = "zhangtingting.code@gmail", telephone = "1111111111", Role = "admin" };
             using (DatabaseContext db = new DatabaseContext())
             {
-                var removeBond = db.Bonds.FirstOrDefault(row => row.Isin == bond.Isin);
+                var removeBond = db.Bonds.FirstOrDefault(row => row.BondId == bond.BondId);
 
                 if (removeBond != null)
                 {
@@ -65,7 +65,7 @@ namespace EntityFramwork.EntityDao
 
                 foreach (Bond bond in db.Bonds)
                 {
-                    if (bond.Isin == id)
+                    if (bond.BondId == id)
                     {
                         return bond;
                     }
@@ -75,10 +75,27 @@ namespace EntityFramwork.EntityDao
             }
         }
 
+        public static Bond getBondsByIsin(string Isin)
+        {
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                List<Bond> s = new List<Bond>();
+                foreach (Bond temp in db.Bonds)
+                {
+                    if (temp.Isin == Isin)
+                    {
+                        return temp;
+                    }
+                }
+                return null;
+            }
+        }
         public static int updateBond(Bond bond)
         {
             DatabaseContext db = new DatabaseContext();
-            Bond updateBond = db.Bonds.Single(x => x.Isin == bond.Isin);
+            Bond updateBond = db.Bonds.Single(x => x.BondId == bond.BondId);
 
             if (updateBond == null)
             {
@@ -89,5 +106,7 @@ namespace EntityFramwork.EntityDao
             int result = db.SaveChanges();
             return result;
         }
+
+        
     }
 }

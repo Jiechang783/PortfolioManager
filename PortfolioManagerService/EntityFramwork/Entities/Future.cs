@@ -6,12 +6,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EntityFramwork
+namespace EntityFramwork.Entities
 {
   public  class Future
     {
-       [Key]
-        public string ClrAlias { get; set; }
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int FutureId { get; set; }
+        [Required]
+        public string Isin { get; set; }
 
         public string Exch { get; set; }
 
