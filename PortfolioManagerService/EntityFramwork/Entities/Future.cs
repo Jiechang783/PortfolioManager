@@ -10,7 +10,9 @@ namespace EntityFramwork
 {
   public  class Future
     {
-       [Key]
+        [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int FutureId { get; set; }
+        [Required]
         public string Isin { get; set; }
 
         public string Exch { get; set; }

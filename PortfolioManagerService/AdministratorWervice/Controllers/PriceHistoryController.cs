@@ -74,7 +74,7 @@ namespace AdministratorWervice.Controllers
 
         [HttpGet]
         [Route("api/Getpricehis/{isin}")]
-        public IHttpActionResult Getresult(int isin)
+        public IHttpActionResult Getresult(string isin)
         {
             var query = from p in PriceHistoryDao.getPriceHistorysByisin(isin)
                         select new { p.Date,p.OfferPrice};

@@ -23,6 +23,8 @@ namespace AdministratorWervice
                 defaults: new { id = RouteParameter.Optional }
             );
 
+           
+
             var enableCorsAttribute = new EnableCorsAttribute("*",
                                                "Origin, Content-Type, Accept",
                                                "GET, PUT, POST, DELETE, OPTIONS");

@@ -16,7 +16,7 @@ namespace EntityFramwork.Entities
         public decimal Price { get; set; }
 
         [Required]
-        public int Isin { get; set; }
+        public string Isin { get; set; }
 
         [Required]
         public string Type { get; set; }

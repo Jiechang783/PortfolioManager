@@ -10,7 +10,7 @@ namespace EntityFramwork.Entities
         public int Id { get; set; }
 
         [Required]
-        public int Isin { get; set; }
+        public string Isin { get; set; }
 
         [Required]
         public DateTime Date { get; set; }

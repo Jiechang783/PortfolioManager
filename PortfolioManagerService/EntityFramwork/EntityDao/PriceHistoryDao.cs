@@ -78,7 +78,7 @@ namespace EntityFramwork.EntityDao
             }
         }
 
-        public static List<PriceHistory> getPriceHistorysByisin(int isin)
+        public static List<PriceHistory> getPriceHistorysByisin(string isin)
         {
 
             using (DatabaseContext db = new DatabaseContext())
@@ -96,7 +96,7 @@ namespace EntityFramwork.EntityDao
             }
         }
 
-        public static PriceHistory getLastPriceHistorysByisin(int isin)
+        public static PriceHistory getLastPriceHistorysByisin(string isin)
         {
 
             using (DatabaseContext db = new DatabaseContext())

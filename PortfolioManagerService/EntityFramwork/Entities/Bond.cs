@@ -7,10 +7,10 @@ namespace EntityFramwork.Entities
     public class Bond
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Isin { get; set; }
+        public int BondId { get; set; }
 
         [Required]
-        public string Issuer { get; set; }
+        public string Isin { get; set; }
 
         [Required]
         public double Coupon { get; set; }

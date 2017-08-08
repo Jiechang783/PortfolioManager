@@ -29,7 +29,7 @@ namespace EntityFramwork.EntityDao
             // Futures b = new Futures() { FuturesId = 2, FirstName = "a", LastName = "Tingting", Email = "zhangtingting.code@gmail", telephone = "1111111111", Role = "admin" };
             using (DatabaseContext db = new DatabaseContext())
             {
-                var removeFuture = db.Futures.FirstOrDefault(row => row.Isin == Future.Isin);
+                var removeFuture = db.Futures.FirstOrDefault(row => row.FutureId == Future.FutureId);
 
                 if (removeFuture != null)
                 {
@@ -57,7 +57,7 @@ namespace EntityFramwork.EntityDao
             }
         }
 
-        public static Future getFutureByClr(string Isin)
+        public static Future getFutureById(int futureId)
         {
             using (DatabaseContext db = new DatabaseContext())
             {
@@ -66,7 +66,7 @@ namespace EntityFramwork.EntityDao
 
                 foreach (Future Future in db.Futures)
                 {
-                    if (Future.Isin == Isin)
+                    if (Future.FutureId == futureId)
                     {
                         return Future;
                     }
@@ -79,7 +79,7 @@ namespace EntityFramwork.EntityDao
         public static int updateFuture(Future Future)
         {
             DatabaseContext db = new DatabaseContext();
-            Future updateFuture = db.Futures.Single(x => x.Isin == Future.Isin);
+            Future updateFuture = db.Futures.Single(x => x.FutureId == Future.FutureId);
 
             if (updateFuture == null)
             {
