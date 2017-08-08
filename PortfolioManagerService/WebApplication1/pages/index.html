@@ -209,8 +209,8 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="x in data">
-                                            <td ng-bind="x.PortfolioID"></td>
-                                            <td ng-bind="x.PortfolioName"></td>
+                                            <td ng-bind="x.portfolioid"></td>
+                                            <td ng-bind="x.portfolioname"></td>
                                             <td ng-bind="x.PNL"></td>
                                         </tr>
                                     </tbody>
@@ -257,7 +257,7 @@
 
         var app = angular.module("myApp", []);
         app.controller("indexController", function ($scope, $http) {
-            $http.get("http://localhost:38814/api/ALLPortfolios/1").then(function (response) {
+            $http.get("http://localhost:38814/api/ALLPortfolios/" + $rootScope.UserId).then(function (response) {
                 $scope.data = response.data;
 
                 $(document).ready(function () {
