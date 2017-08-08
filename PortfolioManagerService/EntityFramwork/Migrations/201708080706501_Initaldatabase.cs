@@ -23,7 +23,7 @@ namespace EntityFramwork.Migrations
                 "dbo.Futures",
                 c => new
                     {
-                        ClrAlias = c.String(nullable: false, maxLength: 128),
+                        Isin = c.String(nullable: false, maxLength: 128),
                         Exch = c.String(),
                         Sym = c.String(),
                         Desc = c.String(),
@@ -32,7 +32,7 @@ namespace EntityFramwork.Migrations
                         UOMQty = c.Long(nullable: false),
                         ID = c.String(),
                     })
-                .PrimaryKey(t => t.ClrAlias);
+                .PrimaryKey(t => t.Isin);
             
             CreateTable(
                 "dbo.Industries",
@@ -109,7 +109,9 @@ namespace EntityFramwork.Migrations
                         Id = c.Int(nullable: false, identity: true),
                         Isin = c.Int(nullable: false),
                         Date = c.DateTime(nullable: false),
-                        Price = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        OfferPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        BidPrice = c.Decimal(nullable: false, precision: 18, scale: 2),
+                        Type = c.String(),
                     })
                 .PrimaryKey(t => t.Id);
             

@@ -11,7 +11,7 @@ namespace EntityFramwork
   public  class Future
     {
        [Key]
-        public string ClrAlias { get; set; }
+        public string Isin { get; set; }
 
         public string Exch { get; set; }
 

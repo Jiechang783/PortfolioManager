@@ -16,6 +16,11 @@ namespace EntityFramwork.Entities
         public DateTime Date { get; set; }
 
         [Required]
-        public decimal Price { get; set; }
+        public decimal OfferPrice { get; set; }
+
+        [Required]
+        public decimal BidPrice { get; set; }
+
+        public string Type { get; set; }
     }
 }
