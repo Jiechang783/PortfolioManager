@@ -45,19 +45,14 @@
                         <form role="form">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Email" name="username" type="email"autofocus ng-model="Email">
+                                    <input ng-model="Email" class="form-control" placeholder="Email" name="username" type="text">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="" ng-model="Password">
+                                    <input  ng-model="Password" class="form-control" placeholder="Password" name="password" type="password">
                                 </div>
-                                <!--<div class="checkbox">
-                                    <label class="radio-">
-                                        <input name="admin" type="radio" value="admin">Admin
-                                    </label>
-                                </div>-->
-                                <!-- Change this to a button or input when using this as a form -->
-                                <a ng-click="login()" class="btn btn-lg btn-success btn-block">Login</a>
                             </fieldset>
+
+                            <button ng-click="login()" class="btn btn-lg btn-success btn-block">Login</button>
                         </form>
                     </div>
                 </div>
@@ -85,21 +80,23 @@
     <script src="../scripts/angular-route.min.js"></script>
 
     <!--login-->
-    <script>
+    <script type="text/javascript">
         var app = angular.module("myApp", ['ngRoute']);
 
         app.controller("LoginController", function ($scope, $http) {
-            $scope.userId = "";
-            var req = {
-                method: 'POST',
-                url: 'api/Login',
-                header: {
-                    'Content-Type': 'application/json'
-                },
-                data: { "Email": $scope.Email, "Password": $scope.Password }
-            }
+            $scope.User = {};
 
-            $scope.login = function () {
+            var login = function () {
+
+                var req = {
+                    method: 'POST',
+                    url: 'http://localhost:38814/api/Login',
+                    header: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: { "Email": $scope.Email, "Password": $scope.Password }
+                }
+
                 $http(req).then(function (response) {
                     $scope.User = response;
                 })
