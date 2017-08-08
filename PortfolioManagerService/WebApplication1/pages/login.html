@@ -41,7 +41,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" ng-app="myApp" ng-controller="LoginController">
+                        <form role="form">
                             <fieldset>
                                 <div class="form-group">
                                     <input ng-model="Email" class="form-control" placeholder="Email" name="username" type="text">
@@ -82,11 +82,17 @@
     <script type="text/javascript">
         var app = angular.module("myApp", ['ngRoute']);
 
+        app.config(['$routeProvider', function ($routeProvider) {
+            $routeProvider.when('/index', {
+                templateUrl: "/pages/index.html",
+                controller: 'testController'
+            });
+        }]);
+
         app.controller("LoginController", function ($scope, $http) {
-            $scope.User = {};
+            $rootScope.User = {};
 
             $scope.login = function () {
-
 
                 var req = {
                     method: 'POST',
@@ -98,16 +104,18 @@
                 }
 
                 $http(req).then(function (response) {
-                    $scope.User = response;
+                    $rootScope.User = response;
                 })
             }
         })
 
-        app.factory("LocalDataProvider", function () {
-            return {
-                User: $scope.User
-            };
-        })
+        
+
+        //app.factory("LocalDataProvider", function () {
+        //    return {
+        //        User: $scope.User
+        //    };
+        //})
     </script>
 
 </body>
