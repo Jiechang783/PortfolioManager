@@ -45,10 +45,10 @@
                         <form role="form">
                             <fieldset>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="User Name" name="username" type="text" autofocus>
+                                    <input class="form-control" placeholder="Email" name="username" type="email"autofocus ng-model="Email">
                                 </div>
                                 <div class="form-group">
-                                    <input class="form-control" placeholder="Password" name="password" type="password" value="">
+                                    <input class="form-control" placeholder="Password" name="password" type="password" value="" ng-model="Password">
                                 </div>
                                 <!--<div class="checkbox">
                                     <label class="radio-">
@@ -56,7 +56,7 @@
                                     </label>
                                 </div>-->
                                 <!-- Change this to a button or input when using this as a form -->
-                                <a href="index.html" class="btn btn-lg btn-success btn-block">Login</a>
+                                <a ng-click="login()" class="btn btn-lg btn-success btn-block">Login</a>
                             </fieldset>
                         </form>
                     </div>
@@ -88,26 +88,28 @@
     <script>
         var app = angular.module("myApp", ['ngRoute']);
 
-        app.factory("LocalDataProvider", function () {
-            return {
-                userId: $scope.userId
-            };
-        })
-
         app.controller("LoginController", function ($scope, $http) {
             $scope.userId = "";
             var req = {
                 method: 'POST',
-                url: 'http://localhost:38877/api/addSector',
+                url: 'api/Login',
                 header: {
                     'Content-Type': 'application/json'
                 },
-                data: { "SectorId": 7, "Name": "备注" }
+                data: { "Email": $scope.Email, "Password": $scope.Password }
             }
 
-            $http(req).then(function (response) {
-                $scope.userId = response.userId;
-            })
+            $scope.login = function () {
+                $http(req).then(function (response) {
+                    $scope.User = response;
+                })
+            }
+        })
+
+        app.factory("LocalDataProvider", function () {
+            return {
+                User: $scope.User
+            };
         })
     </script>
 
