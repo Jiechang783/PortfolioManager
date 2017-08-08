@@ -62,7 +62,7 @@ namespace EntityFramwork.EntityDao
             }
         }
 
-        public static Stock getStocksById(int id)
+        public static Stock getStocksById(int isin)
         {
 
             using (DatabaseContext db = new DatabaseContext())
@@ -71,7 +71,7 @@ namespace EntityFramwork.EntityDao
                 List<Stock> uers = new List<Stock>();
                 foreach (Stock temp in db.Stocks)
                 {
-                    if (temp.Isin == id)
+                    if (temp.Isin == isin)
                     {
                         return temp;
                     }
@@ -79,6 +79,8 @@ namespace EntityFramwork.EntityDao
                 return null;
             }
         }
+
+
 
         public static List<Stock> getStockListBySector(Sector sector)
         {

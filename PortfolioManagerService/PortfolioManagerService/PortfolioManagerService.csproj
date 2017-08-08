@@ -132,9 +132,12 @@
     <Compile Include="Controllers\PriceHistoryController.cs" />
     <Compile Include="Controllers\SectorController.cs" />
     <Compile Include="Controllers\StockController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\OnePortfolioResult.cs" />
+    <Compile Include="Models\OneStockresult.cs" />
     <Compile Include="Models\Portfilioandpnl.cs" />
     <Compile Include="Models\Positionlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
