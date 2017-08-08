@@ -19,6 +19,33 @@ namespace PortfolioManagerService.Controllers
             return Ok(StockDao.getStocks());
         }
 
+        [HttpPost]
+        [Route("api/PM/Security")]
+        public IHttpActionResult GetSecurity(dynamic security)
+        {
+            if(security.type=="stock")
+            {
+                return Ok(StockDao.getStocksByIsin(security.isin));
+
+            }
+            else if(security.type == "bond")
+            {
+                return Ok(BondsDao.getBondsByIsin(security.isin));
+            }
+            else if(security.type == "future")
+            {
+                return Ok(FutureDao.getStocksByIsin(security.isin));
+            }
+            else
+            {
+                return NotFound();
+            }
+                
+        }
+
+
+
+
         [HttpGet]
         [Route("api/PM/Stocklist")]
         public IHttpActionResult Getstocklist()
@@ -33,9 +60,9 @@ namespace PortfolioManagerService.Controllers
         [HttpGet]
         // GET api/values/5
         [Route("api/PM/Stocks/{isin}")]
-        public IHttpActionResult Get(int isin)
+        public IHttpActionResult Get(string isin)
         {
-            Stock p = StockDao.getStocksById(isin);
+            Stock p = StockDao.getStocksByIsin(isin);
             if (p != null)
             {
                 return Ok(p);

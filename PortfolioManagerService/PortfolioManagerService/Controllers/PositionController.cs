@@ -36,6 +36,8 @@ namespace PortfolioManagerService.Controllers
 
         }
 
+
+
         [HttpGet]
         [Route("api/PositionbypoID/{portfolioid}")]
         public IHttpActionResult GetPositionsbyPortID(int portfolioid)

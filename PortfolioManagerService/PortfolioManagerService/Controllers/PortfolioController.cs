@@ -109,6 +109,28 @@ namespace PortfolioManagerService.Controllers
 
 
 
+        [HttpGet]
+        [Route("api/getPercentage/{portid}")]
+        public IHttpActionResult GetPercentage(int portid)
+        {
+
+            List<Position> list = PositionDao.getPositionsByPortfolioId(portid);
+            List<PositionPercentage> returnlist = new List<PositionPercentage>();
+            var query = from p in list
+                        orderby p.Price * p.Quantity
+                        select p;
+
+            foreach(Position p in query)
+            {
+                returnlist.Add(new PositionPercentage(p.Price * p.Quantity, StockDao.getStocksByIsin(p.Isin).Name));
+            }
+
+
+            return Ok(returnlist);
+        }
+
+
+
         [HttpPost]
         [Route("api/UpdatePortfolios")]
         public IHttpActionResult updatePortfolioById(Portfolio c)
