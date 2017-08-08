@@ -38,6 +38,20 @@ namespace PortfolioManagerService.Controllers
 
         }
 
+        [HttpPost]
+        [Route("api/Login")]
+        public IHttpActionResult Login(User c)
+        {
+
+            User u=UserDao.getUserByEmail(c);
+            if(u==null)
+            {
+                return NotFound();
+            }
+            
+            return Ok(u.Role);
+        }
+
 
         [HttpPost]
         [Route("api/UpdateUsers")]
@@ -66,11 +80,6 @@ namespace PortfolioManagerService.Controllers
             return Ok(changeLine);
         }
 
-        [HttpPost]
-        [Route("api/login")]
-        public IHttpActionResult Login(String username,String password)
-        {
-            return Ok(UserDao.getUsers());
-        }
+
     }
 }

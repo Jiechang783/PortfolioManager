@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Web.Http;
 using EntityFramwork.Entities;
 using EntityFramwork.EntityDao;
+using PortfolioManagerService.Models;
 
 namespace PortfolioManagerService.Controllers
 {
@@ -17,6 +18,17 @@ namespace PortfolioManagerService.Controllers
         {
             return Ok(StockDao.getStocks());
         }
+
+        [HttpGet]
+        [Route("api/PM/Stocklist")]
+        public IHttpActionResult Getstocklist()
+        {
+
+            return Ok();
+        }
+
+
+
 
         [HttpGet]
         // GET api/values/5
@@ -34,6 +46,24 @@ namespace PortfolioManagerService.Controllers
             }
 
         }
+
+        [HttpGet]
+        // GET api/values/5
+        [Route("api/PM/Stockinfo/{isin}")]
+        public IHttpActionResult Getstockavg(string isin)
+        {
+            List<PriceHistory> p = PriceHistoryDao.getPriceHistorysByisin(isin);
+            decimal avg = (from stock in p
+                         select stock.OfferPrice).Average();
+            decimal max = (from stock in p
+                       select stock.OfferPrice).Max();
+            decimal min = (from stock in p
+                       select stock.OfferPrice).Min();
+
+            return Ok(new Securityinfo(avg,max,min));
+
+        }
+
 
 
         [HttpPost]

@@ -39,7 +39,7 @@ namespace PortfolioManagerService.Controllers
         [HttpGet]
         // GET api/values/5
         [Route("api/OneStockHistorys/{isin}")]
-        public IHttpActionResult GetoneStockPrice(int isin)
+        public IHttpActionResult GetoneStockPrice(string isin)
         {
             List<PriceHistory> p = PriceHistoryDao.getPriceHistorysByisin(isin);
             List<Decimal> price = new List<decimal>();
@@ -67,7 +67,7 @@ namespace PortfolioManagerService.Controllers
             var query = (from p in Pricehistory
                          select p.Isin).Distinct();
 
-            foreach(int isin in query)
+            foreach(string isin in query)
             {
                 List<Decimal> price = new List<decimal>();
                 List<DateTime> time = new List<DateTime>();
@@ -108,7 +108,7 @@ namespace PortfolioManagerService.Controllers
 
         [HttpGet]
         [Route("api/Getpricehis/{isin}")]
-        public IHttpActionResult Getresult(int isin)
+        public IHttpActionResult Getresult(string isin)
         {
             var query = from p in PriceHistoryDao.getPriceHistorysByisin(isin)
                         select new { p.Date, p.OfferPrice };

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EntityFramwork
+namespace EntityFramwork.Entities
 {
   public  class Future
     {

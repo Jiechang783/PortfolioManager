@@ -9,21 +9,22 @@ using EntityFramwork.EntityDao;
 
 namespace PortfolioManagerService.Controllers
 {
-    public class BondController : ApiController
+    public class FutureController : ApiController
     {
         [HttpGet]
-        [Route("api/Bonds")]
+        [Route("api/Futures")]
         public IHttpActionResult Get()
         {
-            return Ok(BondsDao.getBonds());
+            return Ok(FutureDao.getFutures());
+
         }
 
         [HttpGet]
         // GET api/values/5
-        [Route("api/Bondss/{id}")]
-        public IHttpActionResult Get(int id)
+        [Route("api/Futures/{isin}")]
+        public IHttpActionResult Get(string isin)
         {
-            Bond p = BondsDao.getBondById(id);
+            Future p = FutureDao.getStocksByIsin(isin);
             if (p != null)
             {
                 return Ok(p);
@@ -37,29 +38,28 @@ namespace PortfolioManagerService.Controllers
 
 
         [HttpPost]
-        [Route("api/UpdateBondss")]
-        public IHttpActionResult updateBondsById(Bond c)
+        [Route("api/UpdateFutures")]
+        public IHttpActionResult updateBondsById(Future c)
         {
 
-            int changeLine = BondsDao.updateBond(c);
+            int changeLine = FutureDao.updateFuture(c);
             return Ok(changeLine);
         }
 
         [HttpPost]
-        [Route("api/addBondss")]
-        public IHttpActionResult addBondss(Bond c)
+        [Route("api/addFutures")]
+        public IHttpActionResult addBondss(Future c)
         {
 
-            int changeLine = BondsDao.addBond(c);
+            int changeLine = FutureDao.addFuture(c);
             return Ok(changeLine);
         }
 
         [HttpPost]
-        [Route("api/deleteBondss")]
-        public IHttpActionResult deleteBondss(Bond c)
+        [Route("api/deleteFuture")]
+        public IHttpActionResult deleteBondss(Future c)
         {
-            
-            int changeLine = BondsDao.deleteBond(c);
+            int changeLine = FutureDao.deleteFuture(c);
             return Ok(changeLine);
         }
     }
