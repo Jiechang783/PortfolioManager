@@ -77,7 +77,7 @@ namespace EntityFramwork.EntityDao
             }
         }
 
-        public static Future getStocksByIsin(string Isin)
+        public static Future getFutureByIsin(string Isin)
         {
 
             using (DatabaseContext db = new DatabaseContext())

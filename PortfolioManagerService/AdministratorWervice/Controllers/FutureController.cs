@@ -1,4 +1,5 @@
 ﻿using EntityFramwork;
+using EntityFramwork.Entities;
 using EntityFramwork.EntityDao;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,7 @@ namespace AdministratorWervice.Controllers
         [Route("api/Future/{id}")]
         public IHttpActionResult Get(string id)
         {
-            Future p = FutureDao.getFutureByClr(id);
+            Future p = FutureDao.getFutureByIsin(id);
             if (p != null)
             {
                 return Ok(p);

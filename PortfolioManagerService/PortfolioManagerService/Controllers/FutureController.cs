@@ -24,7 +24,7 @@ namespace PortfolioManagerService.Controllers
         [Route("api/Futures/{isin}")]
         public IHttpActionResult Get(string isin)
         {
-            Future p = FutureDao.getStocksByIsin(isin);
+            Future p = FutureDao.getFutureByIsin(isin);
             if (p != null)
             {
                 return Ok(p);
