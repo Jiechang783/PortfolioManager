@@ -257,7 +257,7 @@
 
         var app = angular.module("myApp", []);
         app.controller("indexController", function ($scope, $http) {
-            $http.get("PortfolioTestData.js").then(function (response) {
+            $http.get("http://localhost:38814/api/ALLPortfolios/" + $rootScope.UserId).then(function (response) {
                 $scope.data = response.data;
 
                 $(document).ready(function () {
