@@ -18,15 +18,6 @@ namespace PortfolioManagerService.Controllers
             return Ok(UserDao.getUsers());
         }
 
-        [HttpGet]
-        [Route("api/test")]
-        public IHttpActionResult Getresult()
-        {
-            return Ok("aaa"=="aaa");
-        }
-
-
-
 
         [HttpGet]
         // GET api/values/5
@@ -55,7 +46,7 @@ namespace PortfolioManagerService.Controllers
             List<User> users = new List<User>();
             if(u==null)
             {
-                return NotFound();
+                return Ok("aaaaaa");
             }
             users.Add(u);
             var query = from user in users

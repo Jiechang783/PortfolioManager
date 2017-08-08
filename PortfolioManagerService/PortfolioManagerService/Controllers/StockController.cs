@@ -25,21 +25,10 @@ namespace PortfolioManagerService.Controllers
         {
             if(security.type=="stock")
             {
-                return Ok(StockDao.getStocksByIsin(security.isin));
-
+                string isin = security.isin;
+                return Ok(StockDao.getStocksByIsin(isin));
             }
-            else if(security.type == "bond")
-            {
-                return Ok(BondsDao.getBondsByIsin(security.isin));
-            }
-            else if(security.type == "future")
-            {
-                return Ok(FutureDao.getStocksByIsin(security.isin));
-            }
-            else
-            {
-                return NotFound();
-            }
+            return Ok();
                 
         }
 
