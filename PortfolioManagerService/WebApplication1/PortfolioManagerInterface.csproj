@@ -123,6 +123,9 @@
     <Content Include="pages\panels-wells.html" />
     <Content Include="pages\tables.html" />
     <Content Include="pages\typography.html" />
+    <Content Include="scripts\angular-route.js" />
+    <Content Include="scripts\angular-route.min.js" />
+    <Content Include="scripts\angular-route.min.js.map" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="PortfolioTestData.js" />
     <Content Include="scripts\jquery-3.1.1.js" />
