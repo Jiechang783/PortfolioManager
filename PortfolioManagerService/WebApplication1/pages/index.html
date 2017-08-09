@@ -255,7 +255,7 @@
     <script type="text/javascript">
 
 
-        var app = angular.module("myApp", []);
+        var app = angular.module("myApp", [$rootScope]);
         app.controller("indexController", function ($scope, $http) {
             $http.get("http://localhost:38814/api/ALLPortfolios/" + $rootScope.UserId).then(function (response) {
                 $scope.data = response.data;
@@ -266,6 +266,14 @@
                     });
                 });
             });
+
+            $http.get("http://localhost:38814/api/bestPortfolios/" + $rootScope.UserId).then(function (response) {
+                $scope.bestData = response.data;
+            })
+
+            $http.get("http://localhost:38814/api/worstPortfolios/" + $rootScope.UserId).then(function (response) {
+                $scope.worstData = response.data;
+            })
         })
 
 

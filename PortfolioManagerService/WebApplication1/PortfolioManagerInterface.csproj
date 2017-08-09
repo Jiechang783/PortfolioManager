@@ -128,6 +128,7 @@
     <Content Include="scripts\angular-route.min.js.map" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="PortfolioTestData.js" />
+    <Content Include="scripts\echarts.js" />
     <Content Include="scripts\jquery-3.1.1.js" />
     <Content Include="scripts\jquery-3.1.1.min.js" />
     <Content Include="scripts\jquery-3.1.1.slim.js" />
