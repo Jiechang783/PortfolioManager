@@ -31,7 +31,20 @@ namespace PortfolioManagerService.Controllers
             history.Date = DateTime.Now;
 
             int changeline=PriceHistoryDao.setPriceHistory(history);
-            PositionDao.getPositionsByIsin
+
+            List<Position> positions = PositionDao.getPositionsByIsin(history.Isin);
+            Portfolio portfolio = new Portfolio();
+            foreach (Position p in positions)
+            {
+                portfolio = PortfolioDao.getPortfoliosById(p.PortfolioId);
+                double pnl = Getportfoliopnl(portfolio.PortfolioId);
+                PortfolioHistory porthistory = new PortfolioHistory();
+                porthistory.PNL = pnl;
+                porthistory.Date = DateTime.Now;
+                porthistory.PortfolioId = portfolio.PortfolioId;
+                int line = PortfolioHistoryDao.setPortfolioHistory(porthistory);
+
+            }
 
             return Ok();
         }
@@ -42,7 +55,7 @@ namespace PortfolioManagerService.Controllers
         [Route("api/PM/Security")]
         public IHttpActionResult GetSecurity(dynamic security)
         {
-            if(security.type=="stock")
+            if(security.type=="Stock")
             {
                 string isin = security.isin;
                 return Ok(StockDao.getStocksByIsin(isin));
@@ -94,7 +107,7 @@ namespace PortfolioManagerService.Controllers
 
         [HttpGet]
         // GET api/values/5
-        [Route("api/PM/Stockinfo/{isin}")]
+        [Route("api/PM/Securityinfo/{isin}")]
         public IHttpActionResult Getstockavg(string isin)
         {
             List<PriceHistory> p = PriceHistoryDao.getPriceHistorysByisin(isin);
@@ -104,8 +117,10 @@ namespace PortfolioManagerService.Controllers
                        select stock.OfferPrice).Max();
             decimal min = (from stock in p
                        select stock.OfferPrice).Min();
+            decimal offer = PriceHistoryDao.getLastPriceHistorysByisin(isin).OfferPrice;
+            decimal bid = PriceHistoryDao.getLastPriceHistorysByisin(isin).BidPrice;
 
-            return Ok(new Securityinfo(avg,max,min));
+            return Ok(new Securityinfo(avg,max,min,offer,bid));
 
         }
 
