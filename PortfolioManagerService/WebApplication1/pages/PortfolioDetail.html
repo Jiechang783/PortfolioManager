@@ -166,9 +166,12 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="x in data">
-                                            <td ng-bind="x.portfolioid"></td>
-                                            <td ng-bind="x.portfolioname"></td>
+                                            <td ng-bind="x.PositionId"></td>
+                                            <td ng-bind="x.SecurityName"></td>
+                                            <td ng-bind="x.Quantity"></td>
                                             <td ng-bind="x.PNL"></td>
+                                            <td ng-bind="x.Bid"></td>
+                                            <td ng-bind="x.Offer"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -225,7 +228,7 @@
 
         var app = angular.module("myApp", []);
         app.controller("ProtolioDetailController", function ($scope, $http) {
-            $http.get("PortfolioTestData.js").then(function (response) {
+            $http.get("PositionTestData.js").then(function (response) {
                 $scope.data = response.data;
 
                 $(document).ready(function () {
@@ -299,7 +302,6 @@
 
 
     </script>
-
 </body>
 
 </html>
