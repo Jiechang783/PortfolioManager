@@ -46,7 +46,7 @@ namespace PortfolioManagerService.Controllers
             List<User> users = new List<User>();
             if(u==null)
             {
-                return Ok("aaaaaa");
+                return Ok();
             }
             users.Add(u);
             var query = from user in users

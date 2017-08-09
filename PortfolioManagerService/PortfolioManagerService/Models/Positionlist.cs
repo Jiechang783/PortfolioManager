@@ -11,12 +11,19 @@ namespace PortfolioManagerService.Models
         public string SecurityName;
         public int Quantity;
         public double PNL;
-        public Positionlist(int id,string name,int amount,double pnl)
+        public decimal Bid;
+        public decimal Offer;
+        public string Type;
+        public Positionlist(int id,string name,decimal bid,int amount,decimal offerprice,double pnl,string type)
         {
             this.PositionId = id;
             this.SecurityName = name;
+            this.Bid = bid;
+            this.Offer = offerprice;
             this.PNL = pnl;
             this.Quantity = amount;
+            this.Type = type;
+            
         }
 
 

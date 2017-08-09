@@ -81,10 +81,10 @@ namespace PortfolioManagerService.Controllers
                 //list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, Portfilioandpnl.Caculatepnl(p.PortfolioId)));
                 list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
             }
+
             var query = from p in list
                         orderby p.PNL descending
-                        select new { p.PortfolioName, p.PNL };
-            
+                        select p;
 
             return Ok(query.Take(1));
         }
@@ -99,12 +99,10 @@ namespace PortfolioManagerService.Controllers
             {
                 list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
             }
-            var query = from p in list
-                        orderby p.PNL
-                        select new { p.PortfolioName, p.PNL };
+    
 
 
-            return Ok(query.Take(1));
+            return Ok(list.Take(1));
         }
 
 
@@ -137,7 +135,7 @@ namespace PortfolioManagerService.Controllers
         {
 
             int changeLine = PortfolioDao.updatePortfolios(c);
-            return Ok(changeLine);
+            return Ok(c);
         }
 
         [HttpPost]
@@ -146,7 +144,11 @@ namespace PortfolioManagerService.Controllers
         {
            
             int changeLine = PortfolioDao.addPortfolio(c);
-            return Ok(changeLine);
+            if(changeLine==1)
+            {
+                return Ok("Success");
+            }
+            return NotFound();
         }
 
         [HttpPost]

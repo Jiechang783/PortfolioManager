@@ -15,7 +15,7 @@ namespace EntityFramwork.EntityDao
         public static int  setUser(User a)
         {
 
-            User b = new User() { UserId = 1, FirstName = "zhang", LastName = "Tingting", Email = "zhangtingting.code@gmail", telephone = "1111111111", Role="admin" };
+           // User b = new User() { UserId = 1, FirstName = "zhang", LastName = "Tingting", Email = "zhangtingting.code@gmail", telephone = "1111111111", Role="admin" };
             using (DatabaseContext db = new DatabaseContext())
             {
                 db.Users.Add(a);

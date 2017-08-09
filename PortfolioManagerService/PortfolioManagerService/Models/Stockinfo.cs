@@ -7,15 +7,19 @@ namespace PortfolioManagerService.Models
 {
     public class Securityinfo
     {
-        public decimal avg;
-        public decimal max;
-        public decimal min;
+        public decimal Average;
+        public decimal MaxPrice;
+        public decimal MinPrice;
+        public decimal Offer;
+        public decimal Bid;
 
-        public Securityinfo(decimal average,decimal maxium,decimal minium)
+        public Securityinfo(decimal average,decimal maxium,decimal minium,decimal offer,decimal bid)
         {
-            this.avg = average;
-            this.max = maxium;
-            this.min = minium;
+            this.Average = average;
+            this.MaxPrice = maxium;
+            this.MinPrice = minium;
+            this.Offer = offer;
+            this.Bid = bid;
         }
     }
 }
