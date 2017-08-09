@@ -99,10 +99,14 @@ namespace PortfolioManagerService.Controllers
             {
                 list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
             }
-    
+
+            var query = from p in list
+                        orderby p.PNL 
+                        select p;
 
 
-            return Ok(list.Take(1));
+
+            return Ok(query.Take(1));
         }
 
 
@@ -120,7 +124,7 @@ namespace PortfolioManagerService.Controllers
 
             foreach(Position p in query)
             {
-                returnlist.Add(new PositionPercentage(p.Price * p.Quantity, StockDao.getStocksByIsin(p.Isin).Name));
+                returnlist.Add(new PositionPercentage(p.Price * p.Quantity, getSecurityname(p.Isin,p.Type)));
             }
 
 
@@ -158,6 +162,17 @@ namespace PortfolioManagerService.Controllers
 
             int changeLine = PortfolioDao.deletePortfolios(c);
             return Ok(changeLine);
+        }
+
+        public static string getSecurityname(string isin, string type)
+        {
+            if (type == "Stock")
+            {
+                return StockDao.getStocksByIsin(isin).Name;
+            }
+
+
+            return isin;
         }
 
 

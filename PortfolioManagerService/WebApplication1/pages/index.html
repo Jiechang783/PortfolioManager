@@ -153,10 +153,22 @@
                     <div class="panel panel-green">
                         <div class="panel-heading">
                             <p class="fa fa-thumbs-o-up"></p>
-                            Best Portfolio
+                            Worst Portfolio
                         </div>
                         <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                            <table width="100%" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th ng-repeat="(x,y) in worstData[0]">{{ x }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in worstData">
+                                        <td ng-bind="x.PortfolioName"></td>
+                                        <td ng-bind="x.PNL"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="panel-footer">
                         </div>
@@ -168,10 +180,22 @@
                     <div class="panel panel-red">
                         <div class="panel-heading">
                             <p class="fa fa-thumbs-o-down"></p>
-                            Worst Portfolio
+                            Best Portfolio
                         </div>
                         <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                            <table width="100%" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th ng-repeat="(x,y) in bestData[0]">{{ x }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in bestData">
+                                        <td ng-bind="x.PortfolioName"></td>
+                                        <td ng-bind="x.PNL"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="panel-footer">
                         </div>
@@ -251,13 +275,23 @@
     <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
+    <!--angular-cookies-->
+    <script src="../scripts/angular-cookies.js"></script>
+
     <!-- pagging -->
     <script type="text/javascript">
-
+        
 
         var app = angular.module("myApp", ['ngCookies']);
-        app.controller("indexController", function ($scope, $http, $cookieStore) {
-            $http.get("http://localhost:38814/api/ALLPortfolios/" + $cookieStore.get('UserId')).then(function (response) {
+
+        app.controller("indexController", ['$scope', '$http', '$cookies', '$cookieStore', function ($scope, $http, $cookies, $cookieStore) {
+            var UserId = $cookies.get('UserId');
+            $scope.bestData = {};
+            $scope.worstData = {};
+
+
+            $http.get("http://localhost:38814/api/ALLPortfolios/" + UserId).then(function (response) {
+
                 $scope.data = response.data;
 
                 $(document).ready(function () {
@@ -267,14 +301,17 @@
                 });
             });
 
-            $http.get("http://localhost:38814/api/bestPortfolios/" + $cookieStore.get('UserId')).then(function (response) {
-                $scope.bestData = response.data;
+
+            $http.get("http://localhost:38814/api/bestPortfolios/" + UserId).then(function (bestResponse) {
+                $scope.bestData = bestResponse.data;
             })
 
-            $http.get("http://localhost:38814/api/worstPortfolios/" + $cookieStore.get('UserId')).then(function (response) {
-                $scope.worstData = response.data;
-            })
-        })
+            $http.get("http://localhost:38814/api/worstPortfolios/" + UserId).then(function (worstResponse) {
+                $scope.worstData = worstResponse.data;
+            }
+            )
+        }]);
+
 
 
     </script>

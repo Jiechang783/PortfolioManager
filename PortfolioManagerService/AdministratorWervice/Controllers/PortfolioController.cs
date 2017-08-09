@@ -112,5 +112,35 @@ namespace AdministratorWervice.Controllers
             return Ok(changeLine);
         }
 
+        [HttpGet]
+        [Route("api/GetBestManagers")]
+        public IHttpActionResult GetBestmanagers()
+        {
+            List<User> alluser = UserDao.getUsers();
+            List<ManagerInfo> manager = new List<ManagerInfo>();
+
+            foreach(User u in alluser)
+            {
+                List<Portfolio> allportfolio = PortfolioDao.getPortfoliosByUserId(u.UserId);
+                double sum = 0;
+                foreach(Portfolio p in allportfolio)
+                {
+                    sum += PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL;
+                    
+                }
+                manager.Add(new ManagerInfo(u.UserId,u.FirstName+" "+u.LastName,sum));
+
+            }
+            var query = from m in manager
+                        orderby m.PNLSum descending
+                        select m;
+            
+            
+            return Ok(query.Take(10));
+        }
+
+        
+
+
     }
 }
