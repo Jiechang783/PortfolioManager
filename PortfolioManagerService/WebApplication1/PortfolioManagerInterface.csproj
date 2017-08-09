@@ -129,9 +129,12 @@
     <Content Include="pages\PositionTestData.js" />
     <Content Include="pages\tables.html" />
     <Content Include="pages\typography.html" />
+    <Content Include="scripts\angular-cookies.js" />
+    <Content Include="scripts\angular-cookies.min.js" />
     <Content Include="scripts\angular-route.js" />
     <Content Include="scripts\angular-route.min.js" />
     <Content Include="scripts\angular-route.min.js.map" />
+    <Content Include="scripts\angular-cookies.min.js.map" />
     <None Include="scripts\jquery-3.1.1.intellisense.js" />
     <Content Include="PortfolioTestData.js" />
     <Content Include="scripts\echarts.js" />
