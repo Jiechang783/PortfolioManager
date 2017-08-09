@@ -13,7 +13,8 @@ namespace PortfolioManagerService.Models
         public double PNL;
         public decimal Bid;
         public decimal Offer;
-        public Positionlist(int id,string name,decimal bid,int amount,decimal offerprice,double pnl)
+        public string Type;
+        public Positionlist(int id,string name,decimal bid,int amount,decimal offerprice,double pnl,string type)
         {
             this.PositionId = id;
             this.SecurityName = name;
@@ -21,6 +22,7 @@ namespace PortfolioManagerService.Models
             this.Offer = offerprice;
             this.PNL = pnl;
             this.Quantity = amount;
+            this.Type = type;
             
         }
 
