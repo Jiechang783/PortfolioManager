@@ -20,6 +20,25 @@ namespace PortfolioManagerService.Controllers
         }
 
         [HttpPost]
+        [Route("api/PM/updatestockprice")]
+        public IHttpActionResult Updatestockprice(dynamic price)
+        {
+            PriceHistory history = new PriceHistory();
+            history.Isin = price.isin;
+            history.OfferPrice = price.OfferPrice;
+            history.Type = "Stock";
+            history.BidPrice = price.BidPrice;
+            history.Date = DateTime.Now;
+
+            int changeline=PriceHistoryDao.setPriceHistory(history);
+            PositionDao.getPositionsByIsin
+
+            return Ok();
+        }
+
+
+
+        [HttpPost]
         [Route("api/PM/Security")]
         public IHttpActionResult GetSecurity(dynamic security)
         {
@@ -28,7 +47,17 @@ namespace PortfolioManagerService.Controllers
                 string isin = security.isin;
                 return Ok(StockDao.getStocksByIsin(isin));
             }
-            return Ok();
+            else if(security.type == "Bond")
+            {
+                string isin = security.isin;
+                return Ok(BondsDao.getBondsByIsin(isin));
+            }
+            else
+            {
+                string isin = security.isin;
+                return Ok(FutureDao.getFutureByIsin(isin));
+            }
+            
                 
         }
 
@@ -107,6 +136,22 @@ namespace PortfolioManagerService.Controllers
 
             int changeLine = StockDao.deleteStocks(c);
             return Ok(changeLine);
+        }
+
+        public static double Getportfoliopnl(int portid)
+        {
+            decimal amountbefore = 0;
+            decimal amountafter = 0;
+            double pnl = 0;
+            List<Position> posilist = PositionDao.getPositionsByPortfolioId(portid);
+            foreach (Position p in posilist)
+            {
+                string isin = p.Isin;
+                amountbefore += p.Quantity * p.Price;
+                amountafter += p.Quantity * PriceHistoryDao.getLastPriceHistorysByisin(isin).OfferPrice;
+            }
+            pnl = Convert.ToDouble((amountafter - amountbefore) / amountbefore);
+            return pnl;
         }
     }
 }
