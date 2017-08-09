@@ -121,7 +121,8 @@
                 }
 
                 $http(req).then(function (response) {
-                    $cookieStore.put(response.data[0]);
+                    $cookies.put('UserId', response.data[0].UserId);
+                    $cookies.put('Role', response.data[0].Role);
                     if (response.data[0].UserId != null) {
                         window.location.href = "http://localhost:39926/pages/index.html";
                     }
