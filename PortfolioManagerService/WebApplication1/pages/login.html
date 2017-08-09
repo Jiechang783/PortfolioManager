@@ -81,19 +81,17 @@
     <!--login-->
     <script type="text/javascript">
         var app = angular.module("myApp", ['ngRoute']);
-
-        app.config(['$routeProvider', function ($routeProvider) {
-            $routeProvider.when('/index', {
-                templateUrl: "/pages/index.html",
-                controller: 'testController'
+ 
+        app.config(['$stateProvider ', function ($stateProvider) {
+            $stateProvider.state('index', {
+                templateUrl: "../pages/index.html",
+                controller: 'indexController'
             });
         }]);
 
-        app.controller("LoginController", function ($scope, $http) {
+        app.controller("LoginController", function ($scope, $http, $rootScope) {
             $rootScope.User = {};
-
             $scope.login = function () {
-
                 var req = {
                     method: 'POST',
                     url: 'http://localhost:38814/api/Login',
@@ -103,9 +101,14 @@
                     data: { "Email": $scope.Email, "Password": $scope.Password }
                 }
 
-                $http(req).then(function (response) {
-                    $rootScope.User = response;
-                })
+                //$http(req).then(function (response) {
+                //    $rootScope.User = response;
+                //    if (response.UserId != null) {
+
+                //    }
+                //})
+
+                //$state.go("index");
             }
         })
 
