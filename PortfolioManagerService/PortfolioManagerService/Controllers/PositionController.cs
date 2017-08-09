@@ -36,6 +36,8 @@ namespace PortfolioManagerService.Controllers
 
         }
 
+
+
         [HttpGet]
         [Route("api/PositionbypoID/{portfolioid}")]
         public IHttpActionResult GetPositionsbyPortID(int portfolioid)
@@ -45,29 +47,35 @@ namespace PortfolioManagerService.Controllers
             foreach(Position p in positionlist)
             {
                 double porfit = 0;
-                porfit = Convert.ToDouble((PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).Price - p.Price) / p.Price);
-                returnlist.Add(new Positionlist(p.PositionId, StockDao.getStocksById(p.Isin).Name, p.Quantity, porfit));
+                porfit = Convert.ToDouble((PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).OfferPrice - p.Price) / p.Price);
+                returnlist.Add(new Positionlist(p.PositionId, StockDao.getStocksByIsin(p.Isin).Name,p.Price, p.Quantity, PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).OfferPrice, porfit));
           
             }
             
-
             return Ok(returnlist);
         }
+
 
 
         [HttpPost]
         [Route("api/UpdatePositions")]
         public IHttpActionResult updatePositionById(Position c)
         {
-            Position c1 = new Position { PositionId = 1, Quantity = 12, Price = 21, Isin = 1, Type = "not" };
-            int changeLine = PositionDao.updatePositions(c1);
+            int changeLine = PositionDao.updatePositions(c);
             return Ok(changeLine);
         }
 
         [HttpPost]
         [Route("api/addPositions")]
-        public IHttpActionResult addPositions(Position c)
+        public IHttpActionResult addPositions(dynamic c)
         {
+            Portfolio p = PortfolioDao.getPortfolioBySomething(new Portfolio { Name = c.Name, UserId = c.UserId });
+            Position position = new Position();
+            position.Isin = c.Isin;
+            position.PortfolioId = p.PortfolioId;
+            position.Price = PriceHistoryDao.getLastPriceHistorysByisin(position.Isin).BidPrice;
+            position.Quantity = c.Quantity;
+            position.Type = c.Type;
 
             int changeLine = PositionDao.setPosition(c);
             return Ok(changeLine);

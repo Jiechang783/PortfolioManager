@@ -50,7 +50,7 @@ namespace AdministratorWervice.Controllers
         public IHttpActionResult addSector(Sector c)
         {
 
-            int changeLine = SectorDao.addSector(c);
+            int changeLine = 1;
             return Ok(changeLine);
         }
 

@@ -1,0 +1,1 @@
+﻿[{ "value": 10000.00, "name": "aaa" }, { "value": 40000.00, "name": "bbb" }, { "value": 30000.00, "name": "ccc" }, { "value": 70000.00, "name": "ddd" }]

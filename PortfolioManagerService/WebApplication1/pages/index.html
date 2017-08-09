@@ -209,8 +209,8 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="x in data">
-                                            <td ng-bind="x.portfolioid"></td>
-                                            <td ng-bind="x.portfolioname"></td>
+                                            <td ng-bind="x.PortfolioID"></td>
+                                            <td ng-bind="x.PortfolioName"></td>
                                             <td ng-bind="x.PNL"></td>
                                         </tr>
                                     </tbody>
@@ -223,6 +223,7 @@
                     <!-- /.col-lg-12 -->
                 </div>
             </div>
+
         </div>
         <!-- /#page-wrapper -->
     </div>
@@ -253,9 +254,10 @@
     <!-- pagging -->
     <script type="text/javascript">
 
-        var app = angular.module("myApp", []);
-        app.controller("indexController", function ($scope, $http) {
-            $http.get("PortfolioTestData.js").then(function (response) {
+
+        var app = angular.module("myApp", ['ngCookies']);
+        app.controller("indexController", function ($scope, $http, $cookieStore) {
+            $http.get("http://localhost:38814/api/ALLPortfolios/" + $cookieStore.get('UserId')).then(function (response) {
                 $scope.data = response.data;
 
                 $(document).ready(function () {
@@ -264,7 +266,16 @@
                     });
                 });
             });
+
+            $http.get("http://localhost:38814/api/bestPortfolios/" + $cookieStore.get('UserId')).then(function (response) {
+                $scope.bestData = response.data;
+            })
+
+            $http.get("http://localhost:38814/api/worstPortfolios/" + $cookieStore.get('UserId')).then(function (response) {
+                $scope.worstData = response.data;
+            })
         })
+
 
     </script>
 

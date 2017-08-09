@@ -20,10 +20,10 @@ namespace PortfolioManagerService.Controllers
 
         [HttpGet]
         // GET api/values/5
-        [Route("api/Bondss/{id}")]
-        public IHttpActionResult Get(int id)
+        [Route("api/Bondss/{isin}")]
+        public IHttpActionResult Get(string isin)
         {
-            Bond p = BondsDao.getBondById(id);
+            Bond p = BondsDao.getBondsByIsin(isin);
             if (p != null)
             {
                 return Ok(p);
@@ -35,6 +35,36 @@ namespace PortfolioManagerService.Controllers
 
         }
 
+
+        [HttpPost]
+        [Route("api/PM/updatebondprice")]
+        public IHttpActionResult Updatestockprice(dynamic price)
+        {
+            PriceHistory history = new PriceHistory();
+            history.Isin = price.isin;
+            history.OfferPrice = price.OfferPrice;
+            history.Type = "Bond";
+            history.BidPrice = price.BidPrice;
+            history.Date = DateTime.Now;
+
+            int changeline = PriceHistoryDao.setPriceHistory(history);
+
+            List<Position> positions = PositionDao.getPositionsByIsin(history.Isin);
+            Portfolio portfolio = new Portfolio();
+            foreach (Position p in positions)
+            {
+                portfolio = PortfolioDao.getPortfoliosById(p.PortfolioId);
+                double pnl = Getportfoliopnl(portfolio.PortfolioId);
+                PortfolioHistory porthistory = new PortfolioHistory();
+                porthistory.PNL = pnl;
+                porthistory.Date = DateTime.Now;
+                porthistory.PortfolioId = portfolio.PortfolioId;
+                int line = PortfolioHistoryDao.setPortfolioHistory(porthistory);
+
+            }
+
+            return Ok();
+        }
 
         [HttpPost]
         [Route("api/UpdateBondss")]
@@ -58,9 +88,25 @@ namespace PortfolioManagerService.Controllers
         [Route("api/deleteBondss")]
         public IHttpActionResult deleteBondss(Bond c)
         {
-            Bond c1 = new Bond { Isin = 1, Issuer = "ztt", Coupon = 3.3, MaturityMonth = "0", MaturityYear = 1997 };
+            
             int changeLine = BondsDao.deleteBond(c);
             return Ok(changeLine);
+        }
+
+        public static double Getportfoliopnl(int portid)
+        {
+            decimal amountbefore = 0;
+            decimal amountafter = 0;
+            double pnl = 0;
+            List<Position> posilist = PositionDao.getPositionsByPortfolioId(portid);
+            foreach (Position p in posilist)
+            {
+                string isin = p.Isin;
+                amountbefore += p.Quantity * p.Price;
+                amountafter += p.Quantity * PriceHistoryDao.getLastPriceHistorysByisin(isin).OfferPrice;
+            }
+            pnl = Convert.ToDouble((amountafter - amountbefore) / amountbefore);
+            return pnl;
         }
     }
 }

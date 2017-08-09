@@ -51,7 +51,7 @@
                                 </div>
                             </fieldset>
 
-                            <button ng-click="login()" class="btn btn-lg btn-success btn-block">Login</button>
+                            <button ng-click="goIndex()" class="btn btn-lg btn-success btn-block">Login</button>
                         </form>
                     </div>
                 </div>
@@ -78,15 +78,39 @@
     <!--for ngRoute-->
     <script src="../scripts/angular-route.min.js"></script>
 
+    <!--angular-cookies-->
+    <script src="../scripts/angular-cookies.js"></script>
+
     <!--login-->
     <script type="text/javascript">
-        var app = angular.module("myApp", ['ngRoute']);
+        var app = angular.module('myApp', ['ngCookies']);//ui-router or ngRoute 
+ 
+        //app.config(function ($stateProvider) {
+        //    $stateProvider.state('login', {
+        //        templateUrl: 'pages/login.html',
+        //        controller: 'LoginController'
+        //    }).state('index', {
+        //        templateUrl: 'pages/index.html',
+        //        controller: 'indexController'
+        //    });
+        //});
 
-        app.controller("LoginController", function ($scope, $http) {
-            $scope.User = {};
+        //app.config(function ($routeProvider) {
 
-            $scope.login = function () {
+        //    $routeProvider.when('index.html', {
+        //        templateUrl: '/pages/login.html',
+        //        controller: 'LoginController'
+        //    }).when('/', {
+        //        templateUrl: '/pages/index.html',
+        //        controller: 'indexController'
+        //    }).otherwise({
+        //        redirectTo: "/"
+        //    });
+        //})
+        
+        app.controller('LoginController', function ($scope, $http, $location, $cookies,$cookieStore) {
 
+            $scope.goIndex = function () {
                 var req = {
                     method: 'POST',
                     url: 'http://localhost:38814/api/Login',
@@ -97,16 +121,15 @@
                 }
 
                 $http(req).then(function (response) {
-                    $scope.User = response;
+                    $cookieStore.put(response.data[0]);
+                    if (response.data[0].UserId != null) {
+                        window.location.href = "http://localhost:39926/pages/index.html";
+                    }
                 })
             }
+            
         })
 
-        app.factory("LocalDataProvider", function () {
-            return {
-                User: $scope.User
-            };
-        })
     </script>
 
 </body>
