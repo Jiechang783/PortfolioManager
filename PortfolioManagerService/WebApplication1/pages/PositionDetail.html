@@ -33,7 +33,6 @@
     <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <script src="../scripts/jquery-3.1.1.min.js"></script>
-
     <script src="../scripts/angular.min.js"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -47,7 +46,7 @@
 
 <body>
 
-    <div id="wrapper" ng-app="myApp" ng-controller="indexController">
+    <div id="wrapper" ng-app="myApp" ng-controller="ProtolioDetailController">
 
         <!-- Navigation -->
         <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
@@ -58,7 +57,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" style="color:#000000">Portfolio</a>
+                <a class="navbar-brand" href="index.html" style="color:#000000">Portifolio</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -114,7 +113,6 @@
                     <!-- /.dropdown-messages -->
                 </li>
                 <!-- /.dropdown -->
-                
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -137,70 +135,46 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            
-        </nav>   
+
+        </nav>
 
         <div id="page-wrapper" style="margin-left:0px">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h1 class="page-header">Portfolio Management</h1>
-                </div>
-                <!-- /.col-lg-12 -->
-            </div>
 
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="panel panel-green">
-                        <div class="panel-heading">
-                            <p class="fa fa-thumbs-o-up"></p>
-                            Best Portfolio
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                        </div>
-                    </div>
-                    <!-- /.col-lg-4 -->
-                </div>
-
-                <div class="col-lg-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <p class="fa fa-thumbs-o-down"></p>
-                            Worst Portfolio
-                        </div>
-                        <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
-                        </div>
-                        <div class="panel-footer">
-                        </div>
-                    </div>
-                    <!-- /.col-lg-4 -->
-                </div>
-            </div>
-            <!-- /.row -->    
+            <!-- /.row -->
             <div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Portfolio List</h1>
+                        <h1 class="page-header">Position Detail</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
 
-                <a href="PortfolioDetail.html" style="color:black;margin-bottom:10px" class="btn btn-primary btn-lg">
-                    New Portfolio
-                </a>
-
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-12">
+                        <table width="100%" class="table table-striped table-bordered table-hover">
+                            <thead>
+                                <tr>
+                                    <th ng-repeat="(x,y) in data[0]">{{ x }}</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="x in data">
+                                    <td ng-bind="x.PositionId"></td>
+                                    <td ng-bind="x.SecurityName"></td>
+                                    <td ng-bind="x.Quantity"></td>
+                                    <td ng-bind="x.PNL"></td>
+                                    <td ng-bind="x.Bid"></td>
+                                    <td ng-bind="x.Offer"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+
                         <div class="panel panel-default">
                             <div class="panel-heading">
                             </div>
-
                             <!-- /.panel-heading -->
-                            <div class="panel-body">
+                            <!--<div class="panel-body">
                                 <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
@@ -209,13 +183,13 @@
                                     </thead>
                                     <tbody>
                                         <tr ng-repeat="x in data">
-                                            <td ng-bind="x.PortfolioID"></td>
-                                            <td ng-bind="x.PortfolioName"></td>
+                                            <td ng-bind="x.portfolioid"></td>
+                                            <td ng-bind="x.portfolioname"></td>
                                             <td ng-bind="x.PNL"></td>
                                         </tr>
                                     </tbody>
                                 </table>
-                            </div>
+                            </div>-->
                             <!-- /.panel-body -->
                         </div>
                         <!-- /.panel -->
@@ -224,10 +198,19 @@
                 </div>
             </div>
 
+            <div class="row">
+                <div id="PieChart" style="width: 600px;height:400px;"></div>
+                <!--echart-- Pie chart -->
+
+                <div id="LineChartStack" style="width: 600px;height:400px;"></div>
+                <!--echart-- Line chart stack-->
+            </div>
+            <!--echart-->
+
         </div>
         <!-- /#page-wrapper -->
-    </div>
 
+    </div>
     <!-- /#wrapper -->
     <!-- jQuery -->
     <script src="../vendor/jquery/jquery.min.js"></script>
@@ -251,13 +234,15 @@
     <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
+    <!--echart-->
+    <script src="../scripts/echarts.js"></script>
+
     <!-- pagging -->
     <script type="text/javascript">
 
-
-        var app = angular.module("myApp", ['ngCookies']);
-        app.controller("indexController", function ($scope, $http, $cookieStore) {
-            $http.get("http://localhost:38814/api/ALLPortfolios/" + $cookieStore.get('UserId')).then(function (response) {
+        var app = angular.module("myApp", []);
+        app.controller("ProtolioDetailController", function ($scope, $http) {
+            $http.get("PositionDetailTestData.js").then(function (response) {
                 $scope.data = response.data;
 
                 $(document).ready(function () {
@@ -267,14 +252,73 @@
                 });
             });
 
-            $http.get("http://localhost:38814/api/bestPortfolios/" + $cookieStore.get('UserId')).then(function (response) {
-                $scope.bestData = response.data;
-            })
+            $http.get("PortfolioDetailPieCharTestData.js").then(function (response) {
+                $scope.pieData = response.data;
+            });
 
-            $http.get("http://localhost:38814/api/worstPortfolios/" + $cookieStore.get('UserId')).then(function (response) {
-                $scope.worstData = response.data;
-            })
+            //for echart
+            var PieChart = echarts.init(document.getElementById('PieChart'));
+
+            //var data = {"time":["2010-01-01T00:00:00","2010-01-03T00:00:00","2010-01-04T00:00:00"],"price":[150.00,200.00,250.00]};
+            // var temp = data.time;
+
+            var PieChartData = $scope.pieData;
+
+            option = {
+                series: [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        radius: '55%',
+                        roseType: 'angle',
+                        data: PieChartData
+                    }
+                ]
+            };
+            PieChart.setOption(option);
+
+            //for LineChartStack
+            var LineChartStack = echarts.init(document.getElementById('LineChartStack'));
+
+            var data = { "time": ["2010-01-01T00:00:00", "2010-01-03T00:00:00", "2010-01-04T00:00:00"], "price": [150.00, 200.00, 250.00] };
+            var temp = data.time;
+
+            option = {
+                title: {
+                    text: 'LineChartStack'
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+
+                grid: {
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: data.time
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                series: [
+                    {
+                        name: '邮件营销',
+                        type: 'line',
+                        stack: '总量',
+                        data: data.price
+                    }
+                ]
+            };
+            LineChartStack.setOption(option);
         })
+
+       
+
 
 
     </script>

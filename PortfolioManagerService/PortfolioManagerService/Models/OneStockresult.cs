@@ -7,10 +7,10 @@ namespace PortfolioManagerService.Models
 {
     public class OneStockresult
     {
-        public List<DateTime> time;
+        public List<string> time;
         public List<Decimal> price;
 
-        public OneStockresult(List<DateTime> datatime,List<Decimal> stockprice)
+        public OneStockresult(List<string> datatime,List<Decimal> stockprice)
         {
             this.time = datatime;
             this.price = stockprice;
