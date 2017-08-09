@@ -150,7 +150,7 @@
 
                 <div class="row">
                     <!-- /.col-lg-12 -->
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" ng-show="showBond">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 Bond Details
@@ -158,18 +158,18 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Bond ID : {{ }}</p>
-                                    <p class="lead">Isin : {{ }}</p>
-                                    <p class="lead">Coupon : {{ }}</p>
-                                    <p class="lead">Maturity Month : {{ }}</p>
-                                    <p class="lead">Maturity Year : {{ }}</p>
+                                    <p class="lead">Bond ID : {{ data.BondId }}</p>
+                                    <p class="lead">Isin : {{ data.Isin }}</p>
+                                    <p class="lead">Coupon : {{ data.Coupon }}</p>
+                                    <p class="lead">Maturity Month : {{ data.MaturityMonth }}</p>
+                                    <p class="lead">Maturity Year : {{ data.MaturityYear}}</p>
                                 </div>
                             </div>
                             <!-- /.panel-body -->
                         </div>
                         <!-- /.panel -->
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" ng-show="showStock">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 Stock Details
@@ -177,23 +177,23 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Stock ID : {{ }}</p>
-                                    <p class="lead">Name : {{ }}</p>
-                                    <p class="lead">Isin : {{ }}</p>
-                                    <p class="lead">LastSale : {{ }}</p>
-                                    <p class="lead">MarketCap : {{ }}</p>
-                                    <p class="lead">IPOyear : {{ }}</p>
-                                    <p class="lead">SectorID : {{ }}</p>
-                                    <p class="lead">IndustryID : {{ }}</p>
-                                    <p class="lead">SummaryQuote: {{ }}</p>
-                                    <p class="lead">Address : {{ }}</p>
+                                    <p class="lead">Stock ID : {{ data.StockId }}</p>
+                                    <p class="lead">Name : {{ data.Name }}</p>
+                                    <p class="lead">Isin : {{ data.Isin }}</p>
+                                    <p class="lead">LastSale : {{ data.LastSale }}</p>
+                                    <p class="lead">MarketCap : {{ data.MarketCap }}</p>
+                                    <p class="lead">IPOyear : {{ data.IPOyear }}</p>
+                                    <p class="lead">SectorID : {{ data.SectorID }}</p>
+                                    <p class="lead">IndustryID : {{ data.IndustryId }}</p>
+                                    <p class="lead">SummaryQuote: {{ data.SummaryQuote }}</p>
+                                    <p class="lead">Address : {{ data.Address }}</p>
                                 </div>
                             </div>
                             <!-- /.panel-body -->
                         </div>
                         <!-- /.panel -->
                     </div>
-                    <div class="col-lg-6">
+                    <div class="col-lg-6" ng-show="showFuture">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 Future Details
@@ -201,14 +201,14 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Future ID: {{ }}</p>
-                                    <p class="lead">Isin : {{ }}</p>
-                                    <p class="lead">Exch : {{ }}</p>
-                                    <p class="lead">Sym : {{ }}</p>
-                                    <p class="lead">Desc : {{ }}</p>
-                                    <p class="lead">SecTyp : {{ }}</p>
-                                    <p class="lead">MatDt : {{ }}</p>
-                                    <p class="lead">UOMQty : {{ }}</p>
+                                    <p class="lead">Future ID: {{ data.FutureId }}</p>
+                                    <p class="lead">Isin : {{ data.Isin }}</p>
+                                    <p class="lead">Exch : {{ data.Exch }}</p>
+                                    <p class="lead">Sym : {{ data.Sym}}</p>
+                                    <p class="lead">Desc : {{ data.Desc }}</p>
+                                    <p class="lead">SecTyp : {{ data.SecTyp }}</p>
+                                    <p class="lead">MatDt : {{ data.MatDt }}</p>
+                                    <p class="lead">UOMQty : {{ data.UOMQty }}</p>
                                     <p class="lead">ID : {{ }}</p>
                                 </div>
                             </div>
@@ -217,7 +217,7 @@
                         <!-- /.panel -->
                     </div>
                     <!-- /.col-lg-6 -->
-                    <div class="col-lg-6" >
+                    <div class="col-lg-6">
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 Price
@@ -225,9 +225,11 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Highest history price : {{ }}</p>
-                                    <p class="lead">Lowest history price : {{ }}</p>
-                                    <p class="lead">Average history price : {{ }}</p>
+                                    <p class="lead">Average price : {{ data.Average }}</p>
+                                    <p class="lead">Max price : {{ data.MaxPrice }}</p>
+                                    <p class="lead">Min price : {{ data.MinPrice }}</p>
+                                    <p class="lead">Offer price: {{ data.Offer }}</p>
+                                    <p class="lead">Bid price: {{ data.Bid }}</p>
                                 </div>
                             </div>
                             <!-- /.panel-body -->
@@ -295,9 +297,43 @@
 
             var app = angular.module("myApp", ['ngCookies']);
             app.controller("ProtolioDetailController", function ($scope, $http, $cookies, $cookieStore) {
-                $http.get("PositionDetailTestData.js").then(function (response) {
+                var positionType = $cookies.get('Type');
+                var positionIsin = $cookies.get('isin');
+
+                var req = {
+                    method: 'POST',
+                    url: 'http://localhost:38814/api/PM/Security',
+                    header: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: { "type": positionType, "isin": positionIsin }
+                }
+
+                $http(req).then(function (response) {
                     $scope.data = response.data;
-                    $scope.show = true;
+
+                    switch (positionType) {
+                        case "Stock":
+                            $scope.showStock = true;
+                            $scope.showBond = false;
+                            $scope.showFuture = false;
+                            break;
+                        case "Bond":
+                            $scope.showStock = false;
+                            $scope.showBond = true;
+                            $scope.showFuture = false;
+                            break;
+                        case "Future":
+                            $scope.showStock = false;
+                            $scope.showBond = false;
+                            $scope.showFuture = true;
+                            break;
+                    }
+                })
+
+                $http.get("http://localhost:38814/api/PM/Securityinfo/" + positionIsin).then(function (response) {
+                    $scope.data = response.data;
+
                     $(document).ready(function () {
                         $('#dataTables-example').DataTable({
                             responsive: true
@@ -306,7 +342,7 @@
                 });
 
                 //折线图代码
-                $http.get("PortfolioDetailPieCharTestData.js").then(function (response) {
+                $http.get("http://localhost:38814/api/OneStockHistorys/" + positionIsin).then(function (response) {
                     // 基于准备好的dom，初始化echarts实例
                     var myChart = echarts.init(document.getElementById('LineChartStack'));
 
@@ -314,7 +350,8 @@
                     var base = +new Date(1968, 9, 3);
                     var oneDay = 24 * 3600 * 1000;
                     //传入数据
-                    var data = { "time": ["2017年1月9日", "2017年1月10日", "2017年1月11日", "2017年1月12日", "2017年1月13日", "2017年1月16日", "2017年1月17日", "2017年1月18日", "2017年1月19日", "2017年1月20日", "2017年1月23日", "2017年1月24日", "2017年1月25日", "2017年1月26日", "2017年1月27日", "2017年1月30日", "2017年1月31日", "2017年2月1日", "2017年2月2日", "2017年2月3日", "2017年2月6日", "2017年2月7日", "2017年2月8日", "2017年2月9日", "2017年2月10日", "2017年2月13日", "2017年2月14日", "2017年2月15日", "2017年2月16日", "2017年2月17日", "2017年2月20日", "2017年2月21日", "2017年2月22日", "2017年2月23日", "2017年2月24日", "2017年2月27日", "2017年2月28日", "2017年3月1日", "2017年3月2日", "2017年3月3日", "2017年3月6日", "2017年3月7日", "2017年3月8日", "2017年3月9日", "2017年3月10日", "2017年3月13日", "2017年3月14日", "2017年3月15日", "2017年3月16日", "2017年3月17日", "2017年3月20日", "2017年3月21日", "2017年3月22日", "2017年3月23日", "2017年3月24日", "2017年3月27日", "2017年3月28日", "2017年3月29日", "2017年3月30日", "2017年3月31日", "2017年4月3日", "2017年4月4日", "2017年4月5日", "2017年4月6日", "2017年4月7日", "2017年4月10日", "2017年4月11日", "2017年4月12日", "2017年4月13日", "2017年4月14日"], "price": [248.66, 293.41, 281.68, 335.20, 281.56, 309.72, 312.82, 284.66, 304.59, 252.81, 257.87, 275.92, 229.01, 251.91, 234.28, 264.74, 283.27, 271.94, 296.41, 278.63, 328.78, 361.66, 321.87, 337.97, 294.03, 314.61, 349.22, 314.30, 323.73, 320.49, 333.31, 359.98, 359.98, 363.58, 359.94, 374.34, 381.82, 336.01, 346.09, 346.09, 391.08, 453.65, 394.67, 414.41, 352.25, 383.95, 414.66, 402.22, 410.27, 332.32, 338.96, 379.64, 349.27, 370.23, 325.80, 374.67, 412.13, 403.89, 452.36, 416.17, 424.49, 428.74, 390.15, 452.58, 389.22, 393.11, 463.87, 375.73, 398.28, 322.60] };
+                    //var data = { "time": ["2017年1月9日", "2017年1月10日", "2017年1月11日", "2017年1月12日", "2017年1月13日", "2017年1月16日", "2017年1月17日", "2017年1月18日", "2017年1月19日", "2017年1月20日", "2017年1月23日", "2017年1月24日", "2017年1月25日", "2017年1月26日", "2017年1月27日", "2017年1月30日", "2017年1月31日", "2017年2月1日", "2017年2月2日", "2017年2月3日", "2017年2月6日", "2017年2月7日", "2017年2月8日", "2017年2月9日", "2017年2月10日", "2017年2月13日", "2017年2月14日", "2017年2月15日", "2017年2月16日", "2017年2月17日", "2017年2月20日", "2017年2月21日", "2017年2月22日", "2017年2月23日", "2017年2月24日", "2017年2月27日", "2017年2月28日", "2017年3月1日", "2017年3月2日", "2017年3月3日", "2017年3月6日", "2017年3月7日", "2017年3月8日", "2017年3月9日", "2017年3月10日", "2017年3月13日", "2017年3月14日", "2017年3月15日", "2017年3月16日", "2017年3月17日", "2017年3月20日", "2017年3月21日", "2017年3月22日", "2017年3月23日", "2017年3月24日", "2017年3月27日", "2017年3月28日", "2017年3月29日", "2017年3月30日", "2017年3月31日", "2017年4月3日", "2017年4月4日", "2017年4月5日", "2017年4月6日", "2017年4月7日", "2017年4月10日", "2017年4月11日", "2017年4月12日", "2017年4月13日", "2017年4月14日"], "price": [248.66, 293.41, 281.68, 335.20, 281.56, 309.72, 312.82, 284.66, 304.59, 252.81, 257.87, 275.92, 229.01, 251.91, 234.28, 264.74, 283.27, 271.94, 296.41, 278.63, 328.78, 361.66, 321.87, 337.97, 294.03, 314.61, 349.22, 314.30, 323.73, 320.49, 333.31, 359.98, 359.98, 363.58, 359.94, 374.34, 381.82, 336.01, 346.09, 346.09, 391.08, 453.65, 394.67, 414.41, 352.25, 383.95, 414.66, 402.22, 410.27, 332.32, 338.96, 379.64, 349.27, 370.23, 325.80, 374.67, 412.13, 403.89, 452.36, 416.17, 424.49, 428.74, 390.15, 452.58, 389.22, 393.11, 463.87, 375.73, 398.28, 322.60] };
+                    var data = response.data
                     //
                     // var temp = date;
                     // var temp = data;
