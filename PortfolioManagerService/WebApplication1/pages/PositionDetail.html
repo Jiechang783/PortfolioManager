@@ -287,11 +287,14 @@
         <!--echart-->
         <script src="../scripts/echarts.js"></script>
 
+        <!--angular-cookies-->
+        <script src="../scripts/angular-cookies.js"></script>
+
         <!-- pagging -->
         <script type="text/javascript">
 
-            var app = angular.module("myApp", []);
-            app.controller("ProtolioDetailController", function ($scope, $http) {
+            var app = angular.module("myApp", ['ngCookies']);
+            app.controller("ProtolioDetailController", function ($scope, $http, $cookies, $cookieStore) {
                 $http.get("PositionDetailTestData.js").then(function (response) {
                     $scope.data = response.data;
                     $scope.show = true;

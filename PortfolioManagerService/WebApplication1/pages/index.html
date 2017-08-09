@@ -164,6 +164,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="x in worstData">
+                                        <td ng-bind="x.PortfolioID"></td>
                                         <td ng-bind="x.PortfolioName"></td>
                                         <td ng-bind="x.PNL"></td>
                                     </tr>
@@ -191,6 +192,7 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="x in bestData">
+                                        <td ng-bind="x.PortfolioID"></td>
                                         <td ng-bind="x.PortfolioName"></td>
                                         <td ng-bind="x.PNL"></td>
                                     </tr>
@@ -232,7 +234,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="x in data">
+                                        <tr ng-repeat="x in data" ng-click="gotoPortfolioDetail(x.PortfolioID)">
                                             <td ng-bind="x.PortfolioID"></td>
                                             <td ng-bind="x.PortfolioName"></td>
                                             <td ng-bind="x.PNL"></td>
@@ -308,8 +310,12 @@
 
             $http.get("http://localhost:38814/api/worstPortfolios/" + UserId).then(function (worstResponse) {
                 $scope.worstData = worstResponse.data;
+            })
+
+            $scope.gotoPortfolioDetail = function (PortfolioID) {
+                $cookies.put('PortfolioID', PortfolioID);
+                window.location.href = "http://localhost:39926/pages/PortfolioDetail.html";
             }
-            )
         }]);
 
 

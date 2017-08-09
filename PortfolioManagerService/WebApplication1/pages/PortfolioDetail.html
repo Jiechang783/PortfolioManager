@@ -165,13 +165,15 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="x in data">
+                                        <tr ng-repeat="x in data" ng-click="gotoPositionDetail(x.isin,x.Type)">
                                             <td ng-bind="x.PositionId"></td>
                                             <td ng-bind="x.SecurityName"></td>
                                             <td ng-bind="x.Quantity"></td>
                                             <td ng-bind="x.PNL"></td>
+                                            <td ng-bind="x.isin"></td>
                                             <td ng-bind="x.Bid"></td>
                                             <td ng-bind="x.Offer"></td>
+                                            <td ng-bind="x.Type"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -223,12 +225,19 @@
     <!--echart-->
     <script src="../scripts/echarts.js"></script>
 
+    <!--angular-cookies-->
+    <script src="../scripts/angular-cookies.js"></script>
+
     <!-- pagging -->
     <script type="text/javascript">
 
-        var app = angular.module("myApp", []);
-        app.controller("ProtolioDetailController", function ($scope, $http) {
-            $http.get("PositionTestData.js").then(function (response) {
+        var app = angular.module("myApp", ['ngCookies']);
+        app.controller("ProtolioDetailController", function ($scope, $http, $cookies, $cookieStore) {
+
+            var PortfolioID = $cookies.get('PortfolioID');
+
+            $http.get("http://localhost:38814/api/PositionbypoID/" + PortfolioID).then(function (response) {
+
                 $scope.data = response.data;
 
                 $(document).ready(function () {
@@ -237,6 +246,12 @@
                     });
                 });
             });
+
+            $scope.gotoPositionDetail = function (isin,Type) {
+                $cookies.put('isin', isin);
+                $cookies.put('Type', Type);
+                window.location.href = "http://localhost:39926/pages/PositionDetail.html";
+            }
         })
 
         //for echart
