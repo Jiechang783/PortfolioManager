@@ -112,5 +112,23 @@ namespace AdministratorWervice.Controllers
             return Ok(changeLine);
         }
 
+        [HttpGet]
+        [Route("api/GetBestManager")]
+        public IHttpActionResult GetBestmanager()
+        {
+            List<Portfolio> list = PortfolioDao.getPortfolios();
+            List<Portfolioinfo> returnlist = new List<Portfolioinfo>();
+            foreach (Portfolio p in list)
+            {
+                returnlist.Add(new Portfolioinfo(p.PortfolioId, p.Name, UserDao.getUsersById(p.UserId).FirstName + " "
+                    + UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+
+            }
+
+            return Ok(returnlist);
+        }
+
+
+
     }
 }

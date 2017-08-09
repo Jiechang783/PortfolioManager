@@ -48,7 +48,7 @@ namespace PortfolioManagerService.Controllers
             {
                 double porfit = 0;
                 porfit = Convert.ToDouble((PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).OfferPrice - p.Price) / p.Price);
-                returnlist.Add(new Positionlist(p.PositionId, StockDao.getStocksByIsin(p.Isin).Name,p.Price, p.Quantity, PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).OfferPrice, porfit,p.Type));
+                returnlist.Add(new Positionlist(p.PositionId, getSecurityname(p.Isin,p.Type),p.Price, p.Quantity, PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).OfferPrice, porfit,p.Type));
           
             }
             
@@ -88,6 +88,17 @@ namespace PortfolioManagerService.Controllers
             //  Position c1 = new Position(Convert.ToInt32(d),"ztt", "ztt", 0, "1975-06-04 00:00:00.000");
             int changeLine = PositionDao.deletePositions(c);
             return Ok(changeLine);
+        }
+
+        public static string getSecurityname(string isin,string type)
+        {
+            if (type == "Stock")
+            {
+                return StockDao.getStocksByIsin(isin).Name;
+            }
+
+               
+            return isin;
         }
     }
 }

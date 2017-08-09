@@ -120,7 +120,7 @@ namespace PortfolioManagerService.Controllers
 
             foreach(Position p in query)
             {
-                returnlist.Add(new PositionPercentage(p.Price * p.Quantity, StockDao.getStocksByIsin(p.Isin).Name));
+                returnlist.Add(new PositionPercentage(p.Price * p.Quantity, getSecurityname(p.Isin,p.Type)));
             }
 
 
@@ -158,6 +158,17 @@ namespace PortfolioManagerService.Controllers
 
             int changeLine = PortfolioDao.deletePortfolios(c);
             return Ok(changeLine);
+        }
+
+        public static string getSecurityname(string isin, string type)
+        {
+            if (type == "Stock")
+            {
+                return StockDao.getStocksByIsin(isin).Name;
+            }
+
+
+            return isin;
         }
 
 

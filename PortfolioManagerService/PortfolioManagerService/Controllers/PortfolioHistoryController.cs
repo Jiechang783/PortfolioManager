@@ -44,11 +44,11 @@ namespace PortfolioManagerService.Controllers
         {
             List<PortfolioHistory> p = PortfolioHistoryDao.getPortfolioHistorysByPId(portid);
             List<double> pnl = new List<double>();
-            List<DateTime> time = new List<DateTime>();
+            List<string> time = new List<string>();
             foreach(PortfolioHistory record in p)
             {
                 pnl.Add(record.PNL);
-                time.Add(record.Date);
+                time.Add(record.Date.ToString("D"));
             }
 
             return Ok(new OnePortfolioResult(time,pnl));
