@@ -48,7 +48,7 @@ namespace PortfolioManagerService.Controllers
             {
                 double porfit = 0;
                 porfit = Convert.ToDouble((PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).OfferPrice - p.Price) / p.Price);
-                returnlist.Add(new Positionlist(p.PositionId, getSecurityname(p.Isin,p.Type),p.Price, p.Quantity, PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).OfferPrice, porfit,p.Type));
+                returnlist.Add(new Positionlist(p.PositionId, getSecurityname(p.Isin,p.Type),p.Price, p.Quantity, PriceHistoryDao.getLastPriceHistorysByisin(p.Isin).OfferPrice, porfit,p.Type,p.Isin));
           
             }
             

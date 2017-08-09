@@ -58,7 +58,7 @@ namespace AdministratorWervice.Controllers
             }
             var query = from p in list
                         orderby p.PNL
-                        select new { p.PortfolioName,p.ManagerName ,p.PNL };
+                        select p;
 
 
             return Ok(query.Take(1));
@@ -78,7 +78,7 @@ namespace AdministratorWervice.Controllers
             }
             var query = from p in list
                         orderby p.PNL descending
-                        select new { p.PortfolioName, p.ManagerName, p.PNL };
+                        select p;
 
 
             return Ok(query.Take(1));
