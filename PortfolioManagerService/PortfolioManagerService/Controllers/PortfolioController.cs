@@ -99,10 +99,14 @@ namespace PortfolioManagerService.Controllers
             {
                 list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
             }
-    
+
+            var query = from p in list
+                        orderby p.PNL 
+                        select p;
 
 
-            return Ok(list.Take(1));
+
+            return Ok(query.Take(1));
         }
 
 

@@ -113,21 +113,33 @@ namespace AdministratorWervice.Controllers
         }
 
         [HttpGet]
-        [Route("api/GetBestManager")]
-        public IHttpActionResult GetBestmanager()
+        [Route("api/GetBestManagers")]
+        public IHttpActionResult GetBestmanagers()
         {
-            List<Portfolio> list = PortfolioDao.getPortfolios();
-            List<Portfolioinfo> returnlist = new List<Portfolioinfo>();
-            foreach (Portfolio p in list)
+            List<User> alluser = UserDao.getUsers();
+            List<ManagerInfo> manager = new List<ManagerInfo>();
+
+            foreach(User u in alluser)
             {
-                returnlist.Add(new Portfolioinfo(p.PortfolioId, p.Name, UserDao.getUsersById(p.UserId).FirstName + " "
-                    + UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+                List<Portfolio> allportfolio = PortfolioDao.getPortfoliosByUserId(u.UserId);
+                double sum = 0;
+                foreach(Portfolio p in allportfolio)
+                {
+                    sum += PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL;
+                    
+                }
+                manager.Add(new ManagerInfo(u.UserId,u.FirstName+" "+u.LastName,sum));
 
             }
-
-            return Ok(returnlist);
+            var query = from m in manager
+                        orderby m.PNLSum descending
+                        select m;
+            
+            
+            return Ok(query.Take(10));
         }
 
+        
 
 
     }
