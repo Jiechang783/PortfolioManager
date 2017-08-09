@@ -67,8 +67,15 @@ namespace PortfolioManagerService.Controllers
 
         [HttpPost]
         [Route("api/addPositions")]
-        public IHttpActionResult addPositions(Position c)
+        public IHttpActionResult addPositions(dynamic c)
         {
+            Portfolio p = PortfolioDao.getPortfolioBySomething(new Portfolio { Name = c.Name, UserId = c.UserId });
+            Position position = new Position();
+            position.Isin = c.Isin;
+            position.PortfolioId = p.PortfolioId;
+            position.Price = PriceHistoryDao.getLastPriceHistorysByisin(position.Isin).BidPrice;
+            position.Quantity = c.Quantity;
+            position.Type = c.Type;
 
             int changeLine = PositionDao.setPosition(c);
             return Ok(changeLine);

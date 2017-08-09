@@ -43,12 +43,12 @@ namespace PortfolioManagerService.Controllers
         {
             List<PriceHistory> p = PriceHistoryDao.getPriceHistorysByisin(isin);
             List<Decimal> price = new List<decimal>();
-            List<DateTime> time = new List<DateTime>();
+            List<string> time = new List<string>();
 
             foreach(PriceHistory history in p)
             {
                 price.Add(history.OfferPrice);
-                time.Add(history.Date);
+                time.Add(history.Date.ToString("D"));
             }
             
             return Ok(new OneStockresult(time,price));
@@ -96,12 +96,12 @@ namespace PortfolioManagerService.Controllers
             foreach(string isin in query)
             {
                 List<Decimal> price = new List<decimal>();
-                List<DateTime> time = new List<DateTime>();
+                List<string> time = new List<string>();
                 List<PriceHistory> result = PriceHistoryDao.getPriceHistorysByisin(isin);
                 foreach(PriceHistory history in result)
                 {
                     price.Add(history.OfferPrice);
-                    time.Add(history.Date);
+                    time.Add(history.Date.ToString("D"));
                 }
 
 

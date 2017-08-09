@@ -146,7 +146,11 @@ namespace PortfolioManagerService.Controllers
         {
            
             int changeLine = PortfolioDao.addPortfolio(c);
-            return Ok(changeLine);
+            if(changeLine==1)
+            {
+                return Ok("Success");
+            }
+            return NotFound();
         }
 
         [HttpPost]
