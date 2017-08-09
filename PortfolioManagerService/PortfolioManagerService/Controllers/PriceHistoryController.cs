@@ -57,11 +57,11 @@ namespace PortfolioManagerService.Controllers
 
         //[HttpPost]
         //// GET api/values/5
-        //[Route("api/SomeStockHistorys/{isin}")]
+        //[Route("api/SomeStockHistorys")]
         //public IHttpActionResult GetStockPriceByPId(Portfolio portfolio)
         //{
         //    List<Position> positionlist = PositionDao.getPositionsByPortfolioId(portfolio.PortfolioId);
-        //    List<OneStockresult> Allresult = new List<OneStockresult>();
+        //    List<OneStockresult> Someresult = new List<OneStockresult>();
         //    foreach (Position po in positionlist)
         //    {
         //        List<PriceHistory> p = PriceHistoryDao.getPriceHistorysByisin(po.Isin);
@@ -73,14 +73,13 @@ namespace PortfolioManagerService.Controllers
         //            price.Add(history.OfferPrice);
         //            time.Add(history.Date);
         //        }
-
-        //        return Ok(new OneStockresult(time, price));
-
-
+        //        Someresult.Add(new OneStockresult(time, price));
+               
         //    }
 
+        //   for
 
-
+        //    return Ok(new OneStockresult(time, price));
         //}
 
         [HttpGet]

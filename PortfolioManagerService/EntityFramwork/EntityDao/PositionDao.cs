@@ -77,6 +77,24 @@ namespace EntityFramwork.EntityDao
             }
         }
 
+        public static Position getPositionsByIsin(string Isin)
+        {
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+             
+                foreach (Position temp in db.Positions)
+                {
+                    if (temp.Isin == Isin)
+                    {
+                        return temp;
+                    }
+                }
+                return null;
+            }
+        }
+
         public static Position getPositionsById(int id)
         {
 
