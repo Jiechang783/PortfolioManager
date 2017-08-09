@@ -8,10 +8,10 @@ namespace PortfolioManagerService.Models
     public class OnePortfolioResult
     {
         
-        public List<DateTime> time;
+        public List<string> time;
         public List<double> PNL;
 
-        public OnePortfolioResult( List<DateTime> datetime,List<double> portpnl)
+        public OnePortfolioResult( List<string> datetime,List<double> portpnl)
         {
             this.PNL = portpnl;
             this.time = datetime;
