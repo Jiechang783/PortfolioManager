@@ -16,9 +16,9 @@ namespace EntityFramworkTest
         }
 
         [TestMethod]
-        public static void UserDaoTest()
+        public void UserDaoTest()
         {
-            User u = new User { UserId = 1, FirstName = "zhang", LastName = "Tingting", Email = "zhangtingting.code@gmail", telephone = "1111111111", Role = "admin" };
+            User u = new User { UserId = 1, FirstName = "zhang", LastName = "Tingting",Password="aisudie", Email = "zhangtingting.code@gmail", telephone = "1111111111", Role = "admin" };
             int result = UserDao.setUser(u);
             Assert.AreEqual(1,result);
         }
