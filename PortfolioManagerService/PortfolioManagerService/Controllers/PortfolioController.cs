@@ -137,7 +137,7 @@ namespace PortfolioManagerService.Controllers
         {
 
             int changeLine = PortfolioDao.updatePortfolios(c);
-            return Ok(changeLine);
+            return Ok(c);
         }
 
         [HttpPost]

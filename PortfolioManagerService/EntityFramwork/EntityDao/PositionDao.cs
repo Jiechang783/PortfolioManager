@@ -77,21 +77,22 @@ namespace EntityFramwork.EntityDao
             }
         }
 
-        public static Position getPositionsByIsin(string Isin)
+        public static List<Position> getPositionsByIsin(string Isin)
         {
 
             using (DatabaseContext db = new DatabaseContext())
             {
                 db.Configuration.ProxyCreationEnabled = false;
-             
+                List<Position> positions = new List<Position>();
+
                 foreach (Position temp in db.Positions)
                 {
                     if (temp.Isin == Isin)
                     {
-                        return temp;
+                        positions.Add(temp);
                     }
                 }
-                return null;
+                return positions;
             }
         }
 
