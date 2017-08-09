@@ -41,7 +41,7 @@
                         <h3 class="panel-title">Please Sign In</h3>
                     </div>
                     <div class="panel-body">
-                        <form role="form" ng-app="myApp" ng-controller="LoginController">
+                        <form role="form">
                             <fieldset>
                                 <div class="form-group">
                                     <input ng-model="Email" class="form-control" placeholder="Email" name="username" type="text">
@@ -81,13 +81,17 @@
     <!--login-->
     <script type="text/javascript">
         var app = angular.module("myApp", ['ngRoute']);
+ 
+        app.config(['$stateProvider ', function ($stateProvider) {
+            $stateProvider.state('index', {
+                templateUrl: "../pages/index.html",
+                controller: 'indexController'
+            });
+        }]);
 
-        app.controller("LoginController", function ($scope, $http) {
-            $scope.User = {};
-
+        app.controller("LoginController", function ($scope, $http, $rootScope) {
+            $rootScope.User = {};
             $scope.login = function () {
-
-
                 var req = {
                     method: 'POST',
                     url: 'http://localhost:38814/api/Login',
@@ -97,17 +101,24 @@
                     data: { "Email": $scope.Email, "Password": $scope.Password }
                 }
 
-                $http(req).then(function (response) {
-                    $scope.User = response;
-                })
+                //$http(req).then(function (response) {
+                //    $rootScope.User = response;
+                //    if (response.UserId != null) {
+
+                //    }
+                //})
+
+                //$state.go("index");
             }
         })
 
-        app.factory("LocalDataProvider", function () {
-            return {
-                User: $scope.User
-            };
-        })
+        
+
+        //app.factory("LocalDataProvider", function () {
+        //    return {
+        //        User: $scope.User
+        //    };
+        //})
     </script>
 
 </body>
