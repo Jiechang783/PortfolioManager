@@ -149,14 +149,14 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-6">
+                <div class="col-lg-6" style="padding-right:50px">
                     <div class="panel panel-green">
-                        <div class="panel-heading">
+                        <div class="panel-heading" >
                             <p class="fa fa-thumbs-o-up"></p>
                             Worst Portfolio
                         </div>
-                        <div class="panel-body">
-                            <table width="100%" class="table table-bordered table-hover">
+                        <div class="panel-body" style="padding:0px; margin-bottom:0px; border:0px">
+                            <table width="100%" class="table table-bordered table-hover" style="margin-bottom:0px">
                                 <thead>
                                     <tr>
                                         <th ng-repeat="(x,y) in worstData[0]">{{ x }}</th>
@@ -175,14 +175,14 @@
                     <!-- /.col-lg-4 -->
                 </div>
 
-                <div class="col-lg-6">
-                    <div class="panel panel-red">
+                <div class="col-lg-6" style="padding-left:50px">
+                    <div class="panel panel-red" >
                         <div class="panel-heading">
                             <p class="fa fa-thumbs-o-down"></p>
                             Best Portfolio
                         </div>
-                        <div class="panel-body">
-                            <table width="100%" class="table table-bordered table-hover">
+                        <div class="panel-body" style="padding:0px; margin-bottom:0px; border:0px">
+                            <table width="100%" class="table table-bordered table-hover" style="margin-bottom:0px">
                                 <thead>
                                     <tr>
                                         <th ng-repeat="(x,y) in bestData[0]">{{ x }}</th>
