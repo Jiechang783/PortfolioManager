@@ -139,7 +139,7 @@
         </nav>
 
         <div id="page-wrapper" style="margin-left:0px">
-            
+
             <!-- /.row -->
             <div>
                 <div class="row">
@@ -183,18 +183,39 @@
                         <!-- /.panel -->
                     </div>
                     <!-- /.col-lg-12 -->
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Line Chart Stack
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <div id="LineChartStack" style="width: 600px;height:400px;"></div>>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Pie chart
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <div id="PieChart" style="width: 600px;height:400px;"></div>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
                 </div>
             </div>
-            
-            <div class="row">
-                <div id="PieChart" style="width: 600px;height:400px;"></div>
-                <!--echart-- Pie chart -->
-
-                <div id="LineChartStack" style="width: 600px;height:400px;"></div>
-                <!--echart-- Line chart stack-->
-            </div>
-            <!--echart-->
-
         </div>
         <!-- /#page-wrapper -->
 
@@ -247,75 +268,164 @@
                 });
             });
 
-            $scope.gotoPositionDetail = function (isin,Type) {
+            $scope.gotoPositionDetail = function (isin, Type) {
                 $cookies.put('isin', isin);
                 $cookies.put('Type', Type);
                 window.location.href = "http://localhost:39926/pages/PositionDetail.html";
-            }
+            };
+
+            $http.get("http://localhost:38814/api/getPercentage/" + PortfolioID).then(function (response) {
+
+                $scope.data = response.data;
+
+                //for echart
+                var PieChart = echarts.init(document.getElementById('PieChart'));
+
+                var PieChartData = response.data;
+
+                option = {
+                    series: [
+                        {
+                            name: '访问来源',
+                            type: 'pie',
+                            radius: '55%',
+                            roseType: 'angle',
+                            data: PieChartData
+                        }
+                    ]
+                };
+                PieChart.setOption(option);
+            });
+
+            $http.get("http://localhost:38814/api/OnePortfolioHistorys/" + PortfolioID).then(function (response) {
+
+                $scope.data = response.data;
+                //for LineChartStack
+                //var LineChartStack = echarts.init(document.getElementById('LineChartStack'));
+
+                //var data = { "time": ["Saturday, February 4, 2017", "Friday, March 6, 2015", "Saturday, July 5, 2014"], "PNL": [3.0, 3.0, 2.0] }
+                //var temp = data.time;
+
+                //option = {
+                //    title: {
+                //        text: 'LineChartStack'
+                //    },
+                //    tooltip: {
+                //        trigger: 'axis'
+                //    },
+
+                //    grid: {
+                //        left: '3%',
+                //        right: '4%',
+                //        bottom: '3%',
+                //        containLabel: true
+                //    },
+                //    xAxis: {
+                //        type: 'category',
+                //        boundaryGap: false,
+                //        data: data.time
+                //    },
+                //    yAxis: {
+                //        type: 'value'
+                //    },
+                //    series: [
+                //        {
+                //            name: '邮件营销',
+                //            type: 'line',
+                //            stack: '总量',
+                //            data: data.PNL
+                //        }
+                //    ]
+                //};
+
+                //LineChartStack.setOption(option);
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('LineChartStack'));
+
+                // 指定图表的配置项和数据
+                var base = +new Date(1968, 9, 3);
+                var oneDay = 24 * 3600 * 1000;
+                var data = response.data;
+                //
+                // var temp = date;
+                // var temp = data;
+
+                option = {
+                    tooltip: {
+                        trigger: 'axis',
+                        position: function (pt) {
+                            return [pt[0], '10%'];
+                        }
+                    },
+                    title: {
+                        left: 'center',
+                        text: '',
+                    },
+                    toolbox: {
+                        feature: {
+
+                            restore: {},
+                            saveAsImage: {}
+                        }
+                    },
+                    xAxis: {
+                        type: 'category',
+                        boundaryGap: false,
+                        data: data.time
+                    },
+                    yAxis: {
+                        type: 'value',
+                        boundaryGap: [0, '100%']
+                    },
+                    dataZoom: [{
+                        type: 'inside',
+                        start: 0,
+                        end: 10
+                    }, {
+                        start: 0,
+                        end: 10,
+                        handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                        handleSize: '80%',
+                        handleStyle: {
+                            color: '#fff',
+                            shadowBlur: 3,
+                            shadowColor: 'rgba(0, 0, 0, 0.6)',
+                            shadowOffsetX: 2,
+                            shadowOffsetY: 2
+                        }
+                    }],
+                    series: [
+                        {
+                            name: '模拟数据',
+                            type: 'line',
+                            smooth: true,
+                            symbol: 'none',
+                            sampling: 'average',
+                            itemStyle: {
+                                normal: {
+                                    color: 'rgb(9, 83, 173)'
+                                }
+                            },
+                            areaStyle: {
+                                normal: {
+                                    color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                        offset: 0,
+                                        color: 'rgb(9, 73, 121)'
+                                    }, {
+                                        offset: 1,
+                                        color: 'rgb(103, 157, 198)'
+                                    }])
+                                }
+                            },
+                            data: data.PNL
+                        }
+                    ]
+                };
+
+                // 使用刚指定的配置项和数据显示图表。
+                myChart.setOption(option);
+            });
         })
-
-        //for echart
-        var PieChart = echarts.init(document.getElementById('PieChart'));
-
-        //var data = {"time":["2010-01-01T00:00:00","2010-01-03T00:00:00","2010-01-04T00:00:00"],"price":[150.00,200.00,250.00]};
-        // var temp = data.time;
-
-        var PieChartData = [{ "value": 10000.00, "name": "aaa" }, { "value": 40000.00, "name": "bbb" }];
-        
-        option = {
-            series: [
-                {
-                    name: '访问来源',
-                    type: 'pie',
-                    radius: '55%',
-                    roseType: 'angle',
-                    data: PieChartData
-                }
-            ]
-        };
-        PieChart.setOption(option);
-
-        //for LineChartStack
-        var LineChartStack = echarts.init(document.getElementById('LineChartStack'));
-
-        var data = { "time": ["2010-01-01T00:00:00", "2010-01-03T00:00:00", "2010-01-04T00:00:00"], "price": [150.00, 200.00, 250.00] };
-        var temp = data.time;
-
-        option = {
-            title: {
-                text: 'LineChartStack'
-            },
-            tooltip: {
-                trigger: 'axis'
-            },
-
-            grid: {
-                left: '3%',
-                right: '4%',
-                bottom: '3%',
-                containLabel: true
-            },
-            xAxis: {
-                type: 'category',
-                boundaryGap: false,
-                data: data.time
-            },
-            yAxis: {
-                type: 'value'
-            },
-            series: [
-                {
-                    name: '邮件营销',
-                    type: 'line',
-                    stack: '总量',
-                    data: data.price
-                }
-            ]
-        };
-        LineChartStack.setOption(option);
-
-
-
     </script>
 </body>
 
