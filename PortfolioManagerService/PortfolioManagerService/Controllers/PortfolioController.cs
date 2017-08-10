@@ -65,7 +65,11 @@ namespace PortfolioManagerService.Controllers
                 list.Add(new Portfilioandpnl(p.PortfolioId,p.Name,PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL.ToString("P")));
             }
 
-            return Ok(list);
+            var query = from p in list
+                        orderby p.PortfolioID descending
+                        select p;
+
+            return Ok(query);
         }
 
 
