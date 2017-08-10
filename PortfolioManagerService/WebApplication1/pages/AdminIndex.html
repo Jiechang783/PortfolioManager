@@ -276,12 +276,12 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-2">
-                        <button ng-click="NewPortfolio()" class="btn btn-lg btn-success btn-block">New Portfolio</button>
+                        <button ng-click="NewPortfolio()" class="btn btn-lg btn-success btn-block" ng-hide="!isAdding">New Portfolio</button>
                     </div>
 
                     <form role="form" ng-hide="isAdding">
                         <div class="form-group input-group" style="margin-right:100px">
-                            <span class="input-group-addon" ng-click="AddPortfolio()">Comfirm</span>
+                            <button class="input-group-addon" ng-click="AddPortfolio()">Comfirm</button>
                             <input type="text" class="form-control" placeholder="Please Input New Portifolio Name" ng-model="NewPortfolioName">
                         </div>
                     </form>
@@ -378,14 +378,14 @@
             $scope.AddPortfolio = function () {
                 var req = {
                     method: 'POST',
-                    url: 'http://localhost:38877/api/addPortfolios',
+                    url: 'http://localhost:38814/api/addPortfolios',
                     header: {
                         'Content-Type': 'application/json'
                     },
-                    data: { "": $scope.Email, "Password": $scope.Password }
+                    data: { "Name": $scope.NewPortfolioName, "UserId": UserId }
                 }
 
-                $http.Post(req).then(function (AddPortfolioResponse) {
+                $http(req).then(function (AddPortfolioResponse) {
                     location.reload();
                 });
             }
