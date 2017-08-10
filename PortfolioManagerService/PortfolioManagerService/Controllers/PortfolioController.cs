@@ -62,7 +62,7 @@ namespace PortfolioManagerService.Controllers
             List<Portfilioandpnl> list = new List<Portfilioandpnl>();
             foreach(Portfolio p in portlist)
             {
-                list.Add(new Portfilioandpnl(p.PortfolioId,p.Name,PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+                list.Add(new Portfilioandpnl(p.PortfolioId,p.Name,PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL.ToString("P")));
             }
 
             return Ok(list);
@@ -79,7 +79,7 @@ namespace PortfolioManagerService.Controllers
             foreach (Portfolio p in portlist)
             {
                 //list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, Portfilioandpnl.Caculatepnl(p.PortfolioId)));
-                list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+                list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL.ToString("P")));
             }
 
             var query = from p in list
@@ -97,7 +97,7 @@ namespace PortfolioManagerService.Controllers
             List<Portfilioandpnl> list = new List<Portfilioandpnl>();
             foreach (Portfolio p in portlist)
             {
-                list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+                list.Add(new Portfilioandpnl(p.PortfolioId, p.Name, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL.ToString("P")));
             }
 
             var query = from p in list
@@ -148,7 +148,12 @@ namespace PortfolioManagerService.Controllers
         {
            
             int changeLine = PortfolioDao.addPortfolio(c);
-            if(changeLine==1)
+            PortfolioHistory inital = new PortfolioHistory();
+            inital.Date = DateTime.Now;
+            inital.PNL = 0;
+            inital.PortfolioId = PortfolioDao.getPortfolioBySomething(c).PortfolioId;
+            int addpnlresult = PortfolioHistoryDao.setPortfolioHistory(inital);
+            if(changeLine==1 && addpnlresult==1)
             {
                 return Ok("Success");
             }
