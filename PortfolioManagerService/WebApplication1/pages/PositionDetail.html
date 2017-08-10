@@ -158,11 +158,11 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Bond ID : {{ data.BondId }}</p>
-                                    <p class="lead">Isin : {{ data.Isin }}</p>
-                                    <p class="lead">Coupon : {{ data.Coupon }}</p>
-                                    <p class="lead">Maturity Month : {{ data.MaturityMonth }}</p>
-                                    <p class="lead">Maturity Year : {{ data.MaturityYear}}</p>
+                                    <p class="lead">Bond ID : {{ SecurityData.BondId }}</p>
+                                    <p class="lead">Isin : {{ SecurityData.Isin }}</p>
+                                    <p class="lead">Coupon : {{ SecurityData.Coupon }}</p>
+                                    <p class="lead">Maturity Month : {{ SecurityData.MaturityMonth }}</p>
+                                    <p class="lead">Maturity Year : {{ SecurityData.MaturityYear}}</p>
                                 </div>
                             </div>
                             <!-- /.panel-body -->
@@ -177,16 +177,16 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Stock ID : {{ data.StockId }}</p>
-                                    <p class="lead">Name : {{ data.Name }}</p>
-                                    <p class="lead">Isin : {{ data.Isin }}</p>
-                                    <p class="lead">LastSale : {{ data.LastSale }}</p>
-                                    <p class="lead">MarketCap : {{ data.MarketCap }}</p>
-                                    <p class="lead">IPOyear : {{ data.IPOyear }}</p>
-                                    <p class="lead">SectorID : {{ data.SectorID }}</p>
-                                    <p class="lead">IndustryID : {{ data.IndustryId }}</p>
-                                    <p class="lead">SummaryQuote: {{ data.SummaryQuote }}</p>
-                                    <p class="lead">Address : {{ data.Address }}</p>
+                                    <p class="lead">Stock ID : {{ SecurityData.StockId }}</p>
+                                    <p class="lead">Name : {{ SecurityData.Name }}</p>
+                                    <p class="lead">Isin : {{ SecurityData.Isin }}</p>
+                                    <p class="lead">LastSale : {{ SecurityData.LastSale }}</p>
+                                    <p class="lead">MarketCap : {{ SecurityData.MarketCap }}</p>
+                                    <p class="lead">IPOyear : {{ SecurityData.IPOyear }}</p>
+                                    <p class="lead">SectorID : {{ SecurityData.SectorID }}</p>
+                                    <p class="lead">IndustryID : {{ SecurityData.IndustryId }}</p>
+                                    <p class="lead">SummaryQuote: {{ SecurityData.SummaryQuote }}</p>
+                                    <p class="lead">Address : {{ SecurityDataAddress }}</p>
                                 </div>
                             </div>
                             <!-- /.panel-body -->
@@ -201,14 +201,14 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Future ID: {{ data.FutureId }}</p>
-                                    <p class="lead">Isin : {{ data.Isin }}</p>
-                                    <p class="lead">Exch : {{ data.Exch }}</p>
-                                    <p class="lead">Sym : {{ data.Sym}}</p>
-                                    <p class="lead">Desc : {{ data.Desc }}</p>
-                                    <p class="lead">SecTyp : {{ data.SecTyp }}</p>
-                                    <p class="lead">MatDt : {{ data.MatDt }}</p>
-                                    <p class="lead">UOMQty : {{ data.UOMQty }}</p>
+                                    <p class="lead">Future ID: {{ SecurityData.FutureId }}</p>
+                                    <p class="lead">Isin : {{ SecurityData.Isin }}</p>
+                                    <p class="lead">Exch : {{ SecurityData.Exch }}</p>
+                                    <p class="lead">Sym : {{ SecurityData.Sym}}</p>
+                                    <p class="lead">Desc : {{ SecurityData.Desc }}</p>
+                                    <p class="lead">SecTyp : {{ SecurityData.SecTyp }}</p>
+                                    <p class="lead">MatDt : {{ SecurityData.MatDt }}</p>
+                                    <p class="lead">UOMQty : {{ SecurityData.UOMQty }}</p>
                                     <p class="lead">ID : {{ }}</p>
                                 </div>
                             </div>
@@ -225,11 +225,11 @@
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Average price : {{ data.Average }}</p>
-                                    <p class="lead">Max price : {{ data.MaxPrice }}</p>
-                                    <p class="lead">Min price : {{ data.MinPrice }}</p>
-                                    <p class="lead">Offer price: {{ data.Offer }}</p>
-                                    <p class="lead">Bid price: {{ data.Bid }}</p>
+                                    <p class="lead">Average price : {{ PriceData.Average }}</p>
+                                    <p class="lead">Max price : {{ PriceData.MaxPrice }}</p>
+                                    <p class="lead">Min price : {{ PriceData.MinPrice }}</p>
+                                    <p class="lead">Offer price: {{ PriceData.Offer }}</p>
+                                    <p class="lead">Bid price: {{ PriceData.Bid }}</p>
                                 </div>
                             </div>
                             <!-- /.panel-body -->
@@ -310,7 +310,7 @@
                 }
 
                 $http(req).then(function (response) {
-                    $scope.data = response.data;
+                    $scope.SecurityData = response.data;
 
                     switch (positionType) {
                         case "Stock":
@@ -332,7 +332,7 @@
                 })
 
                 $http.get("http://localhost:38814/api/PM/Securityinfo/" + positionIsin).then(function (response) {
-                    $scope.data = response.data;
+                    $scope.PriceData = response.data;
 
                     $(document).ready(function () {
                         $('#dataTables-example').DataTable({
