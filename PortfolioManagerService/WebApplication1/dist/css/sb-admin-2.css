@@ -6,9 +6,14 @@
 body {
   
    background:url(login_bg.jpg)
+
+}
+#indexBackground{
+   background:rgb(239,239,239)
 }
 #wrapper {
-  width: 100%;
+    width: 100%;
+    
 }
 #page-wrapper {
   padding: 0 15px;
