@@ -98,6 +98,9 @@
     <Content Include="css\4-col-portfolio.css" />
     <Content Include="data\flot-data.js" />
     <Content Include="data\morris-data.js" />
+    <Content Include="dist\css\bgIndex.png" />
+    <Content Include="dist\css\bgIndex2.png" />
+    <Content Include="dist\css\log1.png" />
     <Content Include="dist\css\login_bg.jpg" />
     <Content Include="pages\adminIndex.html" />
     <Content Include="pages\AdminPortfolioTestData.js" />

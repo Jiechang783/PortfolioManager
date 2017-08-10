@@ -34,6 +34,7 @@ namespace PortfolioManagerService.Controllers
 
             List<Position> positions = PositionDao.getPositionsByIsin(history.Isin);
             Portfolio portfolio = new Portfolio();
+            int changline = 0;
             foreach (Position p in positions)
             {
                 portfolio = PortfolioDao.getPortfoliosById(p.PortfolioId);
@@ -43,10 +44,12 @@ namespace PortfolioManagerService.Controllers
                 porthistory.Date = DateTime.Now;
                 porthistory.PortfolioId = portfolio.PortfolioId;
                 int line = PortfolioHistoryDao.setPortfolioHistory(porthistory);
+                changline++;
 
             }
 
             return Ok("success");
+
         }
 
 
