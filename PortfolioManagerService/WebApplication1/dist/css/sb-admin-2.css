@@ -13,8 +13,8 @@ body {
 #page-wrapper {
   padding: 0 15px;
   min-height: 568px;
-  background-color: blue;
-  background:url(background.png)
+
+  background:rgb(239,239,239)
 }
 @media (min-width: 768px) {
   #page-wrapper {
