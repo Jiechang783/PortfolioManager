@@ -123,23 +123,55 @@ namespace AdministratorWervice.Controllers
             {
                 List<Portfolio> allportfolio = PortfolioDao.getPortfoliosByUserId(u.UserId);
                 double sum = 0;
+                int i = 0;
                 foreach(Portfolio p in allportfolio)
                 {
                     sum += PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL;
+                    i++;
                     
                 }
-                manager.Add(new ManagerInfo(u.UserId,u.FirstName+" "+u.LastName,sum));
+                manager.Add(new ManagerInfo(u.UserId,u.FirstName+" "+u.LastName,sum/i));
 
             }
             var query = from m in manager
-                        orderby m.PNLSum descending
+                        orderby m.PNLAvg descending
                         select m;
             
             
-            return Ok(query.Take(10));
+            return Ok(query.Take(3));
         }
 
-        
+
+        [HttpGet]
+        [Route("api/GetWorstManagers")]
+        public IHttpActionResult GetWorstmanagers()
+        {
+            List<User> alluser = UserDao.getUsers();
+            List<ManagerInfo> manager = new List<ManagerInfo>();
+
+            foreach (User u in alluser)
+            {
+                List<Portfolio> allportfolio = PortfolioDao.getPortfoliosByUserId(u.UserId);
+                double sum = 0;
+                int i = 0;
+                foreach (Portfolio p in allportfolio)
+                {
+                    sum += PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL;
+                    i++;
+
+                }
+                manager.Add(new ManagerInfo(u.UserId, u.FirstName + " " + u.LastName, sum / i));
+
+            }
+            var query = from m in manager
+                        orderby m.PNLAvg 
+                        select m;
+
+
+            return Ok(query.Take(3));
+        }
+
+
 
 
     }

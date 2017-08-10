@@ -11,8 +11,8 @@ namespace PortfolioManagerService.Models
     {
         public int PortfolioID;
         public string PortfolioName;
-        public double PNL;
-        public Portfilioandpnl(int id,string name,double pnl)
+        public string PNL;
+        public Portfilioandpnl(int id,string name,string pnl)
         {
             this.PortfolioID = id;
             this.PortfolioName = name;
