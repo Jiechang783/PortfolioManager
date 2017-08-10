@@ -58,7 +58,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" style="color:rgba(255,255,255,0.8)">Portfolio</a>
+                <!--<a class="navbar-brand" href="index.html" style="color:rgba(255,255,255,0.8)">Portfolio</a>-->
+                <img src="../dist/css/log1.png" />
             </div>
             <!-- /.navbar-header -->
 
@@ -317,7 +318,7 @@
                 });
             })
 
-            $scope.gotoPortfolioDetail = function (PortfolioID) {   
+            $scope.gotoPortfolioDetail = function (PortfolioID) {
                 $cookies.put('PortfolioID', PortfolioID);
                 window.location.href = "http://localhost:39926/pages/PortfolioDetail.html";
             }
