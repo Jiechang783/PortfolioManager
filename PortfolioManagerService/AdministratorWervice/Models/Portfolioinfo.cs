@@ -10,9 +10,9 @@ namespace AdministratorWervice.Models
         public int PortfolioID;
         public string PortfolioName;
         public string ManagerName;
-        public double PNL;
+        public string PNL;
 
-        public Portfolioinfo(int id,string pname,string mname,double pnl)
+        public Portfolioinfo(int id,string pname,string mname,string pnl)
         {
             this.PortfolioID = id;
             this.PortfolioName = pname;

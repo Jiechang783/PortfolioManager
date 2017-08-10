@@ -4,7 +4,8 @@
  * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
  */
 body {
-  background-color: #f8f8f8;
+  
+   background:url(login_bg.jpg)
 }
 #wrapper {
   width: 100%;
@@ -167,7 +168,8 @@ body {
   overflow-y: scroll;
 }
 .login-panel {
-  margin-top: 25%;
+  margin-top:8%;
+  background-color: rgba(255,255,255,0);
 }
 .flot-chart {
   display: block;
