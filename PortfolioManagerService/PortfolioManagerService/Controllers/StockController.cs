@@ -46,7 +46,7 @@ namespace PortfolioManagerService.Controllers
 
             }
 
-            return Ok();
+            return Ok("success");
         }
 
 

@@ -329,6 +329,25 @@
                                             </tr>
                                         </tbody>
                                     </table>
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-4">
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">Offer price</span>
+                                                <input type="number" class="form-control" ng-model="OfferPrice">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">Bid price</span>
+                                                <input type="number" class="form-control" ng-model="BidPrice">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button ng-click="UpdatePrice()" class="btn btn-lg btn-success btn-block">Update</button>
+                                        </div>
+                                    </div>
+                                    
 
                                 </div>
                             </div>
@@ -441,6 +460,23 @@
                         });
                     });
                 });
+                
+                $scope.UpdatePrice = function () {
+                    if ($scope.BidPrice != null && $scope.OfferPrice != null) {
+                        var updateReq = {
+                            method: 'POST',
+                            url: 'http://localhost:38814/api/PM/updatestockprice',
+                            header: {
+                                'Content-Type': 'application/json'
+                            },
+                            data: { "BidPrice": parseFloat($scope.BidPrice), "OfferPrice": parseFloat($scope.OfferPrice), 'isin': positionIsin }
+                        }
+
+                        $http(updateReq).then(function (response) {
+                            location.reload();
+                        })
+                    }
+                }
 
                 //折线图代码
                 $http.get("http://localhost:38814/api/OneStockHistorys/" + positionIsin).then(function (response) {
@@ -466,7 +502,7 @@
                         },
                         title: {
                             left: 'center',
-                            text: '这是题目',
+                            text: 'Title',
                         },
                         toolbox: {
                             feature: {
@@ -487,7 +523,7 @@
                         dataZoom: [{
                             type: 'inside',
                             start: 0,
-                            end: 10
+                            end: 100
                         }, {
                             start: 0,
                             end: 10,
@@ -532,8 +568,9 @@
                     // 使用刚指定的配置项和数据显示图表。
                     myChart.setOption(option);
                 });
-
             })
+
+
 
         </script>
 

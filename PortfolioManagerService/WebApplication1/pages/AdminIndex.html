@@ -58,7 +58,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" style="color:#000000">Portfolio Administrator</a>
+                <a class="navbar-brand" href="index.html" style="color:#000000">Portfolio</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -140,10 +140,10 @@
 
         </nav>
 
-        <div id="page-wrapper" style="margin-left:0px">
+        <div id="page-wrapper" style="margin-left:0px;margin-bottom:0px">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Portfolio Management</h1>
+                    <h1 class="page-header">Admin Portfolio Management</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -152,11 +152,24 @@
                 <div class="col-lg-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
-                            <p class="fa fa-thumbs-o-up"></p>
-                            Best Portfolio
+                            <p class="fa fa-thumbs-o-down"></p>
+                            Worst 3 Managers
                         </div>
                         <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                            <table width="100%" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th ng-repeat="(x,y) in worstManagerData[0]">{{ x }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in worstManagerData">
+                                        <td ng-bind="x.ManagerID"></td>
+                                        <td ng-bind="x.ManagerName"></td>
+                                        <td ng-bind="x.PNLAvg"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="panel-footer">
                         </div>
@@ -167,11 +180,85 @@
                 <div class="col-lg-6">
                     <div class="panel panel-red">
                         <div class="panel-heading">
+                            <p class="fa fa-thumbs-o-up"></p>
+                            Best 3 Managers
+                        </div>
+                        <div class="panel-body">
+                            <table width="100%" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th ng-repeat="(x,y) in bestManagerData[0]">{{ x }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in bestManagerData">
+                                        <td ng-bind="x.ManagerID"></td>
+                                        <td ng-bind="x.ManagerName"></td>
+                                        <td ng-bind="x.PNLAvg"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel-footer">
+                        </div>
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+            </div>
+            <!--Admin-->
+
+            <div class="row">
+                <div class="col-lg-6">
+                    <div class="panel panel-green">
+                        <div class="panel-heading">
                             <p class="fa fa-thumbs-o-down"></p>
                             Worst Portfolio
                         </div>
                         <div class="panel-body">
-                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum tincidunt est vitae ultrices accumsan. Aliquam ornare lacus adipiscing, posuere lectus et, fringilla augue.</p>
+                            <table width="100%" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th ng-repeat="(x,y) in worstData[0]">{{ x }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in worstData" ng-click="gotoPortfolioDetail(x.PortfolioID)">
+                                        <td ng-bind="x.PortfolioID"></td>
+                                        <td ng-bind="x.PortfolioName"></td>
+                                        <td ng-bind="x.ManagerName"></td>
+                                        <td ng-bind="x.PNL"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="panel-footer">
+                        </div>
+                    </div>
+                    <!-- /.col-lg-4 -->
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="panel panel-red">
+                        <div class="panel-heading">
+                            <p class="fa fa-thumbs-o-up"></p>
+                            Best Portfolio
+                        </div>
+                        <div class="panel-body">
+                            <table width="100%" class="table table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th ng-repeat="(x,y) in bestData[0]">{{ x }}</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="x in bestData" ng-click="gotoPortfolioDetail(x.PortfolioID)">
+                                        <td ng-bind="x.PortfolioID"></td>
+                                        <td ng-bind="x.PortfolioName"></td>
+                                        <td ng-bind="x.ManagerName"></td>
+                                        <td ng-bind="x.PNL"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <div class="panel-footer">
                         </div>
@@ -183,7 +270,7 @@
             <div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <h1 class="page-header">Portfolio List</h1>
+                        <h1 class="page-header">Admin Portfolio List</h1>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
@@ -208,7 +295,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="x in data">
+                                        <tr ng-repeat="x in data" ng-click="gotoPortfolioDetail(x.PortfolioID)">
                                             <td ng-bind="x.PortfolioID"></td>
                                             <td ng-bind="x.PortfolioName"></td>
                                             <td ng-bind="x.ManagerName"></td>
@@ -224,8 +311,14 @@
                     <!-- /.col-lg-12 -->
                 </div>
             </div>
+        </div>
+
+        <!--Admin-->
+        <div id="page-wrapper" style="margin-left:0px">
+            
 
         </div>
+        <!--Manager-->
         <!-- /#page-wrapper -->
     </div>
 
@@ -252,13 +345,24 @@
     <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
     <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
 
+    <!--angular-cookies-->
+    <script src="../scripts/angular-cookies.js"></script>
+
     <!-- pagging -->
     <script type="text/javascript">
 
 
-        var app = angular.module("myApp", [$rootScope]);
-        app.controller("indexController", function ($scope, $http) {
-            $http.get("AdminPortfolioTestData.js").then(function (response) {
+        var app = angular.module("myApp", ['ngCookies']);
+
+        app.controller("indexController", ['$scope', '$http', '$cookies', '$cookieStore', function ($scope, $http, $cookies, $cookieStore) {
+            var UserId = $cookies.get('UserId');
+            $scope.bestData = {};
+            $scope.worstData = {};
+            $scope.bestManagerData = {};
+            $scope.worstManagerData = {};
+
+            //Admin
+            $http.get("http://localhost:38877/api/AllPortfolios").then(function (response) {
                 $scope.data = response.data;
 
                 $(document).ready(function () {
@@ -268,14 +372,30 @@
                 });
             });
 
-            $http.get("http://localhost:38814/api/bestPortfolios/" + $rootScope.UserId).then(function (response) {
-                $scope.bestData = response.data;
+            //Manager
+            $http.get("http://localhost:38877/api/bestPortfolios/").then(function (bestResponse) {
+                $scope.bestData = bestResponse.data;
             })
 
-            $http.get("http://localhost:38814/api/worstPortfolios/" + $rootScope.UserId).then(function (response) {
-                $scope.worstData = response.data;
+            $http.get("http://localhost:38877/api/worstPortfolios/").then(function (worstResponse) {
+                $scope.worstData = worstResponse.data;
             })
-        })
+
+            //Admin
+            $http.get("http://localhost:38877/api/GetbestManagers").then(function (bestAdminResponse) {
+                $scope.bestManagerData = bestAdminResponse.data;
+            })
+
+            $http.get("http://localhost:38877/api/GetWorstManagers").then(function (worstAdminResponse) {
+                $scope.worstManagerData = worstAdminResponse.data;
+            })
+
+            $scope.gotoPortfolioDetail = function (PortfolioID) {
+                $cookies.put('PortfolioID', PortfolioID);
+                window.location.href = "http://localhost:39926/pages/PortfolioDetail.html";
+            }
+        }]);
+
 
 
     </script>

@@ -21,7 +21,7 @@ namespace AdministratorWervice.Controllers
             foreach(Portfolio p in list)
             {
                 returnlist.Add(new Portfolioinfo(p.PortfolioId, p.Name, UserDao.getUsersById(p.UserId).FirstName +" "
-                    + UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+                    + UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL.ToString("P")));
 
             }
             
@@ -54,7 +54,7 @@ namespace AdministratorWervice.Controllers
             foreach (Portfolio p in portlist)
             {
                 list.Add(new Portfolioandpnl(p.PortfolioId, p.Name,UserDao.getUsersById(p.UserId).FirstName+" "+
-                   UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+                   UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL.ToString("P")));
             }
             var query = from p in list
                         orderby p.PNL
@@ -74,7 +74,7 @@ namespace AdministratorWervice.Controllers
             foreach (Portfolio p in portlist)
             {
                 list.Add(new Portfolioandpnl(p.PortfolioId, p.Name, UserDao.getUsersById(p.UserId).FirstName + " " +
-                   UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+                   UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL.ToString("P")));
             }
             var query = from p in list
                         orderby p.PNL descending
@@ -123,23 +123,55 @@ namespace AdministratorWervice.Controllers
             {
                 List<Portfolio> allportfolio = PortfolioDao.getPortfoliosByUserId(u.UserId);
                 double sum = 0;
+                int i = 0;
                 foreach(Portfolio p in allportfolio)
                 {
                     sum += PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL;
+                    i++;
                     
                 }
-                manager.Add(new ManagerInfo(u.UserId,u.FirstName+" "+u.LastName,sum));
+                manager.Add(new ManagerInfo(u.UserId,u.FirstName+" "+u.LastName,(sum/i).ToString("P")));
 
             }
             var query = from m in manager
-                        orderby m.PNLSum descending
+                        orderby m.PNLAvg descending
                         select m;
             
             
-            return Ok(query.Take(10));
+            return Ok(query.Take(3));
         }
 
-        
+
+        [HttpGet]
+        [Route("api/GetWorstManagers")]
+        public IHttpActionResult GetWorstmanagers()
+        {
+            List<User> alluser = UserDao.getUsers();
+            List<ManagerInfo> manager = new List<ManagerInfo>();
+
+            foreach (User u in alluser)
+            {
+                List<Portfolio> allportfolio = PortfolioDao.getPortfoliosByUserId(u.UserId);
+                double sum = 0;
+                int i = 0;
+                foreach (Portfolio p in allportfolio)
+                {
+                    sum += PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL;
+                    i++;
+
+                }
+                manager.Add(new ManagerInfo(u.UserId, u.FirstName + " " + u.LastName, (sum / i).ToString("P")));
+
+            }
+            var query = from m in manager
+                        orderby m.PNLAvg 
+                        select m;
+
+
+            return Ok(query.Take(3));
+        }
+
+
 
 
     }
