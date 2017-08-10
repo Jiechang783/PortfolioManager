@@ -15,7 +15,8 @@ namespace PortfolioManagerService.Controllers
         [Route("api/Bonds")]
         public IHttpActionResult Get()
         {
-            return Ok(BondsDao.getBonds());
+
+            return Ok(BondsDao.getBonds().Take(100));
         }
 
         [HttpGet]
