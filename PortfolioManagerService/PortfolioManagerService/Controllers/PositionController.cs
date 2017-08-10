@@ -19,6 +19,8 @@ namespace PortfolioManagerService.Controllers
             return Ok(PositionDao.getPositions());
         }
 
+
+
         [HttpGet]
         // GET api/values/5
         [Route("api/Positions/{id}")]
@@ -80,6 +82,28 @@ namespace PortfolioManagerService.Controllers
             int changeLine = PositionDao.setPosition(c);
             return Ok(changeLine);
         }
+
+
+        [HttpPost]
+        [Route("api/addPositionlist")]
+        public IHttpActionResult addPositionlist(dynamic c)
+        {
+            int changeline = 0;
+            Position position = new Position();
+            foreach(var p in c)
+            {
+                position.Quantity = p.Quantity;
+                position.PortfolioId = p.PortfolioId;
+                position.Isin = p.Isin;
+                position.Type = p.Type;
+                position.Price= PriceHistoryDao.getLastPriceHistorysByisin(position.Isin).BidPrice;
+                int line=PositionDao.setPosition(position);
+                changeline += line;
+            }
+            return Ok(changeline);
+       
+        }
+
 
         [HttpGet]
         [Route("api/deletePositions")]
