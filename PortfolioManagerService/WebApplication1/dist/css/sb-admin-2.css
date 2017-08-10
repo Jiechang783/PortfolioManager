@@ -13,7 +13,8 @@ body {
 #page-wrapper {
   padding: 0 15px;
   min-height: 568px;
-  background-color: white;
+
+  background:rgb(239,239,239)
 }
 @media (min-width: 768px) {
   #page-wrapper {
@@ -240,7 +241,7 @@ table.dataTable thead .sorting:after {
   font-size: 40px;
 }
 .panel-green {
-  border-color: red;
+  border-color: rgb(239,239,239);
 }
 .panel-green > .panel-heading {
   border-color: #5cb85c;
