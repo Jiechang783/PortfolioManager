@@ -152,17 +152,36 @@
                     <!-- /.col-lg-12 -->
                     <div class="col-lg-6" ng-show="showBond">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Bond Details
+                            <div class="panel-heading" style="font-size:30px">
+                                Bond
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Bond ID : {{ SecurityData.BondId }}</p>
-                                    <p class="lead">Isin : {{ SecurityData.Isin }}</p>
-                                    <p class="lead">Coupon : {{ SecurityData.Coupon }}</p>
-                                    <p class="lead">Maturity Month : {{ SecurityData.MaturityMonth }}</p>
-                                    <p class="lead">Maturity Year : {{ SecurityData.MaturityYear}}</p>
+                                    <table class="table table-hover" style="font-size:16px">
+                                        <tbody>
+                                            <tr>
+                                                <td>Bond ID</td>
+                                                <td>{{ SecurityData.BondId }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Isin</td>
+                                                <td>{{ SecurityData.Isin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Coupon</td>
+                                                <td>{{ SecurityData.Coupon }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Maturity Month</td>
+                                                <td>{{ SecurityData.MaturityMonth }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Maturity Year</td>
+                                                <td>{{ SecurityData.MaturityYear}}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <!-- /.panel-body -->
@@ -171,22 +190,52 @@
                     </div>
                     <div class="col-lg-6" ng-show="showStock">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Stock Details
+                            <div class="panel-heading" style="font-size:30px">
+                                Stock
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Stock ID : {{ SecurityData.StockId }}</p>
-                                    <p class="lead">Name : {{ SecurityData.Name }}</p>
-                                    <p class="lead">Isin : {{ SecurityData.Isin }}</p>
-                                    <p class="lead">LastSale : {{ SecurityData.LastSale }}</p>
-                                    <p class="lead">MarketCap : {{ SecurityData.MarketCap }}</p>
-                                    <p class="lead">IPOyear : {{ SecurityData.IPOyear }}</p>
-                                    <p class="lead">SectorID : {{ SecurityData.SectorID }}</p>
-                                    <p class="lead">IndustryID : {{ SecurityData.IndustryId }}</p>
-                                    <p class="lead">SummaryQuote: {{ SecurityData.SummaryQuote }}</p>
-                                    <p class="lead">Address : {{ SecurityDataAddress }}</p>
+                                    <table class="table table-hover" style="font-size:16px">
+                                        <tbody>
+                                            <tr>
+                                                <td>Stock ID</td>
+                                                <td>{{ SecurityData.StockId }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Name</td>
+                                                <td>{{ SecurityData.Isin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Isin</td>
+                                                <td>{{ SecurityData.Isin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>LastSale</td>
+                                                <td>{{ SecurityData.LastSale }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>IPOyear</td>
+                                                <td>{{ SecurityData.IPOyear }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>SectorID</td>
+                                                <td>{{ SecurityData.SectorId }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>IndustryID</td>
+                                                <td>{{ SecurityData.IndustryId }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>SummaryQuote</td>
+                                                <td>{{ SecurityData.SummaryQuote }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Address</td>
+                                                <td>{{ SecurityData.Address }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <!-- /.panel-body -->
@@ -195,21 +244,48 @@
                     </div>
                     <div class="col-lg-6" ng-show="showFuture">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                                Future Details
+                            <div class="panel-heading" style="font-size:30px">
+                                Future
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Future ID: {{ SecurityData.FutureId }}</p>
-                                    <p class="lead">Isin : {{ SecurityData.Isin }}</p>
-                                    <p class="lead">Exch : {{ SecurityData.Exch }}</p>
-                                    <p class="lead">Sym : {{ SecurityData.Sym}}</p>
-                                    <p class="lead">Desc : {{ SecurityData.Desc }}</p>
-                                    <p class="lead">SecTyp : {{ SecurityData.SecTyp }}</p>
-                                    <p class="lead">MatDt : {{ SecurityData.MatDt }}</p>
-                                    <p class="lead">UOMQty : {{ SecurityData.UOMQty }}</p>
-                                    <p class="lead">ID : {{ }}</p>
+                                    <table class="table table-hover" style="font-size:16px">
+                                        <tbody>
+                                            <tr>
+                                                <td>Future ID</td>
+                                                <td>{{ SecurityData.FutureId }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Isin</td>
+                                                <td>{{ SecurityData.Isin }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Exch</td>
+                                                <td>{{ SecurityData.Exch }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Sym</td>
+                                                <td>{{ SecurityData.Sym }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Desc</td>
+                                                <td>{{ SecurityData.Desc }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>SecTyp</td>
+                                                <td>{{ SecurityData.SecTyp }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>MatDt</td>
+                                                <td>{{ SecurityData.MatDt }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>UOMQty</td>
+                                                <td>{{ SecurityData.UOMQty }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                             <!-- /.panel-body -->
@@ -219,17 +295,56 @@
                     <!-- /.col-lg-6 -->
                     <div class="col-lg-6">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
+                            <div class="panel-heading" style="font-size:30px">
                                 Price
                             </div>
                             <!-- /.panel-heading -->
                             <div class="panel-body">
                                 <div class="flot-chart">
-                                    <p class="lead">Average price : {{ PriceData.Average }}</p>
-                                    <p class="lead">Max price : {{ PriceData.MaxPrice }}</p>
-                                    <p class="lead">Min price : {{ PriceData.MinPrice }}</p>
-                                    <p class="lead">Offer price: {{ PriceData.Offer }}</p>
-                                    <p class="lead">Bid price: {{ PriceData.Bid }}</p>
+                                    <table class="table table-hover" style="font-size:16px">
+                                        <tbody>
+                                            <tr>
+                                                <td>Average price</td>
+                                                <td>{{ PriceData.Average }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Max price</td>
+                                                <td>{{ PriceData.MaxPrice }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Min price</td>
+                                                <td>{{ PriceData.MinPrice }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Offer price:</td>
+                                                <td>{{ PriceData.Offer }}</td>
+                                            </tr>
+                                            <tr>
+                                                <td>Bid price</td>
+                                                <td>{{ PriceData.Bid }}</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="col-lg-12">
+                                        <div class="col-lg-4">
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">Offer price</span>
+                                                <input type="number" class="form-control" ng-model="OfferPrice">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-lg-4">
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">Bid price</span>
+                                                <input type="number" class="form-control" ng-model="BidPrice">
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-4">
+                                            <button ng-click="UpdatePrice()" class="btn btn-lg btn-success btn-block">Update</button>
+                                        </div>
+                                    </div>
+                                    
+
                                 </div>
                             </div>
                             <!-- /.panel-body -->
@@ -261,6 +376,7 @@
             <div id="LineChartStack" style="margin-left:50px;height:400px;margin-right:50px"></div>
 
         </div>-->
+     </div>
         <!--echart-->
         <!-- /#page-wrapper -->
         <!-- /#wrapper -->
@@ -340,6 +456,23 @@
                         });
                     });
                 });
+                
+                $scope.UpdatePrice = function () {
+                    if ($scope.BidPrice != null && $scope.OfferPrice != null) {
+                        var updateReq = {
+                            method: 'POST',
+                            url: 'http://localhost:38814/api/PM/updatestockprice',
+                            header: {
+                                'Content-Type': 'application/json'
+                            },
+                            data: { "BidPrice": parseFloat($scope.BidPrice), "OfferPrice": parseFloat($scope.OfferPrice), 'isin': positionIsin }
+                        }
+
+                        $http(updateReq).then(function (response) {
+                            location.reload();
+                        })
+                    }
+                }
 
                 //折线图代码
                 $http.get("http://localhost:38814/api/OneStockHistorys/" + positionIsin).then(function (response) {
@@ -365,7 +498,7 @@
                         },
                         title: {
                             left: 'center',
-                            text: '这是题目',
+                            text: 'Title',
                         },
                         toolbox: {
                             feature: {
@@ -431,8 +564,9 @@
                     // 使用刚指定的配置项和数据显示图表。
                     myChart.setOption(option);
                 });
-
             })
+
+
 
         </script>
 

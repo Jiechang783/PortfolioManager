@@ -16,7 +16,7 @@ namespace PortfolioManagerService.Controllers
         [Route("api/PM/Stock")]
         public IHttpActionResult Get()
         {
-            return Ok(StockDao.getStocks());
+            return Ok(StockDao.getStocks().Take(100));
         }
 
         [HttpPost]
@@ -48,7 +48,8 @@ namespace PortfolioManagerService.Controllers
 
             }
 
-            return Ok(changline);
+            return Ok("success");
+
         }
 
 

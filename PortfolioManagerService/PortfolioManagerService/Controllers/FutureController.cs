@@ -15,7 +15,7 @@ namespace PortfolioManagerService.Controllers
         [Route("api/Futures")]
         public IHttpActionResult Get()
         {
-            return Ok(FutureDao.getFutures());
+            return Ok(FutureDao.getFutures().Take(100));
 
         }
 
