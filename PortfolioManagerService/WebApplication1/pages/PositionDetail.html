@@ -1,0 +1,441 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Portiflio</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- DataTables CSS -->
+    <link href="../vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+
+    <!-- DataTables Responsive CSS -->
+    <link href="../vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+
+    <script src="../scripts/jquery-3.1.1.min.js"></script>
+    <script src="../scripts/angular.min.js"></script>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <div id="wrapper" ng-app="myApp" ng-controller="ProtolioDetailController">
+
+        <!-- Navigation -->
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="index.html" style="color:#000000">Portifolio</a>
+            </div>
+            <!-- /.navbar-header -->
+
+            <ul class="nav navbar-top-links navbar-right">
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-envelope fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-messages">
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">
+                                <div>
+                                    <strong>John Smith</strong>
+                                    <span class="pull-right text-muted">
+                                        <em>Yesterday</em>
+                                    </span>
+                                </div>
+                                <div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend...</div>
+                            </a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a class="text-center" href="#">
+                                <strong>Read All Messages</strong>
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-messages -->
+                </li>
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                        <li>
+                            <a href="#"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        </li>
+                        <li>
+                            <a href="#"><i class="fa fa-gear fa-fw"></i> Settings</a>
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="login.html"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                        </li>
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
+            </ul>
+            <!-- /.navbar-top-links -->
+
+
+        </nav>
+
+        <div id="page-wrapper" style="margin-left:0px">
+            <!-- /.row -->
+            <div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">Position Detail</h1>
+                    </div>
+                    <!-- /.col-lg-12 -->
+                </div>
+
+                <div class="row">
+                    <!-- /.col-lg-12 -->
+                    <div class="col-lg-6" ng-show="showBond">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Bond Details
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <p class="lead">Bond ID : {{ SecurityData.BondId }}</p>
+                                    <p class="lead">Isin : {{ SecurityData.Isin }}</p>
+                                    <p class="lead">Coupon : {{ SecurityData.Coupon }}</p>
+                                    <p class="lead">Maturity Month : {{ SecurityData.MaturityMonth }}</p>
+                                    <p class="lead">Maturity Year : {{ SecurityData.MaturityYear}}</p>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <div class="col-lg-6" ng-show="showStock">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Stock Details
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <p class="lead">Stock ID : {{ SecurityData.StockId }}</p>
+                                    <p class="lead">Name : {{ SecurityData.Name }}</p>
+                                    <p class="lead">Isin : {{ SecurityData.Isin }}</p>
+                                    <p class="lead">LastSale : {{ SecurityData.LastSale }}</p>
+                                    <p class="lead">MarketCap : {{ SecurityData.MarketCap }}</p>
+                                    <p class="lead">IPOyear : {{ SecurityData.IPOyear }}</p>
+                                    <p class="lead">SectorID : {{ SecurityData.SectorID }}</p>
+                                    <p class="lead">IndustryID : {{ SecurityData.IndustryId }}</p>
+                                    <p class="lead">SummaryQuote: {{ SecurityData.SummaryQuote }}</p>
+                                    <p class="lead">Address : {{ SecurityDataAddress }}</p>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <div class="col-lg-6" ng-show="showFuture">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Future Details
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <p class="lead">Future ID: {{ SecurityData.FutureId }}</p>
+                                    <p class="lead">Isin : {{ SecurityData.Isin }}</p>
+                                    <p class="lead">Exch : {{ SecurityData.Exch }}</p>
+                                    <p class="lead">Sym : {{ SecurityData.Sym}}</p>
+                                    <p class="lead">Desc : {{ SecurityData.Desc }}</p>
+                                    <p class="lead">SecTyp : {{ SecurityData.SecTyp }}</p>
+                                    <p class="lead">MatDt : {{ SecurityData.MatDt }}</p>
+                                    <p class="lead">UOMQty : {{ SecurityData.UOMQty }}</p>
+                                    <p class="lead">ID : {{ }}</p>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.col-lg-6 -->
+                    <div class="col-lg-6">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Price
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <p class="lead">Average price : {{ PriceData.Average }}</p>
+                                    <p class="lead">Max price : {{ PriceData.MaxPrice }}</p>
+                                    <p class="lead">Min price : {{ PriceData.MinPrice }}</p>
+                                    <p class="lead">Offer price: {{ PriceData.Offer }}</p>
+                                    <p class="lead">Bid price: {{ PriceData.Bid }}</p>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                Line Chart Stack
+                            </div>
+                            <!-- /.panel-heading -->
+                            <div class="panel-body">
+                                <div class="flot-chart">
+                                    <div id="LineChartStack" style="margin-left:50px;height:300px;margin-right:50px"></div>
+                                </div>
+                            </div>
+                            <!-- /.panel-body -->
+                        </div>
+                        <!-- /.panel -->
+                    </div>
+                    <!-- /.panel -->
+                </div>
+                <!-- /.col-lg-12 -->
+            </div>
+        </div>
+
+        <!--<div class="row">
+            <div id="LineChartStack" style="margin-left:50px;height:400px;margin-right:50px"></div>
+
+        </div>-->
+        <!--echart-->
+        <!-- /#page-wrapper -->
+        <!-- /#wrapper -->
+        <!-- jQuery -->
+        <script src="../vendor/jquery/jquery.min.js"></script>
+
+        <!-- Bootstrap Core JavaScript -->
+        <script src="../vendor/bootstrap/js/bootstrap.min.js"></script>
+
+        <!-- Metis Menu Plugin JavaScript -->
+        <script src="../vendor/metisMenu/metisMenu.min.js"></script>
+
+        <!-- Morris Charts JavaScript -->
+        <script src="../vendor/raphael/raphael.min.js"></script>
+        <script src="../vendor/morrisjs/morris.min.js"></script>
+        <script src="../data/morris-data.js"></script>
+
+        <!-- Custom Theme JavaScript -->
+        <script src="../dist/js/sb-admin-2.js"></script>
+
+        <!-- DataTables JavaScript -->
+        <script src="../vendor/datatables/js/jquery.dataTables.min.js"></script>
+        <script src="../vendor/datatables-plugins/dataTables.bootstrap.min.js"></script>
+        <script src="../vendor/datatables-responsive/dataTables.responsive.js"></script>
+
+        <!--echart-->
+        <script src="../scripts/echarts.js"></script>
+
+        <!--angular-cookies-->
+        <script src="../scripts/angular-cookies.js"></script>
+
+        <!-- pagging -->
+        <script type="text/javascript">
+
+            var app = angular.module("myApp", ['ngCookies']);
+            app.controller("ProtolioDetailController", function ($scope, $http, $cookies, $cookieStore) {
+                var positionType = $cookies.get('Type');
+                var positionIsin = $cookies.get('isin');
+
+                var req = {
+                    method: 'POST',
+                    url: 'http://localhost:38814/api/PM/Security',
+                    header: {
+                        'Content-Type': 'application/json'
+                    },
+                    data: { "type": positionType, "isin": positionIsin }
+                }
+
+                $http(req).then(function (response) {
+                    $scope.SecurityData = response.data;
+
+                    switch (positionType) {
+                        case "Stock":
+                            $scope.showStock = true;
+                            $scope.showBond = false;
+                            $scope.showFuture = false;
+                            break;
+                        case "Bond":
+                            $scope.showStock = false;
+                            $scope.showBond = true;
+                            $scope.showFuture = false;
+                            break;
+                        case "Future":
+                            $scope.showStock = false;
+                            $scope.showBond = false;
+                            $scope.showFuture = true;
+                            break;
+                    }
+                })
+
+                $http.get("http://localhost:38814/api/PM/Securityinfo/" + positionIsin).then(function (response) {
+                    $scope.PriceData = response.data;
+
+                    $(document).ready(function () {
+                        $('#dataTables-example').DataTable({
+                            responsive: true
+                        });
+                    });
+                });
+
+                //折线图代码
+                $http.get("http://localhost:38814/api/OneStockHistorys/" + positionIsin).then(function (response) {
+                    // 基于准备好的dom，初始化echarts实例
+                    var myChart = echarts.init(document.getElementById('LineChartStack'));
+
+                    // 指定图表的配置项和数据
+                    var base = +new Date(1968, 9, 3);
+                    var oneDay = 24 * 3600 * 1000;
+                    //传入数据
+                    //var data = { "time": ["2017年1月9日", "2017年1月10日", "2017年1月11日", "2017年1月12日", "2017年1月13日", "2017年1月16日", "2017年1月17日", "2017年1月18日", "2017年1月19日", "2017年1月20日", "2017年1月23日", "2017年1月24日", "2017年1月25日", "2017年1月26日", "2017年1月27日", "2017年1月30日", "2017年1月31日", "2017年2月1日", "2017年2月2日", "2017年2月3日", "2017年2月6日", "2017年2月7日", "2017年2月8日", "2017年2月9日", "2017年2月10日", "2017年2月13日", "2017年2月14日", "2017年2月15日", "2017年2月16日", "2017年2月17日", "2017年2月20日", "2017年2月21日", "2017年2月22日", "2017年2月23日", "2017年2月24日", "2017年2月27日", "2017年2月28日", "2017年3月1日", "2017年3月2日", "2017年3月3日", "2017年3月6日", "2017年3月7日", "2017年3月8日", "2017年3月9日", "2017年3月10日", "2017年3月13日", "2017年3月14日", "2017年3月15日", "2017年3月16日", "2017年3月17日", "2017年3月20日", "2017年3月21日", "2017年3月22日", "2017年3月23日", "2017年3月24日", "2017年3月27日", "2017年3月28日", "2017年3月29日", "2017年3月30日", "2017年3月31日", "2017年4月3日", "2017年4月4日", "2017年4月5日", "2017年4月6日", "2017年4月7日", "2017年4月10日", "2017年4月11日", "2017年4月12日", "2017年4月13日", "2017年4月14日"], "price": [248.66, 293.41, 281.68, 335.20, 281.56, 309.72, 312.82, 284.66, 304.59, 252.81, 257.87, 275.92, 229.01, 251.91, 234.28, 264.74, 283.27, 271.94, 296.41, 278.63, 328.78, 361.66, 321.87, 337.97, 294.03, 314.61, 349.22, 314.30, 323.73, 320.49, 333.31, 359.98, 359.98, 363.58, 359.94, 374.34, 381.82, 336.01, 346.09, 346.09, 391.08, 453.65, 394.67, 414.41, 352.25, 383.95, 414.66, 402.22, 410.27, 332.32, 338.96, 379.64, 349.27, 370.23, 325.80, 374.67, 412.13, 403.89, 452.36, 416.17, 424.49, 428.74, 390.15, 452.58, 389.22, 393.11, 463.87, 375.73, 398.28, 322.60] };
+                    var data = response.data
+                    //
+                    // var temp = date;
+                    // var temp = data;
+
+                    option = {
+                        tooltip: {
+                            trigger: 'axis',
+                            position: function (pt) {
+                                return [pt[0], '10%'];
+                            }
+                        },
+                        title: {
+                            left: 'center',
+                            text: '这是题目',
+                        },
+                        toolbox: {
+                            feature: {
+
+                                restore: {},
+                                saveAsImage: {}
+                            }
+                        },
+                        xAxis: {
+                            type: 'category',
+                            boundaryGap: false,
+                            data: data.time
+                        },
+                        yAxis: {
+                            type: 'value',
+                            boundaryGap: [0, '100%']
+                        },
+                        dataZoom: [{
+                            type: 'inside',
+                            start: 0,
+                            end: 10
+                        }, {
+                            start: 0,
+                            end: 10,
+                            handleIcon: 'M10.7,11.9v-1.3H9.3v1.3c-4.9,0.3-8.8,4.4-8.8,9.4c0,5,3.9,9.1,8.8,9.4v1.3h1.3v-1.3c4.9-0.3,8.8-4.4,8.8-9.4C19.5,16.3,15.6,12.2,10.7,11.9z M13.3,24.4H6.7V23h6.6V24.4z M13.3,19.6H6.7v-1.4h6.6V19.6z',
+                            handleSize: '80%',
+                            handleStyle: {
+                                color: '#fff',
+                                shadowBlur: 3,
+                                shadowColor: 'rgba(0, 0, 0, 0.6)',
+                                shadowOffsetX: 2,
+                                shadowOffsetY: 2
+                            }
+                        }],
+                        series: [
+                            {
+                                name: '模拟数据',
+                                type: 'line',
+                                smooth: true,
+                                symbol: 'none',
+                                sampling: 'average',
+                                itemStyle: {
+                                    normal: {
+                                        color: 'rgb(9, 83, 173)'
+                                    }
+                                },
+                                areaStyle: {
+                                    normal: {
+                                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                                            offset: 0,
+                                            color: 'rgb(9, 73, 121)'
+                                        }, {
+                                            offset: 1,
+                                            color: 'rgb(103, 157, 198)'
+                                        }])
+                                    }
+                                },
+                                data: data.price
+                            }
+                        ]
+                    };
+
+                    // 使用刚指定的配置项和数据显示图表。
+                    myChart.setOption(option);
+                });
+
+            })
+
+        </script>
+
+</body>
+
+</html>

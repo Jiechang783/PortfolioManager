@@ -79,6 +79,39 @@ namespace EntityFramwork.EntityDao
             }
         }
 
+        public static Portfolio getPortfolioBySomething(Portfolio p)
+        {
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                foreach (Portfolio po in db.Portfolios)
+                {
+                    if ((po.Name == p.Name) && (po.UserId == po.UserId))
+                    {
+                        return po;
+                    }
+                }
+                return null;
+            }
+
+        }
+        public static List<Portfolio> getPortfoliosByUserId(int id)
+        {
+
+            using (DatabaseContext db = new DatabaseContext())
+            {
+                db.Configuration.ProxyCreationEnabled = false;
+                List<Portfolio> uers = new List<Portfolio>();
+                foreach (Portfolio temp in db.Portfolios)
+                {
+                    if (temp.UserId == id)
+                    {
+                        uers.Add(temp);
+                    }
+                }
+                return uers;
+            }
+        }
+
         public static int updatePortfolios(Portfolio w)
         {
 

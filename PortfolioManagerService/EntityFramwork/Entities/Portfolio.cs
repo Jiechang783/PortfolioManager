@@ -13,6 +13,8 @@ namespace EntityFramwork.Entities
         [Required]
         public string Name { get; set; }
 
+        public int UserId { get; set; }
+
         public virtual ICollection<Position> positions { get; set; }
     }
 }

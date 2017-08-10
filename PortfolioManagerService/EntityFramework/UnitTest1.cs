@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace AdministratorWervice.Tests
+namespace EntityFramework
 {
     [TestClass]
     public class UnitTest1

@@ -40,8 +40,8 @@ namespace AdministratorWervice.Controllers
         [Route("api/UpdatePositions")]
         public IHttpActionResult updatePositionById(Position c)
         {
-            Position c1 = new Position { PositionId=1, Quantity=12, Price=21, Isin=1,Type="not"};
-            int changeLine = PositionDao.updatePositions(c1);
+           // Position c1 = new Position { PositionId=1, Quantity=12, Price=21, Isin=1,Type="not"};
+            int changeLine = PositionDao.updatePositions(c);
             return Ok(changeLine);
         }
 

@@ -67,17 +67,17 @@ namespace AdministratorWervice.Controllers
         [Route("api/deletePriceHistorys")]
         public IHttpActionResult deletePriceHistorys(PriceHistory c)
         {
-            PriceHistory c1 = new PriceHistory { Id=1, Isin=3, Date=Convert.ToDateTime("1992-03-20"), Price=2 };
+           // PriceHistory c1 = new PriceHistory { Id=1, Isin=3, Date=Convert.ToDateTime("1992-03-20"), Price=2 };
             int changeLine = PriceHistoryDao.deletePriceHistorys(c);
             return Ok(changeLine);
         }
 
         [HttpGet]
         [Route("api/Getpricehis/{isin}")]
-        public IHttpActionResult Getresult(int isin)
+        public IHttpActionResult Getresult(string isin)
         {
             var query = from p in PriceHistoryDao.getPriceHistorysByisin(isin)
-                        select new { p.Date,p.Price};
+                        select new { p.Date,p.OfferPrice};
 
             return Ok(query);
         }

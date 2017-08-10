@@ -7,13 +7,13 @@ namespace EntityFramwork.Entities
     public class Stock
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Isin { get; set; }
+        public int StockId { get; set; }
 
         [Required]
         public string Name { get; set; }
 
         [Required]
-        public string Symbol { get; set; }
+        public string Isin { get; set; }
 
 
         public decimal LastSale { get; set; }
@@ -25,10 +25,10 @@ namespace EntityFramwork.Entities
         public DateTime IPOyear { get; set; }
 
         [Required]
-        public string Sector { get; set; }
+        public int SectorId { get; set; }
 
         [Required]
-        public string industry { get; set; }
+        public int IndustryId { get; set; }
 
     
         public string SummaryQuote { get; set; }
