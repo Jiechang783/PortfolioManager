@@ -50,7 +50,7 @@
     <div id="wrapper" ng-app="myApp" ng-controller="indexController">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background-color:rgb(45,45,45)">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -58,7 +58,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" style="color:#000000">Portfolio</a>
+                <a class="navbar-brand" href="index.html" style="color:rgba(255,255,255,0.8)">Portfolio</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -114,7 +114,7 @@
                     <!-- /.dropdown-messages -->
                 </li>
                 <!-- /.dropdown -->
-                
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -137,8 +137,8 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            
-        </nav>   
+
+        </nav>
 
         <div id="page-wrapper" style="margin-left:0px">
             <div class="row">
@@ -149,9 +149,9 @@
             </div>
 
             <div class="row">
-                <div class="col-lg-6" style="padding-right:50px">
+                <div class="col-lg-6">
                     <div class="panel panel-green">
-                        <div class="panel-heading" >
+                        <div class="panel-heading">
                             <p class="fa fa-thumbs-o-up"></p>
                             Worst Portfolio
                         </div>
@@ -175,8 +175,8 @@
                     <!-- /.col-lg-4 -->
                 </div>
 
-                <div class="col-lg-6" style="padding-left:50px">
-                    <div class="panel panel-red" >
+                <div class="col-lg-6">
+                    <div class="panel panel-red">
                         <div class="panel-heading">
                             <p class="fa fa-thumbs-o-down"></p>
                             Best Portfolio
@@ -201,7 +201,7 @@
                     <!-- /.col-lg-4 -->
                 </div>
             </div>
-            <!-- /.row -->    
+            <!-- /.row -->
             <div>
                 <div class="row">
                     <div class="col-lg-12">
@@ -278,7 +278,7 @@
 
     <!-- pagging -->
     <script type="text/javascript">
-        
+
 
         var app = angular.module("myApp", ['ngCookies']);
 
