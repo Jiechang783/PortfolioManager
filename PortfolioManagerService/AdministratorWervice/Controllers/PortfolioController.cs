@@ -21,7 +21,7 @@ namespace AdministratorWervice.Controllers
             foreach(Portfolio p in list)
             {
                 returnlist.Add(new Portfolioinfo(p.PortfolioId, p.Name, UserDao.getUsersById(p.UserId).FirstName +" "
-                    + UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+                    + UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL.ToString("P")));
 
             }
             
@@ -54,7 +54,7 @@ namespace AdministratorWervice.Controllers
             foreach (Portfolio p in portlist)
             {
                 list.Add(new Portfolioandpnl(p.PortfolioId, p.Name,UserDao.getUsersById(p.UserId).FirstName+" "+
-                   UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+                   UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL.ToString("P")));
             }
             var query = from p in list
                         orderby p.PNL
@@ -74,7 +74,7 @@ namespace AdministratorWervice.Controllers
             foreach (Portfolio p in portlist)
             {
                 list.Add(new Portfolioandpnl(p.PortfolioId, p.Name, UserDao.getUsersById(p.UserId).FirstName + " " +
-                   UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL));
+                   UserDao.getUsersById(p.UserId).LastName, PortfolioHistoryDao.getLastPortfolioHistorysByPId(p.PortfolioId).PNL.ToString("P")));
             }
             var query = from p in list
                         orderby p.PNL descending
@@ -130,7 +130,7 @@ namespace AdministratorWervice.Controllers
                     i++;
                     
                 }
-                manager.Add(new ManagerInfo(u.UserId,u.FirstName+" "+u.LastName,sum/i));
+                manager.Add(new ManagerInfo(u.UserId,u.FirstName+" "+u.LastName,(sum/i).ToString("P")));
 
             }
             var query = from m in manager
@@ -160,7 +160,7 @@ namespace AdministratorWervice.Controllers
                     i++;
 
                 }
-                manager.Add(new ManagerInfo(u.UserId, u.FirstName + " " + u.LastName, sum / i));
+                manager.Add(new ManagerInfo(u.UserId, u.FirstName + " " + u.LastName, (sum / i).ToString("P")));
 
             }
             var query = from m in manager

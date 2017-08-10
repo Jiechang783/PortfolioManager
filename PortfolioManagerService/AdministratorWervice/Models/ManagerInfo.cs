@@ -10,9 +10,9 @@ namespace AdministratorWervice.Models
 
         public int ManagerID;
         public string ManagerName;
-        public double PNLAvg;
+        public string PNLAvg;
 
-        public ManagerInfo(int id,string name,double avg)
+        public ManagerInfo(int id,string name,string avg)
         {
             this.ManagerID = id;
             this.ManagerName = name;
