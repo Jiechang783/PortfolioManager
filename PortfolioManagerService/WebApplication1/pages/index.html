@@ -140,8 +140,6 @@
             
         </nav>   
 
-
-
         <div id="page-wrapper" style="margin-left:0px">
             <div class="row">
                 <div class="col-lg-12">
@@ -154,7 +152,7 @@
                 <div class="col-lg-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
-                            <p class="fa fa-thumbs-o-down"></p>
+                            <p class="fa fa-thumbs-o-up"></p>
                             Worst Portfolio
                         </div>
                         <div class="panel-body">
@@ -165,9 +163,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    <tr ng-repeat="x in worstData" ng-click="gotoPortfolioDetail(x.PortfolioID)">
-
+                                    <tr ng-repeat="x in worstData" ng-click="gotoPortfolioDetail(x.PortfolioID)>
                                         <td ng-bind="x.PortfolioID"></td>
                                         <td ng-bind="x.PortfolioName"></td>
                                         <td ng-bind="x.PNL"></td>
@@ -184,7 +180,7 @@
                 <div class="col-lg-6">
                     <div class="panel panel-red">
                         <div class="panel-heading">
-                            <p class="fa fa-thumbs-o-up"></p>
+                            <p class="fa fa-thumbs-o-down"></p>
                             Best Portfolio
                         </div>
                         <div class="panel-body">
@@ -195,9 +191,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
-                                    <tr ng-repeat="x in bestData" ng-click="gotoPortfolioDetail(x.PortfolioID)">
-
+                                    <tr ng-repeat="x in bestData" ng-click="gotoPortfolioDetail(x.PortfolioID)>
                                         <td ng-bind="x.PortfolioID"></td>
                                         <td ng-bind="x.PortfolioName"></td>
                                         <td ng-bind="x.PNL"></td>

@@ -164,10 +164,9 @@
                                 </thead>
                                 <tbody>
                                     <tr ng-repeat="x in worstManagerData" ng-click="gotoPortfolioDetail(x.PortfolioID)">
-                                        <td ng-bind="x.PortfolioID"></td>
-                                        <td ng-bind="x.PortfolioName"></td>
+                                        <td ng-bind="x.ManagerID"></td>
                                         <td ng-bind="x.ManagerName"></td>
-                                        <td ng-bind="x.PNL"></td>
+                                        <td ng-bind="x.PNLAvg"></td>
                                     </tr>
                                 </tbody>
                             </table>
