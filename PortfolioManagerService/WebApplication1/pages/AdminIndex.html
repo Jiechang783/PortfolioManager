@@ -100,9 +100,9 @@
                             <p class="fa fa-thumbs-o-down"></p>
                             Worst 3 Managers
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding:0px; margin-bottom:0px; border:0px">
 
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" style="margin-bottom:0px;">
 
                                 <thead>
                                     <tr>
@@ -129,9 +129,9 @@
                             <p class="fa fa-thumbs-o-up"></p>
                             Best 3 Managers
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding:0px; margin-bottom:0px; border:0px">
 
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" style="margin-bottom:0px;">
 
                                 <thead>
                                     <tr>
@@ -161,9 +161,9 @@
                             <p class="fa fa-thumbs-o-down"></p>
                             Worst Portfolio
                         </div>
-                        <div class="panel-body">
+                        <div class="panel-body" style="padding:0px; margin-bottom:0px; border:0px">
 
-                            <table class="table table-bordered table-hover">
+                            <table class="table table-bordered table-hover" style="margin-bottom:0px;">
 
                                 <thead>
                                     <tr>
@@ -179,9 +179,6 @@
                                     </tr>
                                 </tbody>
                             </table>
-
-                        </div>
-                        <div class="panel-footer">
                         </div>
                     </div>
                     <!-- /.col-lg-4 -->
@@ -193,8 +190,8 @@
                             <p class="fa fa-thumbs-o-up"></p>
                             Best Portfolio
                         </div>
-                        <div class="panel-body">
-                            <table class="table table-bordered table-hover">
+                        <div class="panel-body" style="padding:0px; margin-bottom:0px; border:0px">
+                            <table class="table table-bordered table-hover" style="margin-bottom:0px;">
                                 <thead>
                                     <tr>
                                         <th ng-repeat="(x,y) in bestData[0]">{{ x }}</th>
@@ -225,7 +222,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-2">
-                        <button ng-click="NewPortfolio()" class="btn btn-lg btn-success btn-block" ng-hide="!isAdding">New Portfolio</button>
+                        <button ng-click="NewPortfolio()" class="btn btn-lg btn-success btn-block" ng-hide="!isAdding" style="padding-bottom: 20px;">New Portfolio</button>
                     </div>
 
                     <form role="form" ng-hide="isAdding">
