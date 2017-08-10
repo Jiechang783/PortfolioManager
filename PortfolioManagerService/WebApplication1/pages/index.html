@@ -45,12 +45,12 @@
 
 </head>
 
-<body>
+<body id="indexBackground">
 
     <div id="wrapper" ng-app="myApp" ng-controller="indexController">
 
         <!-- Navigation -->
-        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
+        <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0;background-color:rgb(45,45,45)">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
                     <span class="sr-only">Toggle navigation</span>
@@ -58,7 +58,8 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html" style="color:#000000">Portfolio</a>
+                <!--<a class="navbar-brand" href="index.html" style="color:rgba(255,255,255,0.8)">Portfolio</a>-->
+                <img src="../dist/css/log1.png" />
             </div>
             <!-- /.navbar-header -->
 
@@ -114,7 +115,7 @@
                     <!-- /.dropdown-messages -->
                 </li>
                 <!-- /.dropdown -->
-                
+
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                         <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
@@ -137,13 +138,13 @@
             </ul>
             <!-- /.navbar-top-links -->
 
-            
-        </nav>   
+
+        </nav>
 
         <div id="page-wrapper" style="margin-left:0px">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1 class="page-header">Portfolio Management</h1>
+                    <h1 class="page-header" style="border-bottom:1px solid rgba(153, 153, 153, 0.14);font-size:30px">Portfolio Management</h1>
                 </div>
                 <!-- /.col-lg-12 -->
             </div>
@@ -152,26 +153,26 @@
                 <div class="col-lg-6">
                     <div class="panel panel-green">
                         <div class="panel-heading">
-                            <p class="fa fa-thumbs-o-up"></p>
+                            <p class="fa fa-thumbs-o-down"></p>
                             Worst Portfolio
                         </div>
-                        <div class="panel-body">
-                            <table width="100%" class="table table-bordered table-hover">
+
+                        <div class="panel-body" style="padding:0px; margin-bottom:0px; border:0px">
+                            <table class="table table-bordered table-hover" id="#dataTables-3" style="margin-bottom:0px">
+
                                 <thead>
                                     <tr>
                                         <th ng-repeat="(x,y) in worstData[0]">{{ x }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="x in worstData" ng-click="gotoPortfolioDetail(x.PortfolioID)>
+                                    <tr ng-repeat="x in worstData" ng-click="gotoPortfolioDetail(x.PortfolioID)">
                                         <td ng-bind="x.PortfolioID"></td>
                                         <td ng-bind="x.PortfolioName"></td>
                                         <td ng-bind="x.PNL"></td>
                                     </tr>
                                 </tbody>
                             </table>
-                        </div>
-                        <div class="panel-footer">
                         </div>
                     </div>
                     <!-- /.col-lg-4 -->
@@ -180,18 +181,20 @@
                 <div class="col-lg-6">
                     <div class="panel panel-red">
                         <div class="panel-heading">
-                            <p class="fa fa-thumbs-o-down"></p>
+                            <p class="fa fa-thumbs-o-up"></p>
                             Best Portfolio
                         </div>
-                        <div class="panel-body">
-                            <table width="100%" class="table table-bordered table-hover">
+
+                        <div class="panel-body" style="padding:0px; margin-bottom:0px; border:0px">
+                            <table class="table table-bordered table-hover" id="#dataTables-2" style="margin-bottom:0px;">
+
                                 <thead>
                                     <tr>
                                         <th ng-repeat="(x,y) in bestData[0]">{{ x }}</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr ng-repeat="x in bestData" ng-click="gotoPortfolioDetail(x.PortfolioID)>
+                                    <tr ng-repeat="x in bestData" ng-click="gotoPortfolioDetail(x.PortfolioID)">
                                         <td ng-bind="x.PortfolioID"></td>
                                         <td ng-bind="x.PortfolioName"></td>
                                         <td ng-bind="x.PNL"></td>
@@ -199,35 +202,32 @@
                                 </tbody>
                             </table>
                         </div>
-                        <div class="panel-footer">
-                        </div>
                     </div>
                     <!-- /.col-lg-4 -->
                 </div>
             </div>
-            <!-- /.row -->    
+            <!-- /.row -->
             <div>
                 <div class="row">
-                    <div class="col-lg-12">
-                        <h1 class="page-header">Portfolio List</h1>
+                    <div class="col-lg-6">
+                        <h1 class="page-header" style="padding-bottom: 8px; font-size: 18px; margin-bottom: 5px; margin-top:20px">Portfolio List</h1>
+                    </div>
+                    <div class="col-lg-6" style="padding-bottom: 0px;border-bottom-width: 1px;margin-bottom: 9px;margin-top: 20px;">
+                        <a href="PortfolioDetail.html" style="color:white;margin-bottom: 0px;float:right;font-size:14px;padding-top: 5px;padding-bottom: 5px;padding-left: 8px;padding-right: 8px;" class="btn btn-primary btn-lg">
+                            New Portfolio
+                        </a>
                     </div>
                     <!-- /.col-lg-12 -->
                 </div>
-
-                <a href="PortfolioDetail.html" style="color:black;margin-bottom:10px" class="btn btn-primary btn-lg">
-                    New Portfolio
-                </a>
-
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="panel panel-default">
-                            <div class="panel-heading">
-                            </div>
-
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-1">
+
                                     <thead>
                                         <tr>
                                             <th ng-repeat="(x,y) in data[0]">{{ x }}</th>
@@ -282,22 +282,18 @@
 
     <!-- pagging -->
     <script type="text/javascript">
-        
+
 
         var app = angular.module("myApp", ['ngCookies']);
 
         app.controller("indexController", ['$scope', '$http', '$cookies', '$cookieStore', function ($scope, $http, $cookies, $cookieStore) {
             var UserId = $cookies.get('UserId');
-            $scope.bestData = {};
-            $scope.worstData = {};
-
 
             $http.get("http://localhost:38814/api/ALLPortfolios/" + UserId).then(function (response) {
-
                 $scope.data = response.data;
 
                 $(document).ready(function () {
-                    $('#dataTables-example').DataTable({
+                    $('#dataTables-1').DataTable({
                         responsive: true
                     });
                 });
@@ -306,16 +302,28 @@
 
             $http.get("http://localhost:38814/api/bestPortfolios/" + UserId).then(function (bestResponse) {
                 $scope.bestData = bestResponse.data;
+                $(document).ready(function () {
+                    $('#dataTables-2').DataTable({
+                        responsive: true
+                    });
+                });
             })
 
             $http.get("http://localhost:38814/api/worstPortfolios/" + UserId).then(function (worstResponse) {
                 $scope.worstData = worstResponse.data;
+                $(document).ready(function () {
+                    $('#dataTables-3').DataTable({
+                        responsive: true
+                    });
+                });
             })
 
             $scope.gotoPortfolioDetail = function (PortfolioID) {
                 $cookies.put('PortfolioID', PortfolioID);
                 window.location.href = "http://localhost:39926/pages/PortfolioDetail.html";
             }
+
+
         }]);
 
 
