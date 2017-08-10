@@ -126,7 +126,11 @@
                     $cookies.put('Role', response.data[0].Role);
 
                     if (response.data[0].UserId != null) {
-                        window.location.href = "http://localhost:39926/pages/index.html";
+                        if (response.data[0].Role == 'Admin') {
+                            window.location.href = "http://localhost:39926/pages/adminIndex.html";
+                        } else if (response.data[0].Role == 'Manager') {
+                            window.location.href = "http://localhost:39926/pages/index.html";
+                        }
                     }
                 })
             }
