@@ -139,10 +139,8 @@
         </nav>
 
         <div id="page-wrapper" style="margin-left:0px">
-
             <!-- /.row -->
             <div>
-                
                 <!-- /.row -->
                 <div class="row">
                     <div class="row">
@@ -161,21 +159,26 @@
                                 <table class="table table-striped table-bordered table-hover" id="dataTables-1">
                                     <thead>
                                         <tr>
+                                            <th data-sort="false" bSortable="false">
+                                            </th>
                                             <th ng-repeat="(x,y) in stockData[0]">{{ x }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="x in stockData" ng-click="addStock()">
+                                        <tr ng-repeat="x in stockData" style="text-align:center;">
+                                            <td style="text-align:center;">
+                                                <input type="checkbox" style="margin:auto" onclick="addStockList(x.StockId, x.Isin,'Stock')"/>
+                                            </td>
                                             <td ng-bind="x.StockId"></td>
                                             <td ng-bind="x.Name"></td>
                                             <td ng-bind="x.Isin"></td>
                                             <td ng-bind="x.LastSale"></td>
-                                            <td ng-bind="x.isin"></td>
                                             <td ng-bind="x.MarketCap"></td>
                                             <td ng-bind="x.IPOyear"></td>
                                             <td ng-bind="x.SectorId"></td>
                                             <td ng-bind="x.IndustryId"></td>
                                             <td ng-bind="x.SummaryQuote"></td>
+                                            <td ng-bind="x.Address"></td>
                                         </tr>
                                     </tbody>
                                 </table>
@@ -202,11 +205,16 @@
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-2">
                                         <thead>
                                             <tr>
-                                                <th ng-repeat="(x,y) in bondData[0]">{{ x }}</th>
+                                                <th data-sort="false" bSortable="false">
+                                                </th>
+                                                <th ng-repeat="(x,y) in bondData[0]">{{x}}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="x in bondData">
+                                                <td style="text-align:center;">
+                                                    <input type="checkbox" style="margin:auto" />
+                                                </td>
                                                 <td ng-bind="x.BondId"></td>
                                                 <td ng-bind="x.Isin"></td>
                                                 <td ng-bind="x.Coupon"></td>
@@ -241,11 +249,16 @@
                                     <table class="table table-striped table-bordered table-hover" id="dataTables-3">
                                         <thead>
                                             <tr>
+                                                <th data-sort="false" bSortable ="false">
+                                                </th>
                                                 <th ng-repeat="(x,y) in futureData[0]">{{ x }}</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             <tr ng-repeat="x in futureData">
+                                                <td style="text-align:center;">
+                                                    <input type="checkbox" style="margin:auto" />
+                                                </td>
                                                 <td ng-bind="x.FutureId"></td>
                                                 <td ng-bind="x.Isin"></td>
                                                 <td ng-bind="x.Exch"></td>
@@ -307,6 +320,7 @@
         var app = angular.module("myApp", ['ngCookies', 'angular-popups']);
         app.controller("NewPositionController", function ($scope, $http, $cookies, $q) {
             var PortfolioID = $cookies.get('PortfolioID');
+            var stockList = [];
 
             $http.get("http://localhost:38814/api/PM/Stock").then(function (stockResponse) {
                 $scope.stockData = stockResponse.data;
@@ -343,11 +357,29 @@
             //        });
             //    });
             //});
-            $scope.addStock = function () {
+
+
+            function addStockList(StockId, Isin, Type) {
+                var stockIdList = {
+                    'StockId': StockId,
+                    'Isin': Isin,
+                    'Type': Type
+                }
+
+                if (stockList.length = 0) {
+                    stockIdList.add(stockIdList);
+                    return;
+                }
+
+                for (stockIdList in stockList) {
+                    stockList.remove(stockIdList);
+                    return;
+                }
+                stockList.add(stockIdList);
 
             }
-         
         })
+        
     </script>
 </body>
 

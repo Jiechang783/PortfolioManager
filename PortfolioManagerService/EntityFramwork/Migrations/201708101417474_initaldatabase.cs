@@ -3,7 +3,7 @@ namespace EntityFramwork.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class initadatabase : DbMigration
+    public partial class initaldatabase : DbMigration
     {
         public override void Up()
         {
