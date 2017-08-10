@@ -273,33 +273,6 @@
                     </div>
                     <!-- /.col-lg-4 -->
                 </div>
-
-                <div class="col-lg-6">
-                    <div class="panel panel-red">
-                        <div class="panel-heading">
-                            <p class="fa fa-thumbs-o-up"></p>
-                            Best Portfolio
-                        </div>
-                        <div class="panel-body">
-                            <table width="100%" class="table table-bordered table-hover">
-                                <thead>
-                                    <tr>
-                                        <th ng-repeat="(x,y) in bestData[0]">{{ x }}</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="x in bestData" ng-click="gotoPortfolioDetail(x.PortfolioID)">
-                                        <td ng-bind="x.PortfolioID"></td>
-                                        <td ng-bind="x.PortfolioName"></td>
-                                        <td ng-bind="x.ManagerName"></td>
-                                        <td ng-bind="x.PNL"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                    <!-- /.col-lg-4 -->
-                </div>
             </div>
             <!-- /.row -->
             <div>
