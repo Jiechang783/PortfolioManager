@@ -147,6 +147,12 @@
                         <h1 class="page-header">Position List</h1>
                     </div>
                     <!-- /.col-lg-12 -->
+
+                    <div class="row">
+                        <div class="col-lg-2" style="margin-left:20px">
+                            <button ng-click="NewPosition()" class="btn btn-lg btn-success btn-block">New Position</button>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- /.row -->
@@ -158,7 +164,7 @@
 
                             <!-- /.panel-heading -->
                             <div class="panel-body">
-                                <table width="100%" class="table table-striped table-bordered table-hover" id="dataTables-example">
+                                <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                                     <thead>
                                         <tr>
                                             <th ng-repeat="(x,y) in data[0]">{{ x }}</th>
@@ -273,6 +279,11 @@
                 $cookies.put('Type', Type);
                 window.location.href = "http://localhost:39926/pages/PositionDetail.html";
             };
+
+            $scope.NewPosition = function () {
+                $cookies.put('PortfolioID', PortfolioID);
+                window.location.href = "http://localhost:39926/pages/NewPosition.html";
+            }
 
             $http.get("http://localhost:38814/api/getPercentage/" + PortfolioID).then(function (response) {
 
