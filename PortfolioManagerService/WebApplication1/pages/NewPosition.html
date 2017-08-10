@@ -165,7 +165,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr ng-repeat="x in stockData">
+                                        <tr ng-repeat="x in stockData" ng-click="addStock()">
                                             <td ng-bind="x.StockId"></td>
                                             <td ng-bind="x.Name"></td>
                                             <td ng-bind="x.Isin"></td>
@@ -343,7 +343,9 @@
             //        });
             //    });
             //});
-            
+            $scope.addStock = function () {
+
+            }
          
         })
     </script>
